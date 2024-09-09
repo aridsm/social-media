@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@100;400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Nokora", sans-serif;
+  font-size: 18px;
+  @apply bg-base text-text
+}
+
+.router-link-active,
+.router-link-exact-active {
+  @apply bg-red-400;
+}
