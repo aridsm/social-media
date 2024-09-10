@@ -52,10 +52,10 @@ const currentPath = computed(() => {
         v-for="link in navLinks"
         :key="link.name"
         :to="link.path"
-        class="flex items-center gap-4 rounded-2xl px-4 py-5 w-full transition-all"
+        class="flex items-center gap-4 rounded-xl px-4 py-5 w-full"
         :class="{
           'active hover:bg-text': currentPath === link.path,
-          'hover:bg-text/[.07]': currentPath !== link.path,
+          hovered: currentPath !== link.path,
         }"
       >
         <icon :icon="link.icon" class="w-7" />

@@ -17,7 +17,7 @@ module.exports = {
         border: "#E2E4D0",
         primary: "#9793F0",
         text: "#3C3C49",
-        label: "#9393B5",
+        label: "#B8BAAE",
       },
     },
   },

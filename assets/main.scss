@@ -6,11 +6,10 @@
 
 body {
   font-family: "Nokora", sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   @apply bg-base text-text
 }
 
-.router-link-active,
-.router-link-exact-active {
-  @apply bg-red-400;
+.hovered {
+@apply hover:bg-text/[.07] active:bg-text/[.12]
 }
