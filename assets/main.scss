@@ -6,8 +6,7 @@
 
 body {
   font-family: "Nokora", sans-serif;
-  font-size: 14px;
-  @apply bg-base text-text
+  @apply bg-base text-text text-sm 2xl:text-[16px]
 }
 
 .hovered {

@@ -41,18 +41,18 @@ const currentPath = computed(() => {
 
 <template>
   <div
-    class="p-8 w-[17vw] min-w-[20rem] border-r border-r-border flex flex-col h-full"
+    class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-border flex flex-col h-full"
   >
-    <div class="flex items-center gap-4">
-      <span class="w-12 h-12 bg-gray-300 rounded-full"></span>
+    <div class="flex items-center gap-4 px-2">
+      <span class="w-10 h-10 bg-gray-300 rounded-full"></span>
       <span>@jennyoliver</span>
     </div>
-    <nav class="flex flex-col gap-4 w-full mt-8 font-bold">
+    <nav class="flex flex-col gap-2 2xl:gap-4 w-full mt-8 font-bold">
       <NuxtLink
         v-for="link in navLinks"
         :key="link.name"
         :to="link.path"
-        class="flex items-center gap-4 rounded-xl px-4 py-5 w-full"
+        class="flex items-center gap-4 rounded-full px-4 py-4 w-full"
         :class="{
           'active hover:bg-text': currentPath === link.path,
           hovered: currentPath !== link.path,
@@ -64,7 +64,7 @@ const currentPath = computed(() => {
 
       <NuxtLink
         to="/settings"
-        class="px-4 flex items-center gap-4 py-8 border-t border-t-border"
+        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-border"
       >
         <icon icon="fa-solid fa-gear" class="w-7" />
         <span class="leading-none -mb-1">Settings</span>

@@ -6,16 +6,16 @@ const newPost = ref("");
   <main>
     <AppCard>
       <div class="flex items-center gap-6">
-        <div class="w-16 h-16 rounded-full bg-gray-300"></div>
+        <div class="w-10 h-10 rounded-full bg-gray-300"></div>
         <AppInputText
           class="flex-1"
           v-model="newPost"
           placeholder="What are you thinking?"
         />
       </div>
-      <AppBtn class="ml-auto mt-4">
+      <AppBtn class="ml-auto mt-4 flex gap-3">
         Post
-        <icon icon="fa-regular fa-paper-plane"
+        <icon icon="fa-regular fa-paper-plane" class="mb-[2px]"
       /></AppBtn>
     </AppCard>
 

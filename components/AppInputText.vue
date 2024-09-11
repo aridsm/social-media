@@ -11,10 +11,10 @@ const modelValue = defineModel<String>({ required: true });
     <input
       v-model="modelValue"
       :placeholder="placeholder || 'Write...'"
-      class="bg-base2 border border-border px-4 h-14 rounded-lg focus:outline-primary w-full"
+      class="bg-base2 border border-border px-4 h-10 rounded-full focus:outline-primary w-full text-base"
     />
     <button
-      class="absolute top-2 right-2 text-xl rounded-full hovered w-10 h-10 flex justify-center items-center"
+      class="absolute top-1 right-2 text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
     >
       <icon v-if="iconName" :icon="iconName" />
     </button>

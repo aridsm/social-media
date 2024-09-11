@@ -5,7 +5,7 @@ const comment = ref("");
 <template>
   <AppCard>
     <div class="flex items-center gap-4">
-      <span class="w-12 h-12 bg-gray-300 rounded-full block"></span>
+      <span class="w-10 h-10 bg-gray-300 rounded-full block"></span>
       <div>
         <div class="flex gap-6 items-center">
           <p>@johndoe</p>
@@ -14,7 +14,7 @@ const comment = ref("");
         <p class="text-label text-sm">3 hours ago</p>
       </div>
     </div>
-    <p class="my-8">
+    <p class="my-8 leading-relaxed">
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste dicta odit
       similique iure. Recusandae obcaecati laborum dolore explicabo dolorum? Rem
       sint quis, in omnis obcaecati nam. Culpa totam blanditiis dolorum.
@@ -35,7 +35,7 @@ const comment = ref("");
 
     <div class="border-t border-t-border pt-6 mt-4 flex gap-6 items-center">
       <span
-        class="max-h-12 min-h-12 max-w-12 min-w-12 bg-gray-300 rounded-full block"
+        class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-300 rounded-full block"
       ></span>
       <AppInputText
         v-model="comment"

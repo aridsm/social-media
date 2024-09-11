@@ -1,6 +1,6 @@
 <script lang="ts" setup></script>
 <template>
-  <div class="p-8">
+  <div class="2xl:p-8 p-6">
     <header class="flex items-start justify-between mb-10">
       <div class="flex uppercase font-bold items-end gap-2 leading-none">
         <div class="flex items-end">
@@ -12,15 +12,15 @@
 
       <div class="flex gap-4">
         <button class="btns-header hovered">
-          <icon icon="fa-regular fa-comment-dots" class="text-xl" />
+          <icon icon="fa-regular fa-comment-dots" class="text-lg 2xl:text-xl" />
           <div class="notification">2</div>
         </button>
         <button class="btns-header hovered">
-          <icon icon="fa-regular fa-bell" class="text-xl" />
+          <icon icon="fa-regular fa-bell" class="text-lg 2xl:text-xl" />
           <div class="notification">14</div>
         </button>
         <button class="btns-header hovered">
-          <icon icon="fa-solid fa-gear" class="text-xl" />
+          <icon icon="fa-solid fa-gear" class="text-lg 2xl:text-xl" />
         </button>
       </div>
     </header>
