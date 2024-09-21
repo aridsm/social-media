@@ -9,21 +9,43 @@ const { findPosts, addNewPost } = usePostsStore();
 <template>
   <div class="flex flex-col min-h-0 overflow-auto 2xl:px-8 px-6">
     <AppCard>
-      <div class="flex items-center gap-6">
-        <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-gray-200"></div>
         <AppInputText
           class="flex-1"
           v-model="newPost"
           placeholder="What are you thinking?"
         />
       </div>
-      <AppBtn
-        class="ml-auto mt-4 flex gap-3"
-        @click="addNewPost(newPost), (newPost = '')"
-      >
-        Post
-        <icon icon="fa-regular fa-paper-plane" class="mb-[2px]"
-      /></AppBtn>
+      <div class="flex justify-between items-center mt-4">
+        <div class="flex gap-4 items-center">
+          <button
+            class="flex items-center gap-2 hovered rounded-full py-1 px-3"
+          >
+            <icon icon="fa-solid fa-image" />
+            Image
+          </button>
+          <button
+            class="flex items-center gap-2 hovered rounded-full py-1 px-3"
+          >
+            <icon icon="fa-solid fa-file" />
+            File
+          </button>
+          <button
+            class="flex items-center gap-2 hovered rounded-full py-1 px-3"
+          >
+            <icon icon="fa-solid fa-location-dot" />
+            Location
+          </button>
+        </div>
+        <AppBtn
+          class="ml-auto flex gap-3"
+          @click="addNewPost(newPost), (newPost = '')"
+        >
+          Post
+          <icon icon="fa-regular fa-paper-plane" class="mb-[2px]" />
+        </AppBtn>
+      </div>
     </AppCard>
 
     <div

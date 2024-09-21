@@ -33,7 +33,7 @@ const dummySuggestedUsers = [
       <ul class="flex flex-col gap-4 2xl:gap-6">
         <li v-for="user in dummySuggestedUsers" :key="user.id">
           <AppCard class="flex items-center gap-4 w-full">
-            <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div class="w-10 h-10 rounded-full bg-border"></div>
             <div class="flex flex-col">
               <span class="font-bold">{{ user.user }}</span>
               <span class="text-label">{{ user.name }}</span>

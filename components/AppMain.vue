@@ -12,15 +12,15 @@
 
       <div class="flex gap-4">
         <button class="btns-header hovered">
-          <icon icon="fa-regular fa-comment-dots" class="text-lg 2xl:text-xl" />
+          <icon icon="fa-regular fa-comment-dots" class="text-[16px]" />
           <div class="notification">2</div>
         </button>
         <button class="btns-header hovered">
-          <icon icon="fa-regular fa-bell" class="text-lg 2xl:text-xl" />
+          <icon icon="fa-regular fa-bell" class="text-[16px]" />
           <div class="notification">14</div>
         </button>
         <button class="btns-header hovered">
-          <icon icon="fa-solid fa-gear" class="text-lg 2xl:text-xl" />
+          <icon icon="fa-solid fa-gear" class="text-[16px]" />
         </button>
       </div>
     </header>
@@ -30,10 +30,10 @@
 </template>
 <style scoped>
 .btns-header {
-  @apply border border-border w-14 h-10 rounded-full flex items-center justify-center relative;
+  @apply w-12 h-8 rounded-full flex items-center justify-center relative;
 }
 
 .notification {
-  @apply absolute -top-2 -right-2 bg-red-600 rounded-full leading-none px-2 pb-1 py-[6px] text-xs flex items-center text-white;
+  @apply absolute -top-2 -right-2 bg-red-600 rounded-full leading-none px-2 pb-1 py-[5px] text-xs flex items-center text-white;
 }
 </style>

@@ -16,7 +16,7 @@ const modelValue = defineModel<string>({ required: true });
     <input
       v-model.lazy="modelValue"
       :placeholder="placeholder || 'Write...'"
-      class="bg-base2 border border-border px-4 h-10 rounded-md text-text focus:outline-primary w-full text-sm"
+      class="bg-base border border-border px-4 h-10 rounded-sm text-text focus:outline-primary w-full text-sm"
       :class="contentClass"
       @blur="emits('blur', modelValue)"
     />

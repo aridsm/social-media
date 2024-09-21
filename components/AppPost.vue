@@ -27,7 +27,7 @@ const posts = computed(() => {
 <template>
   <AppCard>
     <div class="flex items-center gap-4">
-      <span class="w-10 h-10 bg-gray-300 rounded-full block"></span>
+      <span class="w-10 h-10 bg-border rounded-full block"></span>
       <div>
         <div class="flex gap-4 items-center">
           <NuxtLink
@@ -103,16 +103,16 @@ const posts = computed(() => {
     </div>
     <div
       v-if="showComments"
-      class="border-t relative border-t-border pt-6 mt-4 flex gap-6 items-center"
+      class="border-t relative border-t-gray-200 pt-6 mt-4 flex gap-6 items-center"
     >
       <button
         @click="showComments = false"
-        class="absolute -top-2 btn-hide-comments bg-base w-10 flex items-center justify-center border rounded-full border-border"
+        class="absolute -top-2 btn-hide-comments bg-base w-10 flex items-center justify-center border rounded-full border-gray-200"
       >
         <icon icon="fa-solid fa-chevron-up" />
       </button>
       <span
-        class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-300 rounded-full block"
+        class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-200 rounded-full block"
       >
       </span>
       <AppInputText

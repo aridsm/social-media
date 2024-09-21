@@ -6,9 +6,26 @@
 
 body {
   font-family: "Nokora", sans-serif;
-  @apply bg-base text-text text-sm 2xl:text-[16px]
+  @apply bg-base text-text text-sm 2xl:text-[16px];
 }
 
 .hovered {
-@apply hover:bg-text/[.07] active:bg-text/[.12]
+  @apply hover:bg-text/[.04] active:bg-text/[.08];
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
 }

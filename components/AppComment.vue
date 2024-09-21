@@ -28,9 +28,9 @@ const posts = computed(() => {
 
 <template>
   <div class="flex gap-6">
-    <span class="w-10 h-10 min-w-10 bg-gray-300 rounded-full block mt-3"></span>
+    <span class="w-10 h-10 min-w-10 bg-border rounded-full block mt-3"></span>
     <div
-      class="flex flex-col bg-base2 p-6 w-full relative rounded-xl before-arrow"
+      class="flex flex-col bg-base p-6 w-full relative rounded-xl before-arrow"
     >
       <div class="flex items-center gap-4">
         <div>
@@ -102,7 +102,7 @@ const posts = computed(() => {
         class="border-t border-t-border pt-6 mt-4 flex gap-6 items-center"
       >
         <span
-          class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-300 rounded-full block"
+          class="max-h-10 min-h-10 max-w-10 min-w-10 bg-border rounded-full block"
         >
         </span>
         <AppInputText
@@ -117,7 +117,7 @@ const posts = computed(() => {
       </div>
       <div
         v-if="post.level <= 2 && posts?.length"
-        class="flex flex-col bg-base2 rounded-xl px-6 pt-6 gap-2"
+        class="flex flex-col bg-base rounded-xl px-6 pt-6 gap-2"
       >
         <AppComment
           v-for="comment in posts"
@@ -132,7 +132,7 @@ const posts = computed(() => {
 
 <style scoped>
 .before-arrow {
-  @apply before:top-5 before:block before:border-[12px] before:border-y-transparent before:border-l-transparent before:border-r-base2 before:w-1 before:absolute before:right-full;
+  @apply before:top-5 before:block before:border-[12px] before:border-y-transparent before:border-l-transparent before:border-r-base before:w-1 before:absolute before:right-full;
 }
 
 .comment + .comment {
