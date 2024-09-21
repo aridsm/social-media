@@ -3,7 +3,7 @@
 <template>
   <div class="flex h-screen">
     <AppMenu />
-    <AppMain class="flex-1" />
+    <AppMain class="flex-1 flex flex-col h-full" />
     <AppAside />
   </div>
 </template>

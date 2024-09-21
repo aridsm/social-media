@@ -52,7 +52,7 @@ const currentPath = computed(() => {
         v-for="link in navLinks"
         :key="link.name"
         :to="link.path"
-        class="flex items-center gap-4 rounded-full px-4 py-4 w-full"
+        class="flex items-center gap-4 rounded-md px-4 w-full h-12"
         :class="{
           'active hover:bg-text': currentPath === link.path,
           hovered: currentPath !== link.path,

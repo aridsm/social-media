@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 <template>
-  <div class="2xl:p-8 p-6">
-    <header class="flex items-start justify-between mb-10">
+  <div class="2xl:py-8 py-6">
+    <header class="flex items-start justify-between mb-10 2xl:px-8 px-6">
       <div class="flex uppercase font-bold items-end gap-2 leading-none">
         <div class="flex items-end">
           <div class="w-5 h-7 bg-text"></div>
