@@ -1,7 +1,18 @@
-<script lang="ts"></script>
+<script lang="ts" setup>
+defineProps({
+  noBorder: Boolean,
+  flat: Boolean,
+});
+</script>
 
 <template>
-  <div class="bg-white rounded-md border border-border p-5 2xl:p-6">
+  <div
+    class="rounded-md"
+    :class="{
+      'border border-border': !noBorder,
+      'p-5 2xl:p-6 bg-white': !flat,
+    }"
+  >
     <slot />
   </div>
 </template>

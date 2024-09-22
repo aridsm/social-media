@@ -27,68 +27,6 @@ export const usePostsStore = defineStore("posts", () => {
       post: "Iste dicta odit similique iure. Recusandae obcaecati laborum dolore explicabo dolorum? Rem sint quis, in omnis obcaecati nam. Culpa totam blanditiis dolorum.",
       parentId: undefined,
     },
-    {
-      id: 2,
-      userId: 2,
-      user: {
-        id: 2,
-        userName: "alicejackson",
-        name: "Alice Jackson",
-        photo: "",
-        backgroundPhoto: "",
-        isFollowing: false,
-      },
-      date: "2024-09-15T05:00:00Z",
-      views: 328,
-      likes: 72,
-      dislikes: 0,
-      liked: true,
-      disliked: false,
-      level: 2,
-      post: "Culpa totam blanditiis dolorum!!",
-      parentId: 1,
-    },
-    {
-      id: 3,
-      userId: 1,
-      user: {
-        id: 2,
-        userName: "emilybanks",
-        name: "Emily Banks",
-        photo: "",
-        backgroundPhoto: "",
-        isFollowing: false,
-      },
-      date: "2023-10-10T05:20:00Z",
-      views: 328,
-      likes: 72,
-      dislikes: 0,
-      liked: true,
-      disliked: false,
-      level: 2,
-      post: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste dicta odit similique iure. Recusandae obcaecati laborum dolore explicabo dolorum? Rem sint quis, in omnis obcaecati nam. Culpa totam blanditiis dolorum.",
-      parentId: 1,
-    },
-    {
-      id: 4,
-      userId: 1,
-      user: {
-        id: 2,
-        userName: "emilybanks",
-        name: "Emily Banks",
-        photo: "",
-        backgroundPhoto: "",
-        isFollowing: false,
-      },
-      date: "2023-10-10T05:20:00Z",
-      views: 328,
-      likes: 72,
-      dislikes: 0,
-      liked: true,
-      disliked: false,
-      level: 1,
-      post: "Lorem ipsum dolor...",
-    },
   ]);
 
   function getPost(postId: number) {
@@ -170,12 +108,12 @@ export const usePostsStore = defineStore("posts", () => {
     });
   }
 
-  function editPost(post: Post) {
-    const selectedPost = getPost(post.id);
+  function editPost(postId: number, newPost: string) {
+    const selectedPost = getPost(postId);
 
     if (!selectedPost) return;
 
-    selectedPost.post = post.post;
+    selectedPost.post = newPost;
     selectedPost.edited = true;
   }
 
@@ -184,9 +122,16 @@ export const usePostsStore = defineStore("posts", () => {
 
     if (!selectedPost) return;
 
-    const postIndex = posts.value.findIndex((p) => post.id === p.id);
+    posts.value = posts.value.filter((p) => {
+      const children = posts.value.filter((p2) => p2.parentId === post.id);
+      const childrenIds = children.map((child) => child.id);
 
-    posts.value.splice(postIndex, 1);
+      if (p.parentId && childrenIds.includes(p.parentId)) {
+        return false;
+      }
+
+      return p.id !== post.id && p.parentId !== post.id;
+    });
   }
 
   return {

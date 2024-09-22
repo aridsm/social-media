@@ -3,6 +3,7 @@ const props = defineProps({
   iconName: String,
   placeholder: String,
   contentClass: String,
+  textarea: Boolean,
 });
 
 const emits = defineEmits<{
@@ -13,7 +14,17 @@ const modelValue = defineModel<string>({ required: true });
 </script>
 <template>
   <div class="relative">
+    <textarea
+      v-if="textarea"
+      v-model.lazy="modelValue"
+      :rows="4"
+      :placeholder="placeholder || 'Write...'"
+      class="bg-base border border-border px-4 py-2 rounded-sm text-text focus:outline-primary w-full text-sm"
+      :class="contentClass"
+      @blur="emits('blur', modelValue)"
+    />
     <input
+      v-else
       v-model.lazy="modelValue"
       :placeholder="placeholder || 'Write...'"
       class="bg-base border border-border px-4 h-10 rounded-sm text-text focus:outline-primary w-full text-sm"

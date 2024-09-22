@@ -5,8 +5,10 @@ import type { Post } from "~/utils/posts/types";
 import { usePostsStore } from "~/utils/posts/usePostsStore";
 
 const showComments = ref(false);
+const comment = ref("");
+const editing = ref(false);
 
-const { addNewPost, editPost, removePost, likePost, dislikePost, findPosts } =
+const { addNewPost, removePost, likePost, dislikePost, findPosts } =
   usePostsStore();
 const { currentUser } = useCurrentUserStore();
 
@@ -15,115 +17,229 @@ const props = defineProps({
     type: Object as PropType<Post>,
     required: true,
   },
+  lastInList: Boolean,
 });
-
-const comment = ref("");
 
 const posts = computed(() => {
   return findPosts({ parentId: props.post.id });
 });
+
+const isComment = computed(() => {
+  return props.post.level > 1;
+});
+
+const actionsList = ref([
+  {
+    id: 1,
+    text: "Salvar",
+    icon: "fa-regular fa-bookmark",
+    click: () => {},
+  },
+  {
+    id: 2,
+    text: "Denunciar",
+    icon: "fa-regular fa-flag",
+    visible: () => currentUser.id !== props.post.userId,
+    click: () => {},
+  },
+  {
+    id: 4,
+    text: "Editar",
+    icon: "fa-regular fa-pen-to-square",
+    visible: () => currentUser.id === props.post.userId,
+    click: () => {
+      editing.value = true;
+    },
+  },
+  {
+    id: 3,
+    text: "Excluir",
+    icon: "fa-regular fa-trash-can",
+    class: "text-red-600",
+    visible: () => currentUser.id === props.post.userId,
+    click: () => {
+      removePost(props.post);
+    },
+  },
+]);
 </script>
 
 <template>
-  <AppCard>
-    <div class="flex items-center gap-4">
-      <span class="w-10 h-10 bg-border rounded-full block"></span>
-      <div>
-        <div class="flex gap-4 items-center">
-          <NuxtLink
-            class="cursor-pointer hover:text-primary"
-            :to="`/profile/${post.userId}`"
-            target="_blank"
-          >
-            @{{ post.user.userName }}
-          </NuxtLink>
-          <AppBtnFollow
-            v-if="!post.user.isFollowing && post.userId !== currentUser.id"
-          />
-        </div>
-        <p class="text-label text-sm">{{ getDateDifference(post.date) }}</p>
-      </div>
-      <button
-        class="ml-auto hovered w-8 h-8 rounded-full flex items-center justify-center"
-      >
-        <icon icon="fa-solid fa-ellipsis-vertical" />
-      </button>
-    </div>
-    <p class="my-8 leading-relaxed">
-      {{ post.post }}
-    </p>
-
-    <div class="flex gap-10 items-center">
-      <div><icon icon="fa-regular fa-eye" class="mr-1" /> {{ post.views }}</div>
-      <button
-        :class="{
-          'text-green-500': post.liked,
-        }"
-        @click="likePost(post.id)"
-      >
-        <icon
-          :icon="
-            post.liked ? 'fa-solid fa-thumbs-up' : 'fa-regular fa-thumbs-up'
-          "
-          class="mr-1"
-        />
-        {{ post.likes }}
-      </button>
-      <button
-        :class="{
-          'text-red-500': post.disliked,
-        }"
-        @click="dislikePost(post.id)"
-      >
-        <icon
-          :icon="
-            post.disliked
-              ? 'fa-solid fa-thumbs-down'
-              : 'fa-regular fa-thumbs-down'
-          "
-          class="mr-1"
-        />
-        {{ post.dislikes }}
-      </button>
-      <button class="mr-auto" @click="showComments = true">
-        <icon icon="fa-regular fa-comments" class="mr-1" />
-        {{ posts.length }}
-      </button>
-
-      <button
-        v-if="!showComments"
-        class="hovered px-2 rounded-full py-1"
-        @click="showComments = true"
-      >
-        <icon icon="fa-solid fa-reply" class="mr-1" /> Reply
-      </button>
-      <button class="hovered px-2 rounded-full py-1">
-        <icon icon="fa-solid fa-share-nodes" class="mr-1" /> Share
-      </button>
-    </div>
+  <AppCard
+    :no-border="isComment"
+    :flat="isComment"
+    class="relative"
+    :class="{
+      'flex gap-6 mt-6': isComment,
+    }"
+  >
     <div
-      v-if="showComments"
-      class="border-t relative border-t-gray-200 pt-6 mt-4 flex gap-6 items-center"
+      v-if="isComment && !lastInList && showComments"
+      class="h-full w-4 text-border hover:text-gray-300 cursor-pointer flex justify-center absolute top-6 left-3"
+      @click="showComments = false"
     >
-      <button
-        @click="showComments = false"
-        class="absolute -top-2 btn-hide-comments bg-base w-10 flex items-center justify-center border rounded-full border-gray-200"
-      >
-        <icon icon="fa-solid fa-chevron-up" />
-      </button>
-      <span
-        class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-200 rounded-full block"
-      >
-      </span>
-      <AppInputText
-        v-model="comment"
-        icon-name="fa-regular fa-paper-plane"
-        class="w-full"
-        @blur="addNewPost($event, post.id, 2), (comment = '')"
-      />
+      <div class="h-full w-[1px] bg-current" />
     </div>
-    <div v-if="showComments" class="flex flex-col rounded-xl gap-6 mt-6">
-      <AppComment v-for="post in posts" :key="post.id" :post="post" />
+    <span
+      v-if="isComment"
+      class="w-10 h-10 min-w-10 bg-border rounded-full block z-10"
+    ></span>
+
+    <div
+      :class="{
+        'bg-base': post.level === 2,
+        'bg-gray-200/[.3]': post.level === 3,
+        ' p-6 w-full relative rounded-xl before-arrow': isComment,
+      }"
+    >
+      <div class="flex items-center gap-4">
+        <span
+          v-if="post.level === 1"
+          class="w-10 h-10 bg-border rounded-full block"
+        ></span>
+        <div>
+          <div class="flex gap-4 items-center">
+            <NuxtLink
+              class="cursor-pointer hover:text-primary"
+              :to="`/profile/${post.userId}`"
+              target="_blank"
+            >
+              @{{ post.user.userName }}
+            </NuxtLink>
+            <AppBtnFollow
+              v-if="!post.user.isFollowing && post.userId !== currentUser.id"
+            />
+          </div>
+          <p class="text-label text-sm">{{ getDateDifference(post.date) }}</p>
+        </div>
+
+        <div class="ml-auto flex items-center gap-3">
+          <span
+            v-if="post.edited"
+            class="text-label text-sm border border-border rounded-full px-3 py-1 leading-none"
+            >Editado</span
+          >
+          <AppActions v-slot="{ open }" :actions="actionsList">
+            <button
+              class="hovered w-8 h-8 rounded-full flex items-center justify-center relative"
+              @click="open"
+            >
+              <icon icon="fa-solid fa-ellipsis-vertical" />
+            </button>
+          </AppActions>
+        </div>
+      </div>
+      <div class="my-6">
+        <p v-if="!editing" class="leading-relaxed">
+          {{ post.post }}
+        </p>
+        <AppEditingPost v-else :post="post" @close="editing = false" />
+      </div>
+
+      <div class="flex gap-10 items-center">
+        <div v-if="!isComment">
+          <icon icon="fa-regular fa-eye" class="mr-1" /> {{ post.views }}
+        </div>
+        <button
+          :class="{
+            'text-green-500': post.liked,
+          }"
+          @click="likePost(post.id)"
+        >
+          <icon
+            :icon="
+              post.liked ? 'fa-solid fa-thumbs-up' : 'fa-regular fa-thumbs-up'
+            "
+            class="mr-1"
+          />
+          {{ post.likes }}
+        </button>
+        <button
+          :class="{
+            'text-red-500': post.disliked,
+          }"
+          @click="dislikePost(post.id)"
+        >
+          <icon
+            :icon="
+              post.disliked
+                ? 'fa-solid fa-thumbs-down'
+                : 'fa-regular fa-thumbs-down'
+            "
+            class="mr-1"
+          />
+          {{ post.dislikes }}
+        </button>
+        <button class="mr-auto" @click="showComments = true">
+          <icon icon="fa-regular fa-comments" class="mr-1" />
+          {{ posts.length }}
+        </button>
+
+        <button
+          v-if="!showComments && post.level <= 2"
+          class="hovered px-2 rounded-full py-1"
+          @click="showComments = true"
+        >
+          <icon icon="fa-solid fa-reply" class="mr-1" /> Reply
+        </button>
+        <button v-if="!isComment" class="hovered px-2 rounded-full py-1">
+          <icon icon="fa-solid fa-share-nodes" class="mr-1" /> Share
+        </button>
+      </div>
+      <Transition name="posts">
+        <div v-if="showComments">
+          <div
+            class="border-t relative border-t-gray-200 pt-6 mt-4 flex gap-6 items-center"
+          >
+            <button
+              @click="showComments = false"
+              class="absolute -top-2 btn-hide-comments hover:bg-gray-100 bg-base w-10 flex items-center justify-center border rounded-full border-gray-200"
+            >
+              <icon icon="fa-solid fa-chevron-up" />
+            </button>
+            <span
+              class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-200 rounded-full block"
+            >
+            </span>
+            <AppInputText
+              v-model="comment"
+              icon-name="fa-regular fa-paper-plane"
+              class="w-full"
+              @blur="
+                addNewPost($event, post.id, (post.level || 0) + 1),
+                  (comment = '')
+              "
+            />
+          </div>
+          <div v-if="post.level <= 2" class="flex flex-col rounded-xl">
+            <p
+              v-if="!posts.length && post.level === 1"
+              class="text-label text-center mt-6"
+            >
+              Be the first to comment!
+            </p>
+            <TransitionGroup name="list">
+              <AppPost
+                v-for="(post, index) in posts"
+                :key="post.id"
+                :post="post"
+                :last-in-list="index === posts.length - 1"
+              />
+            </TransitionGroup>
+          </div>
+        </div>
+      </Transition>
+      <div
+        v-if="!showComments && post.level === 1"
+        class="mt-4 pt-2 border-t border-t-border"
+      >
+        <button
+          class="mt-4 block mx-auto text-primary hovered py-1 px-3 rounded-full"
+          @click="showComments = true"
+        >
+          View comments
+        </button>
+      </div>
     </div>
   </AppCard>
 </template>
@@ -131,5 +247,28 @@ const posts = computed(() => {
 <style lang="scss" scoped>
 .btn-hide-comments {
   right: calc(50% - 20px);
+}
+
+.before-arrow {
+  @apply before:top-4 before:block before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base before:w-1 before:absolute before:right-full;
+}
+
+.comment + .comment {
+  @apply border-t border-t-border pt-2;
+}
+
+.posts-enter-active,
+.posts-leave-active,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s ease;
+}
+
+.posts-enter-from,
+.posts-leave-to,
+.list-enter-from,
+.list-leave-to {
+  transform: translateX(3rem);
+  opacity: 0;
 }
 </style>
