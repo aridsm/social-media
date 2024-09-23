@@ -1,16 +1,15 @@
 export const useCurrentUserStore = defineStore("currentUser", () => {
   const currentUser = ref({
-    id: 6,
-    userName: "jenny",
-    name: "Jennifer Oliver",
+    id: 2,
+    userName: "amylee",
+    name: "Amy Lee",
     description:
       "Aenean nec est gravida, placerat lorem id, semper nibh. Vivamus et vehicula nunc",
-    photo: "",
+    photo: "amy.svg",
     backgroundPhoto: "",
-    followers: [],
-    following: [],
-    posts: [],
-    generalInformations: {},
+    followersIds: [],
+    followingIds: [],
+    isFollowing: false,
   });
 
   return { currentUser };

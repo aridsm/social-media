@@ -1,20 +1,25 @@
 <script lang="ts" setup>
 import { usePostsStore } from "~/utils/posts/usePostsStore";
+import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 
 const newPost = ref("");
 
 const { findPosts, addNewPost } = usePostsStore();
+const {currentUser} = useCurrentUserStore()
 
 const posts = computed(() => {
   return findPosts({ level: 1 });
 });
+
+const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>
   <div class="flex flex-col min-h-0 overflow-auto 2xl:px-8 px-6">
     <AppCard>
       <div class="flex items-start gap-4">
-        <div class="w-10 h-10 rounded-full bg-gray-200"></div>
+        
+      <img class="w-10 h-10 bg-gray-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
         <AppInputText
           class="flex-1"
           v-model="newPost"
@@ -41,6 +46,12 @@ const posts = computed(() => {
           >
             <icon icon="fa-solid fa-location-dot" />
             Location
+          </button>
+          <button
+            class="flex items-center gap-2 hovered rounded-full py-1 px-3"
+          >
+            <icon icon="fa-regular fa-face-smile" />
+            Emojis
           </button>
         </div>
         <AppBtn

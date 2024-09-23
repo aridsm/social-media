@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
+
+const { currentUser } = useCurrentUserStore();
 const navLinks = [
   {
     name: "Feed",
@@ -37,6 +40,8 @@ const route = useRoute();
 const currentPath = computed(() => {
   return route.path;
 });
+
+const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>
@@ -44,8 +49,8 @@ const currentPath = computed(() => {
     class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-gray-200 flex flex-col h-full"
   >
     <div class="flex items-center gap-4 px-2">
-      <span class="w-10 h-10 bg-gray-200 rounded-full"></span>
-      <span>@jennyoliver</span>
+      <img class="w-10 h-10 bg-gray-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
+      <span>@{{ currentUser.userName }}</span>
     </div>
     <nav class="flex flex-col gap-2 2xl:gap-4 w-full mt-8">
       <NuxtLink

@@ -1,31 +1,51 @@
 import { defineStore } from "pinia";
 import type { FindParams, Level, Post } from "./types";
-import { useCurrentUserStore } from "../currentUser/useCurrentUserStore";
+import { useCurrentUserStore } from "../users/useCurrentUserStore";
+import { useUsersStore } from "../users/useUsersStore";
 
 export const usePostsStore = defineStore("posts", () => {
   const { currentUser } = useCurrentUserStore();
+  const { usersLists, getUserById } = useUsersStore();
 
   const posts = ref<Post[]>([
     {
       id: 1,
       userId: 1,
-      user: {
-        id: 1,
-        userName: "johndoe",
-        name: "John Doe",
-        photo: "",
-        backgroundPhoto: "",
-        isFollowing: false,
-      },
       date: "2023-10-10T04:00:00Z",
       views: 328,
       likes: 72,
-      dislikes: 0,
+      dislikes: 1,
       liked: true,
       disliked: false,
       level: 1,
       post: "Iste dicta odit similique iure. Recusandae obcaecati laborum dolore explicabo dolorum? Rem sint quis, in omnis obcaecati nam. Culpa totam blanditiis dolorum.",
       parentId: undefined,
+    },
+    {
+      id: 2,
+      userId: 7,
+      date: "2023-10-10T04:00:00Z",
+      views: 480,
+      likes: 122,
+      dislikes: 4,
+      liked: true,
+      disliked: false,
+      level: 1,
+      post: "Culpa totam blanditiis dolorum",
+      parentId: undefined,
+    },
+    {
+      id: 3,
+      userId: 8,
+      date: "2023-10-10T04:00:00Z",
+      views: 100,
+      likes: 37,
+      dislikes: 1,
+      liked: true,
+      disliked: false,
+      level: 2,
+      post: "Recusandae obcaecati laborum dolore explicabo dolorum",
+      parentId: 2,
     },
   ]);
 
@@ -85,19 +105,12 @@ export const usePostsStore = defineStore("posts", () => {
   function addNewPost(post: string, parentId?: number, level?: Level) {
     if (!post.trim().length) return;
 
+    const id = Math.random();
     posts.value.unshift({
-      id: Math.random(),
+      id,
       userId: currentUser.id,
       date: new Date().toISOString(),
       post,
-      user: {
-        id: currentUser.id,
-        photo: currentUser.photo,
-        backgroundPhoto: currentUser.backgroundPhoto,
-        userName: currentUser.userName,
-        name: currentUser.name,
-        isFollowing: false,
-      },
       views: 0,
       likes: 0,
       dislikes: 0,

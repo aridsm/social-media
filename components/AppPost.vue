@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
-import { useCurrentUserStore } from "~/utils/currentUser/useCurrentUserStore";
+import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import type { Post } from "~/utils/posts/types";
 import { usePostsStore } from "~/utils/posts/usePostsStore";
+import { useUsersStore } from "~/utils/users/useUsersStore";
 
 const showComments = ref(false);
 const comment = ref("");
@@ -11,6 +12,7 @@ const editing = ref(false);
 const { addNewPost, removePost, likePost, dislikePost, findPosts } =
   usePostsStore();
 const { currentUser } = useCurrentUserStore();
+const { getUserById } = useUsersStore();
 
 const props = defineProps({
   post: {
@@ -26,6 +28,10 @@ const posts = computed(() => {
 
 const isComment = computed(() => {
   return props.post.level > 1;
+});
+
+const user = computed(() => {
+  return getUserById(props.post.userId);
 });
 
 const actionsList = ref([
@@ -62,6 +68,9 @@ const actionsList = ref([
     },
   },
 ]);
+
+const getImgUrl = (img: string) =>
+  new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>
@@ -80,10 +89,12 @@ const actionsList = ref([
     >
       <div class="h-full w-[1px] bg-current" />
     </div>
-    <span
+    <img
       v-if="isComment"
-      class="w-10 h-10 min-w-10 bg-border rounded-full block z-10"
-    ></span>
+      class="w-10 h-10 bg-gray-200 rounded-full"
+      :src="getImgUrl(user?.photo)"
+      :alt="currentUser.name"
+    />
 
     <div
       :class="{
@@ -93,10 +104,12 @@ const actionsList = ref([
       }"
     >
       <div class="flex items-center gap-4">
-        <span
+        <img
           v-if="post.level === 1"
-          class="w-10 h-10 bg-border rounded-full block"
-        ></span>
+          class="w-10 h-10 bg-gray-200 rounded-full"
+          :src="getImgUrl(user?.photo)"
+          :alt="currentUser.name"
+        />
         <div>
           <div class="flex gap-4 items-center">
             <NuxtLink
@@ -104,10 +117,10 @@ const actionsList = ref([
               :to="`/profile/${post.userId}`"
               target="_blank"
             >
-              @{{ post.user.userName }}
+              @{{ user?.userName }}
             </NuxtLink>
             <AppBtnFollow
-              v-if="!post.user.isFollowing && post.userId !== currentUser.id"
+              v-if="!user?.isFollowing && post.userId !== currentUser.id"
             />
           </div>
           <p class="text-label text-sm">{{ getDateDifference(post.date) }}</p>
@@ -197,10 +210,14 @@ const actionsList = ref([
             >
               <icon icon="fa-solid fa-chevron-up" />
             </button>
-            <span
-              class="max-h-10 min-h-10 max-w-10 min-w-10 bg-gray-200 rounded-full block"
-            >
-            </span>
+
+            <img
+              v-if="post.level === 1"
+              class="w-10 h-10 bg-gray-200 rounded-full"
+              :src="getImgUrl(currentUser?.photo)"
+              :alt="currentUser.name"
+            />
+
             <AppInputText
               v-model="comment"
               icon-name="fa-regular fa-paper-plane"
