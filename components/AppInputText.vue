@@ -1,9 +1,14 @@
 <script lang="ts" setup>
+import type { PropType } from "vue";
+
 const props = defineProps({
   iconName: String,
   placeholder: String,
   contentClass: String,
   textarea: Boolean,
+  action: {
+    type: Function as PropType<() => void>,
+  },
 });
 
 const emits = defineEmits<{
@@ -32,7 +37,9 @@ const modelValue = defineModel<string>({ required: true });
       @blur="emits('blur', modelValue)"
     />
     <button
-      class="absolute top-1 right-2 text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
+      v-if="action"
+      class="absolute top-[3px] right-1 text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
+      @click="action"
     >
       <icon v-if="iconName" :icon="iconName" />
     </button>

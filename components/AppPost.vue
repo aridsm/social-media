@@ -69,6 +69,12 @@ const actionsList = ref([
   },
 ]);
 
+function onAddNewPost() {
+  addNewPost(comment.value, props.post.id, (props.post.level || 0) + 1);
+
+  comment.value = "";
+}
+
 const getImgUrl = (img: string) =>
   new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
@@ -222,10 +228,7 @@ const getImgUrl = (img: string) =>
               v-model="comment"
               icon-name="fa-regular fa-paper-plane"
               class="w-full"
-              @blur="
-                addNewPost($event, post.id, (post.level || 0) + 1),
-                  (comment = '')
-              "
+              :action="onAddNewPost"
             />
           </div>
           <div v-if="post.level <= 2" class="flex flex-col rounded-xl">
