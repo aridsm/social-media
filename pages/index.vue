@@ -64,7 +64,7 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
       </div>
     </AppCard>
     <div
-      class="my-10 text-sm text-label w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
+      class="my-10 text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
     >
       <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
     </div>

@@ -129,8 +129,8 @@ const getImgUrl = (img: string) =>
         <div class="ml-auto flex items-center gap-3">
           <span
             v-if="post.edited"
-            class="text-label text-sm border border-border dark:border-dark-border rounded-full px-3 py-1 leading-none"
-            >Editado</span
+            class="text-label text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
+            >Edited</span
           >
           <AppActions v-slot="{ open }" :actions="actionsList">
             <button
