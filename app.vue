@@ -1,4 +1,12 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useDarkModeStore } from "./utils/darkmode/darkModeStore";
+
+const { setColorMode } = useDarkModeStore();
+
+onMounted(() => {
+  setColorMode();
+});
+</script>
 
 <template>
   <div class="flex h-screen">

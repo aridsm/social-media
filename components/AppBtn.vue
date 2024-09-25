@@ -12,8 +12,9 @@ defineProps({
   <button
     class="gap-2 flex items-center rounded-sm h-10 px-6 hover:opacity-80 active:opacity-90"
     :class="{
-      'bg-gray-200 text-text': color === 'label',
-      'bg-text text-white': color === 'text' || !color,
+      'bg-neutral-200 text-text dark:bg-neutral-600 dark:text-white':
+        color === 'label',
+      'bg-text text-white dark:bg-indigo-500': color === 'text' || !color,
     }"
   >
     <slot />

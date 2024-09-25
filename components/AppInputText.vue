@@ -19,7 +19,7 @@ const modelValue = defineModel<string>({ required: true });
       v-model.lazy="modelValue"
       :rows="4"
       :placeholder="placeholder || 'Write...'"
-      class="bg-base border border-border px-4 py-2 rounded-sm text-text focus:outline-primary w-full text-sm"
+      class="input-styles"
       :class="contentClass"
       @blur="emits('blur', modelValue)"
     />
@@ -27,7 +27,7 @@ const modelValue = defineModel<string>({ required: true });
       v-else
       v-model.lazy="modelValue"
       :placeholder="placeholder || 'Write...'"
-      class="bg-base border border-border px-4 h-10 rounded-sm text-text focus:outline-primary w-full text-sm"
+      class="input-styles"
       :class="contentClass"
       @blur="emits('blur', modelValue)"
     />
@@ -39,4 +39,8 @@ const modelValue = defineModel<string>({ required: true });
   </div>
 </template>
 
-<style></style>
+<style>
+.input-styles {
+  @apply placeholder:text-label dark:placeholder:text-neutral-400 bg-base dark:bg-neutral-600 border border-border dark:border-dark-border px-4 py-2 rounded-sm text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full text-sm;
+}
+</style>

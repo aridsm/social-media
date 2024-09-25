@@ -19,7 +19,7 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
     <AppCard>
       <div class="flex items-start gap-4">
         
-      <img class="w-10 h-10 bg-gray-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
+      <img class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
         <AppInputText
           class="flex-1"
           v-model="newPost"
@@ -64,9 +64,9 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
       </div>
     </AppCard>
     <div
-      class="my-10 text-sm text-label w-full h-[1px] bg-border flex items-center justify-center"
+      class="my-10 text-sm text-label w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
     >
-      <span class="bg-base px-6">Last posts</span>
+      <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
     </div>
 
     <div class="flex flex-col gap-6 flex-1 min-h-0">

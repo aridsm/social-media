@@ -37,20 +37,20 @@ const user = computed(() => {
 const actionsList = ref([
   {
     id: 1,
-    text: "Salvar",
+    text: "Save",
     icon: "fa-regular fa-bookmark",
     click: () => {},
   },
   {
     id: 2,
-    text: "Denunciar",
+    text: "Report",
     icon: "fa-regular fa-flag",
     visible: () => currentUser.id !== props.post.userId,
     click: () => {},
   },
   {
     id: 4,
-    text: "Editar",
+    text: "Edit",
     icon: "fa-regular fa-pen-to-square",
     visible: () => currentUser.id === props.post.userId,
     click: () => {
@@ -59,7 +59,7 @@ const actionsList = ref([
   },
   {
     id: 3,
-    text: "Excluir",
+    text: "Delete",
     icon: "fa-regular fa-trash-can",
     class: "text-red-600",
     visible: () => currentUser.id === props.post.userId,
@@ -84,29 +84,29 @@ const getImgUrl = (img: string) =>
   >
     <div
       v-if="isComment && !lastInList && showComments"
-      class="h-full w-4 text-border hover:text-gray-300 cursor-pointer flex justify-center absolute top-6 left-3"
+      class="h-full w-4 text-border dark:text-neutral-500 hover:text-neutral-300 dark:hover:text-neutral-400 cursor-pointer flex justify-center absolute top-6 left-3"
       @click="showComments = false"
     >
       <div class="h-full w-[1px] bg-current" />
     </div>
     <img
       v-if="isComment"
-      class="w-10 h-10 bg-gray-200 rounded-full"
+      class="w-10 h-10 bg-neutral-200 rounded-full"
       :src="getImgUrl(user?.photo)"
       :alt="currentUser.name"
     />
 
     <div
       :class="{
-        'bg-base': post.level === 2,
-        'bg-gray-200/[.3]': post.level === 3,
+        'bg-base dark:bg-neutral-600': post.level === 2,
+        'bg-neutral-200/[.3] dark:bg-neutral-500/[.15]': post.level === 3,
         ' p-6 w-full relative rounded-xl before-arrow': isComment,
       }"
     >
       <div class="flex items-center gap-4">
         <img
           v-if="post.level === 1"
-          class="w-10 h-10 bg-gray-200 rounded-full"
+          class="w-10 h-10 bg-neutral-200 rounded-full"
           :src="getImgUrl(user?.photo)"
           :alt="currentUser.name"
         />
@@ -129,7 +129,7 @@ const getImgUrl = (img: string) =>
         <div class="ml-auto flex items-center gap-3">
           <span
             v-if="post.edited"
-            class="text-label text-sm border border-border rounded-full px-3 py-1 leading-none"
+            class="text-label text-sm border border-border dark:border-dark-border rounded-full px-3 py-1 leading-none"
             >Editado</span
           >
           <AppActions v-slot="{ open }" :actions="actionsList">
@@ -202,18 +202,18 @@ const getImgUrl = (img: string) =>
       <Transition name="posts">
         <div v-if="showComments">
           <div
-            class="border-t relative border-t-gray-200 pt-6 mt-4 flex gap-6 items-center"
+            class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex gap-6 items-center"
           >
             <button
               @click="showComments = false"
-              class="absolute -top-2 btn-hide-comments hover:bg-gray-100 bg-base w-10 flex items-center justify-center border rounded-full border-gray-200"
+              class="absolute -top-2 btn-hide-comments hover:bg-neutral-100 bg-base dark:bg-neutral-600 dark:hover:bg-dark-border w-10 flex items-center justify-center border rounded-full border-neutral-200 dark:border-dark-border"
             >
               <icon icon="fa-solid fa-chevron-up" />
             </button>
 
             <img
               v-if="post.level === 1"
-              class="w-10 h-10 bg-gray-200 rounded-full"
+              class="w-10 h-10 bg-neutral-200 rounded-full"
               :src="getImgUrl(currentUser?.photo)"
               :alt="currentUser.name"
             />
@@ -248,10 +248,10 @@ const getImgUrl = (img: string) =>
       </Transition>
       <div
         v-if="!showComments && post.level === 1"
-        class="mt-4 pt-2 border-t border-t-border"
+        class="mt-4 pt-2 border-t border-t-border dark:border-t-dark-border"
       >
         <button
-          class="mt-4 block mx-auto text-primary hovered py-1 px-3 rounded-full"
+          class="mt-4 block mx-auto text-primary dark:text-neutral-100 hovered py-1 px-3 rounded-full"
           @click="showComments = true"
         >
           View comments
@@ -267,7 +267,7 @@ const getImgUrl = (img: string) =>
 }
 
 .before-arrow {
-  @apply before:top-4 before:block before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base before:w-1 before:absolute before:right-full;
+  @apply before:top-4 before:block before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600 before:w-1 before:absolute before:right-full;
 }
 
 .comment + .comment {

@@ -6,11 +6,11 @@
 
 body {
   font-family: "Nokora", sans-serif;
-  @apply bg-base text-text text-sm 2xl:text-[16px];
+  @apply bg-base dark:bg-neutral-800 text-text dark:text-neutral-100 text-sm 2xl:text-[16px];
 }
 
 .hovered {
-  @apply hover:bg-text/[.04] active:bg-text/[.08];
+  @apply hover:bg-text/[.04] dark:hover:bg-neutral-200/[.08] active:bg-text/[.08] dark:active:bg-neutral-600/[.8];
 }
 
 ::-webkit-scrollbar {
@@ -22,10 +22,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-200;
+  @apply bg-neutral-200 dark:bg-neutral-600;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400;
+  @apply bg-neutral-400 dark:bg-neutral-500;
 }

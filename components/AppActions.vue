@@ -46,7 +46,7 @@ onUnmounted(() => {
     <Transition name="action">
       <ul
         v-if="show"
-        class="bg-white container-action flex flex-col items-start border border-border rounded-sm absolute top-full right-0"
+        class="bg-white dark:bg-neutral-600 container-action flex flex-col items-start border border-border dark:border-dark-border rounded-sm absolute top-full right-0"
       >
         <li
           v-for="action in visibleActions"
@@ -66,6 +66,10 @@ onUnmounted(() => {
 <style lang="scss">
 .container-action {
   box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dark .container-action {
+  box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.1);
 }
 
 .action-enter-active,

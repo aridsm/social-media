@@ -23,7 +23,7 @@ const dummySuggestedUsers = [
 
 <template>
   <aside
-    class="p-6 2xl:p-8 w-[25vw] border-l border-l-border h-full flex flex-col"
+    class="p-6 2xl:p-8 w-[25vw] border-l border-l-border dark:border-l-dark-border h-full flex flex-col"
   >
     <div>
       <div class="flex justify-between items-center mb-4">
@@ -50,7 +50,7 @@ const dummySuggestedUsers = [
         <AppSeeAllBtn />
       </div>
 
-      <div class="bg-gray-200 w-full h-20"></div>
+      <div class="bg-neutral-200 w-full h-20"></div>
     </div>
 
     <footer class="text-text mt-auto">Made by Ariane Morelato</footer>

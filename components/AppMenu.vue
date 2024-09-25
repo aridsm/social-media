@@ -46,10 +46,10 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
 
 <template>
   <div
-    class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-gray-200 flex flex-col h-full"
+    class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full"
   >
     <div class="flex items-center gap-4 px-2">
-      <img class="w-10 h-10 bg-gray-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
+      <img class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
       <span>@{{ currentUser.userName }}</span>
     </div>
     <nav class="flex flex-col gap-2 2xl:gap-4 w-full mt-8">
@@ -59,7 +59,7 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
         :to="link.path"
         class="flex items-center gap-4 rounded-sm px-4 w-full h-10"
         :class="{
-          'active hover:bg-text': currentPath === link.path,
+          'active': currentPath === link.path,
           hovered: currentPath !== link.path,
         }"
       >
@@ -69,7 +69,7 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
 
       <NuxtLink
         to="/settings"
-        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-border"
+        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-border dark:border-t-dark-border"
       >
         <icon icon="fa-solid fa-gear" class="w-7" />
         <span class="leading-none -mb-1">Settings</span>
@@ -85,6 +85,6 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
 
 <style>
 .active {
-  @apply bg-text text-white;
+  @apply bg-text text-white dark:bg-indigo-500 hover:bg-text dark:hover:bg-indigo-500;
 }
 </style>
