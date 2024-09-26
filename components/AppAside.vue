@@ -1,24 +1,10 @@
-<script lang="ts" setup>
-const dummySuggestedUsers = [
-  {
-    id: 1,
-    name: "Anthony Baker",
-    user: "@tonybaker",
-    following: false,
-  },
-  {
-    id: 2,
-    name: "Alice Jackson",
-    user: "@alicejack",
-    following: false,
-  },
-  {
-    id: 3,
-    name: "Ben Elliot",
-    user: "@benelliot",
-    following: false,
-  },
-];
+<script lang="tsx" setup>
+import { useUsersStore } from "~/utils/users/useUsersStore";
+
+const { recommendedUsers } = useUsersStore();
+
+const getImgUrl = (img: string) =>
+  new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>
@@ -31,11 +17,21 @@ const dummySuggestedUsers = [
         <AppSeeAllBtn />
       </div>
       <ul class="flex flex-col gap-4 2xl:gap-6">
-        <li v-for="user in dummySuggestedUsers" :key="user.id">
+        <li v-for="user in recommendedUsers" :key="user.id">
           <AppCard class="flex items-center gap-4 w-full">
-            <div class="w-10 h-10 rounded-full bg-border"></div>
-            <div class="flex flex-col">
-              <span class="font-bold">{{ user.user }}</span>
+            <img
+              class="w-10 h-10 bg-neutral-200 rounded-full"
+              :src="getImgUrl(user?.photo)"
+              :alt="user.name"
+            />
+            <div class="flex flex-col gap-1">
+              <NuxtLink
+                class="cursor-pointer hover:text-primary"
+                :to="`/profile/${user.id}`"
+                target="_blank"
+              >
+                @{{ user.userName }}
+              </NuxtLink>
               <span class="text-label">{{ user.name }}</span>
             </div>
             <AppBtnFollow class="ml-auto self-start" />

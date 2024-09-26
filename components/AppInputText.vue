@@ -28,12 +28,18 @@ const modelValue = defineModel<string>({ required: true });
       :class="contentClass"
       @blur="emits('blur', modelValue)"
     />
+
     <input
       v-else
       v-model.lazy="modelValue"
       :placeholder="placeholder || 'Write...'"
       class="input-styles"
-      :class="contentClass"
+      :class="[
+        {
+          'padding-icon': iconName || action,
+        },
+        contentClass,
+      ]"
       @blur="emits('blur', modelValue)"
     />
     <button
@@ -41,13 +47,23 @@ const modelValue = defineModel<string>({ required: true });
       class="absolute top-[3px] right-1 text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
       @click="action"
     >
-      <icon v-if="iconName" :icon="iconName" />
+      <icon icon="fa-regular fa-paper-plane" />
     </button>
+
+    <icon
+      v-if="iconName"
+      :icon="iconName"
+      class="absolute top-2 right-3 text-lg"
+    />
   </div>
 </template>
 
 <style>
 .input-styles {
   @apply placeholder:text-label dark:placeholder:text-neutral-400 bg-base dark:bg-neutral-600 border border-border dark:border-dark-border px-4 py-2 rounded-sm text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full text-sm;
+}
+
+.padding-icon {
+  padding-right: 2.5rem !important;
 }
 </style>

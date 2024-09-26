@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
-
-const { currentUser } = useCurrentUserStore();
 const navLinks = [
   {
     name: "Feed",
@@ -40,18 +37,20 @@ const route = useRoute();
 const currentPath = computed(() => {
   return route.path;
 });
-
-const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>
   <div
     class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full"
   >
-    <div class="flex items-center gap-4 px-2">
-      <img class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(currentUser.photo)" :alt="currentUser.name"></img>
-      <span>@{{ currentUser.userName }}</span>
+    <div class="flex uppercase font-bold items-end gap-2 leading-none">
+      <div class="flex items-end">
+        <div class="w-5 h-7 bg-text"></div>
+        <div class="w-5 h-5 bg-primary"></div>
+      </div>
+      Lorem
     </div>
+
     <nav class="flex flex-col gap-2 2xl:gap-4 w-full mt-8">
       <NuxtLink
         v-for="link in navLinks"
@@ -59,7 +58,7 @@ const getImgUrl = (img: string )=> new URL(`../assets/avatar/${img}`, import.met
         :to="link.path"
         class="flex items-center gap-4 rounded-sm px-4 w-full h-10"
         :class="{
-          'active': currentPath === link.path,
+          active: currentPath === link.path,
           hovered: currentPath !== link.path,
         }"
       >

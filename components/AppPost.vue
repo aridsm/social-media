@@ -226,7 +226,6 @@ const getImgUrl = (img: string) =>
 
             <AppInputText
               v-model="comment"
-              icon-name="fa-regular fa-paper-plane"
               class="w-full"
               :action="onAddNewPost"
             />

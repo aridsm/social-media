@@ -9,8 +9,8 @@ export const useUsersStore = defineStore("usersList", () => {
       description: "Vivamus et vehicula nunc!!",
       photo: "johndoe.svg",
       backgroundPhoto: "",
-      followersIds: [],
-      followingIds: [],
+      followersIds: [2, 3, 4, 5, 6],
+      followingIds: [2],
       isFollowing: false,
     },
     {
@@ -21,8 +21,8 @@ export const useUsersStore = defineStore("usersList", () => {
         "Aenean nec est gravida, placerat lorem id, semper nibh. Vivamus et vehicula nunc",
       photo: "amy.svg",
       backgroundPhoto: "",
-      followersIds: [],
-      followingIds: [],
+      followersIds: [1, 8],
+      followingIds: [1, 6, 4],
       isFollowing: false,
     },
     {
@@ -33,7 +33,7 @@ export const useUsersStore = defineStore("usersList", () => {
       photo: "kate.svg",
       backgroundPhoto: "",
       followersIds: [],
-      followingIds: [],
+      followingIds: [1],
       isFollowing: false,
     },
     {
@@ -43,8 +43,8 @@ export const useUsersStore = defineStore("usersList", () => {
       description: "",
       photo: "peter.svg",
       backgroundPhoto: "",
-      followersIds: [],
-      followingIds: [],
+      followersIds: [2],
+      followingIds: [1],
       isFollowing: false,
     },
     {
@@ -54,7 +54,7 @@ export const useUsersStore = defineStore("usersList", () => {
       description: "",
       photo: "matthew.svg",
       backgroundPhoto: "",
-      followersIds: [],
+      followersIds: [1, 6],
       followingIds: [],
       isFollowing: false,
     },
@@ -65,8 +65,8 @@ export const useUsersStore = defineStore("usersList", () => {
       description: "",
       photo: "barbara.svg",
       backgroundPhoto: "",
-      followersIds: [],
-      followingIds: [],
+      followersIds: [1, 2, 8],
+      followingIds: [5, 7],
       isFollowing: false,
     },
     {
@@ -76,8 +76,8 @@ export const useUsersStore = defineStore("usersList", () => {
       description: "",
       photo: "robert.svg",
       backgroundPhoto: "",
-      followersIds: [],
-      followingIds: [],
+      followersIds: [6],
+      followingIds: [8],
       isFollowing: false,
     },
     {
@@ -87,15 +87,25 @@ export const useUsersStore = defineStore("usersList", () => {
       description: "",
       photo: "linda.svg",
       backgroundPhoto: "",
-      followersIds: [],
-      followingIds: [],
+      followersIds: [7],
+      followingIds: [2, 6],
       isFollowing: false,
     },
   ]);
+
+  const recommendedUsersIds = ref([4, 5, 6]);
+
+  const recommendedUsers = computed<User[]>(() => {
+    return getUsersByIds(recommendedUsersIds.value);
+  });
 
   function getUserById(userId: number | string) {
     return usersLists.value.find((user) => user.id === Number(userId));
   }
 
-  return { usersLists, getUserById };
+  function getUsersByIds(ids: number[]) {
+    return usersLists.value.filter((user: User) => ids.includes(user.id));
+  }
+
+  return { usersLists, getUserById, recommendedUsers, getUsersByIds };
 });
