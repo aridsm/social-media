@@ -10,7 +10,7 @@ body {
 }
 
 .hovered {
-  @apply hover:bg-text/[.04] dark:hover:bg-neutral-200/[.08] active:bg-text/[.08] dark:active:bg-neutral-600/[.8];
+  @apply hover:bg-text/[.08] dark:hover:bg-neutral-200/[.08] active:bg-text/[.08] dark:active:bg-neutral-600/[.8];
 }
 
 ::-webkit-scrollbar {

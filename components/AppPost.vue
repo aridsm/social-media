@@ -39,14 +39,14 @@ const actionsList = ref([
     id: 1,
     text: "Save",
     icon: "fa-regular fa-bookmark",
-    click: () => {},
+    click: () => { },
   },
   {
     id: 2,
     text: "Report",
     icon: "fa-regular fa-flag",
     visible: () => currentUser.id !== props.post.userId,
-    click: () => {},
+    click: () => { },
   },
   {
     id: 4,
@@ -80,69 +80,40 @@ const getImgUrl = (img: string) =>
 </script>
 
 <template>
-  <AppCard
-    :no-border="isComment"
-    :flat="isComment"
-    class="relative"
-    :class="{
-      'flex gap-6 mt-6': isComment,
-    }"
-  >
-    <div
-      v-if="isComment && !lastInList && showComments"
+  <AppCard :no-border="isComment" :flat="isComment" class="relative" :class="{
+    'flex gap-6 mt-6': isComment,
+  }">
+    <div v-if="isComment && !lastInList && showComments"
       class="h-full w-4 text-border dark:text-neutral-500 hover:text-neutral-300 dark:hover:text-neutral-400 cursor-pointer flex justify-center absolute top-6 left-3"
-      @click="showComments = false"
-    >
+      @click="showComments = false">
       <div class="h-full w-[1px] bg-current" />
     </div>
-    <img
-      v-if="isComment"
-      class="w-10 h-10 bg-neutral-200 rounded-full"
-      :src="getImgUrl(user?.photo)"
-      :alt="currentUser.name"
-    />
+    <img v-if="isComment" class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(user?.photo)"
+      :alt="currentUser.name" />
 
-    <div
-      :class="{
-        'bg-base dark:bg-neutral-600': post.level === 2,
-        'bg-neutral-200/[.3] dark:bg-neutral-500/[.15]': post.level === 3,
-        ' p-6 w-full relative rounded-xl before-arrow': isComment,
-      }"
-    >
+    <div :class="{
+      'bg-base dark:bg-neutral-600': post.level === 2,
+      'bg-neutral-200/[.3] dark:bg-neutral-500/[.15]': post.level === 3,
+      ' p-6 w-full relative rounded-xl before-arrow': isComment,
+    }">
       <div class="flex items-center gap-4">
-        <img
-          v-if="post.level === 1"
-          class="w-10 h-10 bg-neutral-200 rounded-full"
-          :src="getImgUrl(user?.photo)"
-          :alt="currentUser.name"
-        />
+        <img v-if="post.level === 1" class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(user?.photo)"
+          :alt="currentUser.name" />
         <div>
           <div class="flex gap-4 items-center">
-            <NuxtLink
-              class="cursor-pointer hover:text-primary"
-              :to="`/profile/${post.userId}`"
-              target="_blank"
-            >
+            <NuxtLink class="cursor-pointer hover:text-primary" :to="`/profile/${post.userId}`" target="_blank">
               @{{ user?.userName }}
             </NuxtLink>
-            <AppBtnFollow
-              v-if="!user?.isFollowing && post.userId !== currentUser.id"
-            />
+            <AppBtnFollow v-if="!user?.isFollowing && post.userId !== currentUser.id" />
           </div>
           <p class="text-label text-sm">{{ getDateDifference(post.date) }}</p>
         </div>
 
         <div class="ml-auto flex items-center gap-3">
-          <span
-            v-if="post.edited"
-            class="text-label text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
-            >Edited</span
-          >
+          <span v-if="post.edited"
+            class="text-label text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none">Edited</span>
           <AppActions v-slot="{ open }" :actions="actionsList">
-            <button
-              class="hovered w-8 h-8 rounded-full flex items-center justify-center relative"
-              @click="open"
-            >
+            <button class="hovered w-8 h-8 rounded-full flex items-center justify-center relative" @click="open">
               <icon icon="fa-solid fa-ellipsis-vertical" />
             </button>
           </AppActions>
@@ -159,34 +130,20 @@ const getImgUrl = (img: string) =>
         <div v-if="!isComment">
           <icon icon="fa-regular fa-eye" class="mr-1" /> {{ post.views }}
         </div>
-        <button
-          :class="{
-            'text-green-500': post.liked,
-          }"
-          @click="likePost(post.id)"
-        >
-          <icon
-            :icon="
-              post.liked ? 'fa-solid fa-thumbs-up' : 'fa-regular fa-thumbs-up'
-            "
-            class="mr-1"
-          />
+        <button :class="{
+          'text-green-500': post.liked,
+        }" @click="likePost(post.id)">
+          <icon :icon="post.liked ? 'fa-solid fa-thumbs-up' : 'fa-regular fa-thumbs-up'
+            " class="mr-1" />
           {{ post.likes }}
         </button>
-        <button
-          :class="{
-            'text-red-500': post.disliked,
-          }"
-          @click="dislikePost(post.id)"
-        >
-          <icon
-            :icon="
-              post.disliked
-                ? 'fa-solid fa-thumbs-down'
-                : 'fa-regular fa-thumbs-down'
-            "
-            class="mr-1"
-          />
+        <button :class="{
+          'text-red-500': post.disliked,
+        }" @click="dislikePost(post.id)">
+          <icon :icon="post.disliked
+            ? 'fa-solid fa-thumbs-down'
+            : 'fa-regular fa-thumbs-down'
+            " class="mr-1" />
           {{ post.dislikes }}
         </button>
         <button class="mr-auto" @click="showComments = true">
@@ -194,11 +151,8 @@ const getImgUrl = (img: string) =>
           {{ posts.length }}
         </button>
 
-        <button
-          v-if="!showComments && post.level <= 2"
-          class="hovered px-2 rounded-full py-1"
-          @click="showComments = true"
-        >
+        <button v-if="!showComments && post.level <= 2" class="hovered px-2 rounded-full py-1"
+          @click="showComments = true">
           <icon icon="fa-solid fa-reply" class="mr-1" /> Reply
         </button>
         <button v-if="!isComment" class="hovered px-2 rounded-full py-1">
@@ -208,54 +162,32 @@ const getImgUrl = (img: string) =>
       <Transition name="posts">
         <div v-if="showComments">
           <div
-            class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex gap-6 items-center"
-          >
-            <button
-              @click="showComments = false"
-              class="absolute -top-2 btn-hide-comments hover:bg-neutral-100 bg-base dark:bg-neutral-600 dark:hover:bg-dark-border w-10 flex items-center justify-center border rounded-full border-neutral-200 dark:border-dark-border"
-            >
+            class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex gap-6 items-center">
+            <button @click="showComments = false"
+              class="absolute -top-2 btn-hide-comments hover:bg-neutral-100 bg-base dark:bg-neutral-600 dark:hover:bg-dark-border w-10 flex items-center justify-center border rounded-full border-neutral-200 dark:border-dark-border">
               <icon icon="fa-solid fa-chevron-up" />
             </button>
 
-            <img
-              v-if="post.level === 1"
-              class="w-10 h-10 bg-neutral-200 rounded-full"
-              :src="getImgUrl(currentUser?.photo)"
-              :alt="currentUser.name"
-            />
+            <img v-if="post.level === 1" class="w-10 h-10 bg-neutral-200 rounded-full"
+              :src="getImgUrl(currentUser?.photo)" :alt="currentUser.name" />
 
-            <AppInputText
-              v-model="comment"
-              class="w-full"
-              :action="onAddNewPost"
-            />
+            <AppInputText v-model="comment" class="w-full" :action="onAddNewPost" />
           </div>
           <div v-if="post.level <= 2" class="flex flex-col rounded-xl">
-            <p
-              v-if="!posts.length && post.level === 1"
-              class="text-label text-center mt-6"
-            >
+            <p v-if="!posts.length && post.level === 1" class="text-label text-center mt-6">
               Be the first to comment!
             </p>
             <TransitionGroup name="list">
-              <AppPost
-                v-for="(post, index) in posts"
-                :key="post.id"
-                :post="post"
-                :last-in-list="index === posts.length - 1"
-              />
+              <AppPost v-for="(post, index) in posts" :key="post.id" :post="post"
+                :last-in-list="index === posts.length - 1" />
             </TransitionGroup>
           </div>
         </div>
       </Transition>
-      <div
-        v-if="!showComments && post.level === 1"
-        class="mt-4 pt-2 border-t border-t-border dark:border-t-dark-border"
-      >
-        <button
-          class="mt-4 block mx-auto text-primary dark:text-neutral-100 hovered py-1 px-3 rounded-full"
-          @click="showComments = true"
-        >
+      <div v-if="!showComments && post.level === 1"
+        class="mt-4 pt-2 border-t border-t-border dark:border-t-dark-border">
+        <button class="mt-4 block mx-auto text-primary dark:text-neutral-100 hovered py-1 px-3 rounded-full"
+          @click="showComments = true">
           View comments
         </button>
       </div>
@@ -272,7 +204,7 @@ const getImgUrl = (img: string) =>
   @apply before:top-4 before:block before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600 before:w-1 before:absolute before:right-full;
 }
 
-.comment + .comment {
+.comment+.comment {
   @apply border-t border-t-border pt-2;
 }
 

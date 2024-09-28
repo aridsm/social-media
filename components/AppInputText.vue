@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PropType } from "vue";
+import type { PropType } from 'vue';
 
 const props = defineProps({
   iconName: String,
@@ -12,7 +12,8 @@ const props = defineProps({
 });
 
 const emits = defineEmits<{
-  (name: "blur", value: string): void;
+  (name: 'blur', value: string): void;
+  (name: 'input', value: string): void;
 }>();
 
 const modelValue = defineModel<string>({ required: true });
@@ -21,17 +22,18 @@ const modelValue = defineModel<string>({ required: true });
   <div class="relative">
     <textarea
       v-if="textarea"
-      v-model.lazy="modelValue"
+      v-model="modelValue"
       :rows="4"
       :placeholder="placeholder || 'Write...'"
       class="input-styles"
       :class="contentClass"
       @blur="emits('blur', modelValue)"
+      @input="emits('input', modelValue)"
     />
 
     <input
       v-else
-      v-model.lazy="modelValue"
+      v-model="modelValue"
       :placeholder="placeholder || 'Write...'"
       class="input-styles"
       :class="[
@@ -41,6 +43,7 @@ const modelValue = defineModel<string>({ required: true });
         contentClass,
       ]"
       @blur="emits('blur', modelValue)"
+      @input="emits('input', modelValue)"
     />
     <button
       v-if="action"

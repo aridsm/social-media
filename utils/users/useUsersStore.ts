@@ -103,9 +103,23 @@ export const useUsersStore = defineStore("usersList", () => {
     return usersLists.value.find((user) => user.id === Number(userId));
   }
 
-  function getUsersByIds(ids: number[]) {
+  function getUsersByIds(ids: number[]): User[] {
     return usersLists.value.filter((user: User) => ids.includes(user.id));
   }
 
-  return { usersLists, getUserById, recommendedUsers, getUsersByIds };
+  function searchUsers(search: string): User[] {
+    return usersLists.value.filter(
+      (user: User) =>
+        user.name.toLowerCase().trim().includes(search.trim().toLowerCase()) ||
+        user.userName.toLowerCase().trim().includes(search.trim().toLowerCase())
+    );
+  }
+
+  return {
+    usersLists,
+    getUserById,
+    recommendedUsers,
+    getUsersByIds,
+    searchUsers,
+  };
 });
