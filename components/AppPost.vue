@@ -160,7 +160,7 @@ const getImgUrl = (img: string) =>
         </button>
       </div>
       <Transition name="posts">
-        <div v-if="showComments">
+        <div v-if="showComments" class="w-full">
           <div
             class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex gap-6 items-center">
             <button @click="showComments = false"
@@ -209,17 +209,24 @@ const getImgUrl = (img: string) =>
 }
 
 .posts-enter-active,
-.posts-leave-active,
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.2s ease;
+.posts-leave-active {
+  transition: all .2s ease;
 }
 
 .posts-enter-from,
-.posts-leave-to,
+.posts-leave-to {
+  opacity: 0;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all .4s ease;
+}
+
 .list-enter-from,
 .list-leave-to {
-  transform: translateX(3rem);
+  transform: translateX(-300px);
+  position: absolute;
   opacity: 0;
 }
 </style>

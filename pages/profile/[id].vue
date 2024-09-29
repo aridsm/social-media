@@ -44,7 +44,7 @@ const actionsList = ref([
 </script>
 
 <template>
-    <div class="flex flex-col min-h-0 overflow-auto 2xl:px-8 px-6 gap-8">
+    <div class="flex flex-col min-h-0 2xl:px-8 px-6 gap-8 overflow-y-auto overflow-x-hidden pb-2 relative">
         <div class="mb-12 bg-green-500 rounded-md py-4 pl-8 pr-4 h-36 flex items-start justify-between gap-10">
             <img :src="getImgUrl(user?.photo)"
                 class="h-44 w-44 rounded-full border-8 border-base dark:border-gray-800" />
@@ -77,9 +77,25 @@ const actionsList = ref([
         </div>
 
         <div v-if="user">
-            <AppProfileData v-if="activePage === 'data'" :user="user" :posts="posts" />
-            <AppFollowList v-if="activePage === 'followers'" :user="user" />
-            <AppFollowList v-if="activePage === 'following'" :user="user" following />
+            <TransitionGroup name="tabs">
+                <AppProfileData v-if="activePage === 'data'" :user="user" :posts="posts" />
+                <AppFollowList v-if="activePage === 'followers'" :user="user" />
+                <AppFollowList v-if="activePage === 'following'" :user="user" following />
+            </TransitionGroup>
         </div>
     </div>
 </template>
+<style scoped>
+.tabs-enter-active,
+.tabs-leave-active {
+    transition: all .8s ease;
+}
+
+.tabs-enter-from,
+.tabs-leave-to {
+    transform: translateX(500px);
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+}
+</style>
