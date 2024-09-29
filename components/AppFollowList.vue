@@ -38,7 +38,7 @@ const getImgUrl = (img: string) =>
             user.followingIds.length : user.followersIds.length }})</span>
         <div class="grid grid-cols-2 gap-8">
             <AppInputText v-model="search" class="col-span-2" placeholder="Search user..."
-                icon-name="fa-solid fa-magnifying-glass" />
+                icon-name="fa-solid fa-magnifying-glass" color="sec" />
             <NuxtLink v-for="user in usersList" :key="user.id">
                 <AppCard class="flex items-center gap-4 w-full">
                     <img class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(user?.photo)" :alt="user.name" />

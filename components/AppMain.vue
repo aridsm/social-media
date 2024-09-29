@@ -34,7 +34,7 @@ function checkOnOpen(open: any, close: any) {
       <AppTooltip class="flex-1 relative">
         <template #activator="{ open, close }">
           <AppInputText v-model="search" placeholder="Search user..." icon-name="fa-solid fa-magnifying-glass"
-            @input="() => checkOnOpen(open, close)" />
+            color="sec" @input="() => checkOnOpen(open, close)" />
         </template>
 
         <template #default="{ close }">

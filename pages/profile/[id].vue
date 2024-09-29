@@ -88,7 +88,7 @@ const actionsList = ref([
 <style scoped>
 .tabs-enter-active,
 .tabs-leave-active {
-    transition: all .8s ease;
+    transition: all .6s ease;
 }
 
 .tabs-enter-from,
