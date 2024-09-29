@@ -26,8 +26,8 @@ const visibleActions = computed(() => {
     <template #default="{ close }">
       <ul>
         <li v-for="action in visibleActions" :key="action.id"
-          class="py-3 px-4 hovered w-full text-start flex items-center leading-none cursor-pointer" role="button"
-          :class="action.class" @click="action.click(), close()">
+          class="py-3 px-4 hovered w-full text-start flex items-center leading-none cursor-pointer whitespace-nowrap"
+          role="button" :class="action.class" @click="action.click(), close()">
           <icon v-if="action.id" :icon="action.icon" class="mr-4" />
           {{ action.text }}
         </li>

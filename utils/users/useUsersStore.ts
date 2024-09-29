@@ -1,4 +1,4 @@
-import type { User } from "./types";
+import { Gender, RelationShip, type User } from "./types";
 
 export const useUsersStore = defineStore("usersList", () => {
   const usersLists = ref<User[]>([
@@ -12,6 +12,13 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [2, 3, 4, 5, 6],
       followingIds: [2],
       isFollowing: false,
+      generalInformations: {
+        livingIn: "United States",
+        placeOfBirth: "United States",
+        dateOfBirth: "1995-10-02",
+        relationShip: RelationShip.Single,
+        gender: Gender.Male,
+      },
     },
     {
       id: 2,
@@ -24,39 +31,45 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [1, 8],
       followingIds: [1, 6, 4],
       isFollowing: false,
+      generalInformations: {},
     },
     {
       id: 3,
       userName: "kateoliver",
       name: "Kate Oliver",
-      description: "",
+      description:
+        "am ut erat augue. Aenean eleifend magna pulvinar libero faucibus porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       photo: "kate.svg",
       backgroundPhoto: "",
       followersIds: [],
       followingIds: [1],
       isFollowing: false,
+      generalInformations: {},
     },
     {
       id: 4,
       userName: "peterjackson",
       name: "Peter Jackson",
-      description: "",
+      description: "Integer molestie posuere justo",
       photo: "peter.svg",
       backgroundPhoto: "",
       followersIds: [2],
       followingIds: [1],
       isFollowing: false,
+      generalInformations: {},
     },
     {
       id: 5,
       userName: "matthew124",
       name: "Matthew Taylor",
-      description: "",
+      description:
+        "Phasellus malesuada lectus vitae massa feugiat auctor. Proin imperdiet eros ac mi sodales pharetra. Integer mattis volutpat semper. Nunc quis leo in sem aliquam malesuada imperdiet et lacus. Morbi rhoncus, justo et volutpat tempus, metus ante lacinia nisi, tempor mollis augue neque sed ante. In hac habitasse platea dictumst...",
       photo: "matthew.svg",
       backgroundPhoto: "",
       followersIds: [1, 6],
       followingIds: [],
       isFollowing: false,
+      generalInformations: {},
     },
     {
       id: 6,
@@ -68,17 +81,19 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [1, 2, 8],
       followingIds: [5, 7],
       isFollowing: false,
+      generalInformations: {},
     },
     {
       id: 7,
       userName: "robwill",
       name: "Robert Williams",
-      description: "",
+      description: "Fusce quis efficitur arcu, non placerat felis",
       photo: "robert.svg",
       backgroundPhoto: "",
       followersIds: [6],
       followingIds: [8],
       isFollowing: false,
+      generalInformations: {},
     },
     {
       id: 8,
@@ -90,6 +105,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [7],
       followingIds: [2, 6],
       isFollowing: false,
+      generalInformations: {},
     },
   ]);
 

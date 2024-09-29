@@ -47,6 +47,19 @@ export const usePostsStore = defineStore("posts", () => {
       post: "Recusandae obcaecati laborum dolore explicabo dolorum",
       parentId: 2,
     },
+    {
+      id: 4,
+      userId: 3,
+      date: "2023-10-12T02:00:00Z",
+      views: 795,
+      likes: 241,
+      dislikes: 7,
+      liked: false,
+      disliked: false,
+      level: 1,
+      post: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum interdum pharetra urna, ac vehicula nulla interdum ut. Fusce quis efficitur arcu, non placerat felis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
+      parentId: undefined,
+    },
   ]);
 
   function getPost(postId: number) {

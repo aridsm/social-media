@@ -8,13 +8,13 @@ export type User = {
   followersIds: number[];
   followingIds: number[];
   isFollowing: boolean;
-  generalInformations?: GeneralInformation;
+  generalInformations: GeneralInformation;
 };
 
 export type GeneralInformation = {
-  livingIn: string;
-  placeOfBirth: string;
-  dateOfBirth: string;
+  livingIn?: string;
+  placeOfBirth?: string;
+  dateOfBirth?: string;
   relationShip?: RelationShip;
   gender?: Gender;
 };

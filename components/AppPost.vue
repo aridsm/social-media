@@ -101,7 +101,7 @@ const getImgUrl = (img: string) =>
           :alt="currentUser.name" />
         <div>
           <div class="flex gap-4 items-center">
-            <NuxtLink class="cursor-pointer hover:text-primary" :to="`/profile/${post.userId}`" target="_blank">
+            <NuxtLink class="cursor-pointer hover:text-primary" :to="`/profile/${post.userId}`">
               @{{ user?.userName }}
             </NuxtLink>
             <AppBtnFollow v-if="!user?.isFollowing && post.userId !== currentUser.id" />

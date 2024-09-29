@@ -40,7 +40,7 @@ function checkOnOpen(open: any, close: any) {
         <template #default="{ close }">
           <ul class="w-full">
             <li v-for="user in usersSearch" :key="user.id" @click="close">
-              <NuxtLink :to="`/profile/${user.id}`" target="_blank" class="p-4 hovered flex gap-4">
+              <NuxtLink :to="`/profile/${user.id}`" class="p-4 hovered flex gap-4">
                 <img :src="getImgUrl(user.photo)" class="w-10 h-10 rounded-full" />
                 <div class="flex flex-col gap-2">
                   <span class="text-primary ">@{{ user.userName }}</span>
@@ -66,16 +66,16 @@ function checkOnOpen(open: any, close: any) {
           <div class="notification">14</div>
         </button>
 
-        <div class="flex items-center gap-4 px-2">
+        <NuxtLink :to="`/profile/${currentUser.id}`" class="flex items-center gap-4 px-2 hover:text-primary">
+          <span>@{{ currentUser.userName }}</span>
           <img class="w-10 h-10 bg-neutral-200 rounded-full" :src="getImgUrl(currentUser.photo)"
             :alt="currentUser.name"></img>
-          <span>@{{ currentUser.userName }}</span>
-        </div>
+        </NuxtLink>
 
       </div>
     </header>
 
-    <RouterView />
+    <NuxtPage />
   </div>
 </template>
 <style scoped>
