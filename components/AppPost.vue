@@ -62,7 +62,7 @@ const actionsList = ref([
     id: 3,
     text: "Delete",
     icon: "fa-regular fa-trash-can",
-    class: "text-red-600",
+    class: "text-red-600 dark:text-red-400",
     visible: () => currentUser.id === props.post.userId,
     click: () => {
       removePost(props.post);
@@ -144,7 +144,7 @@ function onAddNewPost() {
             " class="mr-1" />
           {{ post.dislikes }}
         </button>
-        <button class="mr-auto" @click="showComments = true">
+        <button v-if="post.level <= 2" class="mr-auto" @click="showComments = true">
           <icon icon="fa-regular fa-comments" class="mr-1" />
           {{ posts.length }}
         </button>

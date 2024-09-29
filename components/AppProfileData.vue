@@ -73,7 +73,10 @@ const gendersList = {
                 class="mb-10 mt-2 text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center">
                 <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
             </div>
-            <AppPost v-for="post in posts" :key="post.id" :post="post" />
+            <div class="flex flex-col gap-8">
+
+                <AppPost v-for="post in posts" :key="post.id" :post="post" />
+            </div>
             <p class="text-label text-center mt-8">End of list</p>
         </div>
         <p v-else class="text-label text-center">No posts here</p>

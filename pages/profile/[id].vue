@@ -7,7 +7,6 @@ import { useCurrentUserStore } from '~/utils/users/useCurrentUserStore';
 import { useUsersStore } from '~/utils/users/useUsersStore';
 
 const user = ref<User>()
-const posts = ref<Post[]>([])
 const route = useRoute()
 const { getUserById } = useUsersStore()
 const { findPosts } = usePostsStore()
@@ -16,27 +15,11 @@ const activePage = ref<'data' | 'followers' | 'following' | 'edit'>('data')
 
 onMounted(() => {
     user.value = getUserById(Number(route.params.id))
-    posts.value = findPosts({ userId: Number(route.params.id), level: 1 })
 })
 
-const actionsList = ref([
-    {
-        id: 1,
-        text: "Report",
-        icon: "fa-regular fa-flag",
-        visible: () => currentUser.id !== user.value?.id,
-        click: () => { },
-    },
-    {
-        id: 2,
-        text: "Edit information",
-        icon: "fa-regular fa-pen-to-square",
-        visible: () => currentUser.id === user.value?.id && activePage.value !== 'edit',
-        click: () => {
-            activePage.value = 'edit'
-        },
-    },
-])
+const posts = computed<Post[]>(() => {
+    return findPosts({ userId: Number(route.params.id), level: 1 })
+})
 
 </script>
 
