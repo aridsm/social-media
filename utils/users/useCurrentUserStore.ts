@@ -1,4 +1,8 @@
+import type { User } from "./types";
+import { useUsersStore } from "./useUsersStore";
+
 export const useCurrentUserStore = defineStore("currentUser", () => {
+  const { usersLists } = useUsersStore();
   const currentUser = ref({
     id: 2,
     userName: "amylee",
@@ -12,5 +16,15 @@ export const useCurrentUserStore = defineStore("currentUser", () => {
     isFollowing: false,
   });
 
-  return { currentUser };
+  function editUser(newData: User) {
+    Object.assign(currentUser.value, newData);
+
+    const user = usersLists.find((u) => u.id === currentUser.value.id);
+
+    if (user) {
+      Object.assign(user, newData);
+    }
+  }
+
+  return { currentUser, editUser };
 });

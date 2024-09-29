@@ -1,10 +1,8 @@
 <script lang="tsx" setup>
+import { getImgUrl } from "~/utils/images/getUrlImage";
 import { useUsersStore } from "~/utils/users/useUsersStore";
 
 const { recommendedUsers } = useUsersStore();
-
-const getImgUrl = (img: string) =>
-  new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>

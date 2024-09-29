@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getImgUrl } from '~/utils/images/getUrlImage';
 import type { User } from '~/utils/users/types';
 import { useUsersStore } from '~/utils/users/useUsersStore';
 
@@ -28,9 +29,6 @@ onMounted(() => {
 watch(() => search.value, () => {
     usersList.value = searchUsers(search.value, defaultUsersList.value)
 })
-
-const getImgUrl = (img: string) =>
-    new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 <template>
     <div>

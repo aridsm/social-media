@@ -11,19 +11,13 @@ const posts = ref<Post[]>([])
 const route = useRoute()
 const { getUserById } = useUsersStore()
 const { findPosts } = usePostsStore()
-const { currentUser } = useCurrentUserStore()
+const { currentUser, editUser } = useCurrentUserStore()
 const activePage = ref<'data' | 'followers' | 'following' | 'edit'>('data')
 
 onMounted(() => {
     user.value = getUserById(Number(route.params.id))
     posts.value = findPosts({ userId: Number(route.params.id), level: 1 })
 })
-
-const getImgUrl = (img: string) =>
-    new URL(`../../assets/avatar/${img}`, import.meta.url).href;
-
-const getBackgroundUrl = (img: string) =>
-    new URL(`../../assets/background/${img}`, import.meta.url).href;
 
 const actionsList = ref([
     {
@@ -37,8 +31,9 @@ const actionsList = ref([
         id: 2,
         text: "Edit information",
         icon: "fa-regular fa-pen-to-square",
-        visible: () => currentUser.id === user.value?.id,
+        visible: () => currentUser.id === user.value?.id && activePage.value !== 'edit',
         click: () => {
+            activePage.value = 'edit'
         },
     },
 ])
@@ -47,43 +42,15 @@ const actionsList = ref([
 
 <template>
     <div class="flex flex-col min-h-0 2xl:px-8 px-6 gap-8 overflow-y-auto overflow-x-hidden pb-2 relative">
-        <div class="mb-12 rounded-md py-4 pl-8 pr-4 h-40 bg-neutral-700 flex items-start justify-between gap-10 bg-cover"
-            :style="{ backgroundImage: `url(${getBackgroundUrl(user?.backgroundPhoto)})` }">
-            <img :src="getImgUrl(user?.photo)"
-                class="h-48 w-48 rounded-full border-8 border-base dark:border-gray-800" />
-            <div class="flex flex-col flex-1 gap-4  h-full">
-                <button class="self-end text-white flex flex-col mr-auto mt-auto" @click="activePage = 'data'">
-                    <span class="font-bold text-lg">@{{ user?.userName }}</span>
-                    <span class="text-2xl">{{ user?.name }}</span>
-                </button>
-
-                <div class="flex gap-8 items-center -ml-4 text-white text-lg">
-                    <button class="hovered px-4 py-1 rounded-full" @click="activePage = 'followers'">
-                        <span class="font-bold">Followers</span> <span class="ml-2">{{ user?.followersIds.length
-                            }}</span>
-                    </button>
-                    <button class="hovered px-4 py-1 rounded-full" @click="activePage = 'following'">
-                        <span class="font-bold">Following</span> <span class="ml-2">{{ user?.followingIds.length
-                            }}</span>
-                    </button>
-                    <div class="px-4">
-                        <span class="font-bold">Posts</span> <span class="ml-2">{{ posts.length }}</span>
-                    </div>
-                </div>
-            </div>
-            <AppActions v-slot="{ open }" :actions="actionsList">
-                <button class="hovered w-8 h-8 rounded-full text-white flex items-center justify-center relative"
-                    @click="open">
-                    <icon icon="fa-solid fa-ellipsis-vertical" />
-                </button>
-            </AppActions>
-        </div>
+        <AppProfileCard v-if="user" :user="user" :posts="posts" v-model:active-page="activePage" />
 
         <div v-if="user">
             <TransitionGroup name="tabs">
                 <AppProfileData v-if="activePage === 'data'" :user="user" :posts="posts" />
                 <AppFollowList v-if="activePage === 'followers'" :user="user" />
                 <AppFollowList v-if="activePage === 'following'" :user="user" following />
+                <AppEditTab v-if="activePage === 'edit'" :user="user" :posts="posts"
+                    @save="editUser($event), activePage = 'data'" />
             </TransitionGroup>
         </div>
     </div>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getImgUrl } from "~/utils/images/getUrlImage";
 import { usePostsStore } from "~/utils/posts/usePostsStore";
 import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 
@@ -11,7 +12,6 @@ const posts = computed(() => {
   return findPosts({ level: 1 });
 });
 
-const getImgUrl = (img: string) => new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>

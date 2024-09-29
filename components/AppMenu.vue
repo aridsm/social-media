@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import { useCurrentUserStore } from '~/utils/users/useCurrentUserStore';
+
+
+const { currentUser } = useCurrentUserStore()
 const navLinks = [
   {
     name: "Feed",
@@ -18,7 +22,7 @@ const navLinks = [
   {
     name: "Profile",
     icon: "fa-regular fa-circle-user",
-    path: "/profile",
+    path: `/profile/${currentUser.id}`,
   },
   {
     name: "Saved",
@@ -41,8 +45,7 @@ const currentPath = computed(() => {
 
 <template>
   <div
-    class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full"
-  >
+    class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full">
     <div class="flex uppercase font-bold items-end gap-2 leading-none">
       <div class="flex items-end">
         <div class="w-5 h-7 bg-text"></div>
@@ -52,24 +55,17 @@ const currentPath = computed(() => {
     </div>
 
     <nav class="flex flex-col gap-2 2xl:gap-4 w-full mt-8">
-      <NuxtLink
-        v-for="link in navLinks"
-        :key="link.name"
-        :to="link.path"
-        class="flex items-center gap-4 rounded-sm px-4 w-full h-10"
-        :class="{
+      <NuxtLink v-for="link in navLinks" :key="link.name" :to="link.path"
+        class="flex items-center gap-4 rounded-sm px-4 w-full h-10" :class="{
           active: currentPath === link.path,
           hovered: currentPath !== link.path,
-        }"
-      >
+        }">
         <icon :icon="link.icon" class="w-7" />
         <span class="leading-none -mb-1">{{ link.name }}</span>
       </NuxtLink>
 
-      <NuxtLink
-        to="/settings"
-        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-border dark:border-t-dark-border"
-      >
+      <NuxtLink to="/settings"
+        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-border dark:border-t-dark-border">
         <icon icon="fa-solid fa-gear" class="w-7" />
         <span class="leading-none -mb-1">Settings</span>
       </NuxtLink>

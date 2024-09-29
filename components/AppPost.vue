@@ -4,6 +4,7 @@ import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import type { Post } from "~/utils/posts/types";
 import { usePostsStore } from "~/utils/posts/usePostsStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
+import { getImgUrl } from "~/utils/images/getUrlImage";
 
 const showComments = ref(false);
 const comment = ref("");
@@ -74,9 +75,6 @@ function onAddNewPost() {
 
   comment.value = "";
 }
-
-const getImgUrl = (img: string) =>
-  new URL(`../assets/avatar/${img}`, import.meta.url).href;
 </script>
 
 <template>

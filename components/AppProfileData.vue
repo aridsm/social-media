@@ -43,7 +43,7 @@ const gendersList = {
         </AppCard>
 
         <AppCard v-if="hasGeneralInformations">
-            <p class="font-bold mb-10">General Information</p>
+            <p class="font-bold mb-10">Additional Information</p>
             <div class="grid grid-cols-2 gap-6">
                 <div class="flex gap-4">
                     <p class="font-bold">Living In</p>

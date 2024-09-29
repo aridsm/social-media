@@ -2,6 +2,7 @@
 import { useCurrentUserStore } from '~/utils/users/useCurrentUserStore';
 import { useDarkModeStore } from '~/utils/darkmode/darkModeStore';
 import { useUsersStore } from '~/utils/users/useUsersStore';
+import { getImgUrl } from '~/utils/images/getUrlImage';
 
 const { searchUsers } = useUsersStore();
 const { currentUser } = useCurrentUserStore();
@@ -11,9 +12,6 @@ const { toggleColorMode } = useDarkModeStore();
 const { isDarkMode } = storeToRefs(useDarkModeStore());
 
 const search = ref('');
-
-const getImgUrl = (img: string) =>
-  new URL(`../assets/avatar/${img}`, import.meta.url).href;
 
 const usersSearch = computed(() => {
   return search.value ? searchUsers(search.value) : [];

@@ -6,6 +6,7 @@ const props = defineProps({
   placeholder: String,
   contentClass: String,
   textarea: Boolean,
+  label: String,
   color: {
     type: String as PropType<'base' | 'sec'>,
     default: 'base'
@@ -16,14 +17,15 @@ const props = defineProps({
 });
 
 const emits = defineEmits<{
-  (name: 'blur', value: string): void;
-  (name: 'input', value: string): void;
+  (name: 'blur', value: string | undefined): void;
+  (name: 'input', value: string | undefined): void;
 }>();
 
-const modelValue = defineModel<string>({ required: true });
+const modelValue = defineModel<string | undefined>({ required: true });
 </script>
 <template>
   <div class="relative">
+    <span v-if="label" class="font-bold block mb-1 text-primary">{{ label }}</span>
     <textarea v-if="textarea" v-model="modelValue" :rows="4" :placeholder="placeholder || 'Write...'"
       class="input-styles" :class="[contentClass, {
         'bg-base dark:bg-neutral-600': color === 'base',
