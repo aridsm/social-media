@@ -22,6 +22,8 @@ onMounted(() => {
 const getImgUrl = (img: string) =>
     new URL(`../../assets/avatar/${img}`, import.meta.url).href;
 
+const getBackgroundUrl = (img: string) =>
+    new URL(`../../assets/background/${img}`, import.meta.url).href;
 
 const actionsList = ref([
     {
@@ -45,16 +47,17 @@ const actionsList = ref([
 
 <template>
     <div class="flex flex-col min-h-0 2xl:px-8 px-6 gap-8 overflow-y-auto overflow-x-hidden pb-2 relative">
-        <div class="mb-12 bg-green-500 rounded-md py-4 pl-8 pr-4 h-36 flex items-start justify-between gap-10">
+        <div class="mb-12 rounded-md py-4 pl-8 pr-4 h-40 bg-neutral-700 flex items-start justify-between gap-10 bg-cover"
+            :style="{ backgroundImage: `url(${getBackgroundUrl(user?.backgroundPhoto)})` }">
             <img :src="getImgUrl(user?.photo)"
-                class="h-44 w-44 rounded-full border-8 border-base dark:border-gray-800" />
+                class="h-48 w-48 rounded-full border-8 border-base dark:border-gray-800" />
             <div class="flex flex-col flex-1 gap-4  h-full">
-                <button class="self-end text-white text-lg flex flex-col mr-auto mt-auto" @click="activePage = 'data'">
-                    <span class="font-bold">@{{ user?.userName }}</span>
-                    <span>{{ user?.name }}</span>
+                <button class="self-end text-white flex flex-col mr-auto mt-auto" @click="activePage = 'data'">
+                    <span class="font-bold text-lg">@{{ user?.userName }}</span>
+                    <span class="text-2xl">{{ user?.name }}</span>
                 </button>
 
-                <div class="flex gap-8 items-center -ml-4 text-white">
+                <div class="flex gap-8 items-center -ml-4 text-white text-lg">
                     <button class="hovered px-4 py-1 rounded-full" @click="activePage = 'followers'">
                         <span class="font-bold">Followers</span> <span class="ml-2">{{ user?.followersIds.length
                             }}</span>
