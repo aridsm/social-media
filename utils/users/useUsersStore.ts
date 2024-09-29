@@ -10,7 +10,7 @@ export const useUsersStore = defineStore("usersList", () => {
       photo: "johndoe.svg",
       backgroundPhoto: "",
       followersIds: [2, 3, 4, 5, 6],
-      followingIds: [2],
+      followingIds: [2, 5, 6],
       isFollowing: false,
       generalInformations: {
         livingIn: "United States",
@@ -123,8 +123,8 @@ export const useUsersStore = defineStore("usersList", () => {
     return usersLists.value.filter((user: User) => ids.includes(user.id));
   }
 
-  function searchUsers(search: string): User[] {
-    return usersLists.value.filter(
+  function searchUsers(search: string, list?: User[]): User[] {
+    return (list || usersLists.value).filter(
       (user: User) =>
         user.name.toLowerCase().trim().includes(search.trim().toLowerCase()) ||
         user.userName.toLowerCase().trim().includes(search.trim().toLowerCase())
