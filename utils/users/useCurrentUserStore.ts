@@ -1,19 +1,26 @@
-import type { User } from "./types";
+import { Gender, RelationShip, type User } from "./types";
 import { useUsersStore } from "./useUsersStore";
 
 export const useCurrentUserStore = defineStore("currentUser", () => {
   const { usersLists } = useUsersStore();
-  const currentUser = ref({
+  const currentUser = ref<User>({
     id: 2,
     userName: "amylee",
     name: "Amy Lee",
     description:
       "Aenean nec est gravida, placerat lorem id, semper nibh. Vivamus et vehicula nunc",
     photo: "amy.svg",
-    backgroundPhoto: "",
-    followersIds: [],
-    followingIds: [],
+    backgroundPhoto: "pattern_japanese.png",
+    followersIds: [1, 8],
+    followingIds: [1, 6, 4],
     isFollowing: false,
+    generalInformations: {
+      livingIn: "Brazil",
+      placeOfBirth: "Brazil",
+      dateOfBirth: "1996-05-07",
+      relationShip: RelationShip.Single,
+      gender: Gender.Female,
+    },
   });
 
   function editUser(newData: User) {

@@ -1,8 +1,10 @@
 <script lang="tsx" setup>
 import { getImgUrl } from "~/utils/images/getUrlImage";
+import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
 
 const { recommendedUsers } = useUsersStore();
+const { currentUser } = useCurrentUserStore()
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const { recommendedUsers } = useUsersStore();
               </NuxtLink>
               <span class="text-label">{{ user.name }}</span>
             </div>
-            <AppBtnFollow class="ml-auto self-start" />
+            <AppBtnFollow v-if="user.id !== currentUser.id" class="ml-auto self-start" :user="user" />
           </AppCard>
         </li>
       </ul>

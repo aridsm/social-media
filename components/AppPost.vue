@@ -102,7 +102,7 @@ function onAddNewPost() {
             <NuxtLink class="cursor-pointer hover:text-primary" :to="`/profile/${post.userId}`">
               @{{ user?.userName }}
             </NuxtLink>
-            <AppBtnFollow v-if="!user?.isFollowing && post.userId !== currentUser.id" />
+            <AppBtnFollow v-if="post.userId !== currentUser.id" :user="user" />
           </div>
           <p class="text-label text-sm">{{ getDateDifference(post.date) }}</p>
         </div>

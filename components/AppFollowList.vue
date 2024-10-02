@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { getImgUrl } from '~/utils/images/getUrlImage';
 import type { User } from '~/utils/users/types';
+import { useCurrentUserStore } from '~/utils/users/useCurrentUserStore';
 import { useUsersStore } from '~/utils/users/useUsersStore';
 
 const { getUsersByIds, searchUsers } = useUsersStore()
+const { currentUser } = useCurrentUserStore()
 
 const props = defineProps({
     following: Boolean,
@@ -46,7 +48,7 @@ watch(() => search.value, () => {
                         </NuxtLink>
                         <span class="text-label">{{ user.name }}</span>
                     </div>
-                    <AppBtnFollow class="ml-auto self-start" />
+                    <AppBtnFollow v-if="user.id !== currentUser.id" class="ml-auto self-start" :user="user" />
                 </AppCard>
             </NuxtLink>
         </div>

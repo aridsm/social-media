@@ -1,4 +1,5 @@
 import { Gender, RelationShip, type User } from "./types";
+import { useCurrentUserStore } from "./useCurrentUserStore";
 
 export const useUsersStore = defineStore("usersList", () => {
   const usersLists = ref<User[]>([
@@ -11,7 +12,7 @@ export const useUsersStore = defineStore("usersList", () => {
       backgroundPhoto: "pattern_lines.png",
       followersIds: [2, 3, 4, 5, 6],
       followingIds: [2, 5, 6],
-      isFollowing: false,
+      isFollowing: true,
       generalInformations: {
         livingIn: "United States",
         placeOfBirth: "United States",
@@ -61,7 +62,7 @@ export const useUsersStore = defineStore("usersList", () => {
       backgroundPhoto: "pattern_bricks.png",
       followersIds: [2],
       followingIds: [1],
-      isFollowing: false,
+      isFollowing: true,
       generalInformations: {},
     },
     {
@@ -86,7 +87,7 @@ export const useUsersStore = defineStore("usersList", () => {
       backgroundPhoto: "pattern_flower.png",
       followersIds: [1, 2, 8],
       followingIds: [5, 7],
-      isFollowing: false,
+      isFollowing: true,
       generalInformations: {
         dateOfBirth: "2000-02-02",
         relationShip: RelationShip.InARelationShip,
@@ -145,11 +146,43 @@ export const useUsersStore = defineStore("usersList", () => {
     );
   }
 
+  function toggleFollowUser(userId: number) {
+    const { currentUser, editUser } = useCurrentUserStore();
+
+    const user = getUserById(userId);
+    const currentUserUser = getUserById(currentUser?.id);
+
+    if (user && currentUserUser) {
+      user.isFollowing = !user.isFollowing;
+
+      if (user.isFollowing) {
+        console.log(currentUserUser.followingIds);
+
+        currentUserUser.followingIds.push(userId);
+        user.followersIds.push(currentUser.id);
+
+        editUser(currentUserUser);
+        console.log(currentUserUser.followingIds);
+      } else {
+        currentUserUser.followingIds = currentUser.followingIds.filter(
+          (followingId) => followingId !== userId
+        );
+
+        user.followersIds = user.followersIds.filter(
+          (followerId) => followerId !== currentUser.id
+        );
+
+        editUser(currentUserUser);
+      }
+    }
+  }
+
   return {
     usersLists,
     getUserById,
     recommendedUsers,
     getUsersByIds,
     searchUsers,
+    toggleFollowUser,
   };
 });
