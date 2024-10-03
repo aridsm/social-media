@@ -9,6 +9,7 @@ export type User = {
   followingIds: number[];
   isFollowing: boolean;
   generalInformations: GeneralInformation;
+  online: boolean;
 };
 
 export type GeneralInformation = {

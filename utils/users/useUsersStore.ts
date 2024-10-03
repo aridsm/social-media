@@ -13,6 +13,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [2, 3, 4, 5, 6],
       followingIds: [2, 5, 6],
       isFollowing: true,
+      online: true,
       generalInformations: {
         livingIn: "United States",
         placeOfBirth: "United States",
@@ -32,6 +33,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [1, 8],
       followingIds: [1, 6, 4],
       isFollowing: false,
+      online: true,
       generalInformations: {
         livingIn: "Brazil",
         placeOfBirth: "Brazil",
@@ -51,6 +53,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [],
       followingIds: [1],
       isFollowing: false,
+      online: true,
       generalInformations: {},
     },
     {
@@ -63,6 +66,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [2],
       followingIds: [1],
       isFollowing: true,
+      online: false,
       generalInformations: {},
     },
     {
@@ -76,6 +80,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [1, 6],
       followingIds: [],
       isFollowing: false,
+      online: true,
       generalInformations: {},
     },
     {
@@ -88,6 +93,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [1, 2, 8],
       followingIds: [5, 7],
       isFollowing: true,
+      online: false,
       generalInformations: {
         dateOfBirth: "2000-02-02",
         relationShip: RelationShip.InARelationShip,
@@ -104,6 +110,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [6],
       followingIds: [8],
       isFollowing: false,
+      online: false,
       generalInformations: {
         dateOfBirth: "1992-01-09",
         relationShip: RelationShip.Married,
@@ -120,6 +127,7 @@ export const useUsersStore = defineStore("usersList", () => {
       followersIds: [7],
       followingIds: [2, 6],
       isFollowing: false,
+      online: false,
       generalInformations: {},
     },
   ]);
@@ -128,6 +136,10 @@ export const useUsersStore = defineStore("usersList", () => {
 
   const recommendedUsers = computed<User[]>(() => {
     return getUsersByIds(recommendedUsersIds.value);
+  });
+
+  const friendsOnline = computed<User[]>(() => {
+    return usersLists.value.filter((user) => user.online && user.isFollowing);
   });
 
   function getUserById(userId: number | string) {
@@ -184,5 +196,6 @@ export const useUsersStore = defineStore("usersList", () => {
     getUsersByIds,
     searchUsers,
     toggleFollowUser,
+    friendsOnline,
   };
 });
