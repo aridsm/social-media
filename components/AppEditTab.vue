@@ -84,7 +84,8 @@ const relationShipList = [
             <AppCard>
                 <span class="font-bold mb-4 block">Profile data</span>
                 <div>
-                    <AppInputText v-model="userForm.name" label="Full name" />
+                    <AppInputText v-model="userForm.userName" label="User name" />
+                    <AppInputText v-model="userForm.name" label="Full name" class="mt-8" />
 
                     <div class=" mt-8">
                         <span class="mb-2 block text-primary font-bold">Background</span>
