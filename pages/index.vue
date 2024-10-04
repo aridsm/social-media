@@ -53,7 +53,7 @@ const posts = computed(() => {
       <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
     </div>
 
-    <div class="flex flex-col gap-6 flex-1 min-h-0">
+    <div class="flex flex-col gap-8 flex-1 min-h-0">
       <AppPost v-for="(post, index) in posts" :key="post.id" :post="post" :last-in-list="index === posts.length - 1" />
     </div>
   </div>
