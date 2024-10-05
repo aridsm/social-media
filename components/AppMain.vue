@@ -28,7 +28,7 @@ function checkOnOpen(open: any, close: any) {
 </script>
 <template>
   <div class="2xl:py-8 py-6">
-    <header class="flex items-start mb-10 2xl:px-8 px-6">
+    <header class="flex items-start mb-16 2xl:px-8 px-6">
       <AppTooltip class="flex-1 relative">
         <template #activator="{ open, close }">
           <AppInputText v-model="search" placeholder="Search user..." icon-name="fa-solid fa-magnifying-glass"
@@ -74,6 +74,7 @@ function checkOnOpen(open: any, close: any) {
     </header>
 
     <NuxtPage />
+
   </div>
 </template>
 <style scoped>

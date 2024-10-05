@@ -8,8 +8,9 @@ export type User = {
   followersIds: number[];
   followingIds: number[];
   isFollowing: boolean;
-  generalInformations: GeneralInformation;
   online: boolean;
+  generalInformations: GeneralInformation;
+  contactInformations: ContactInformation;
 };
 
 export type GeneralInformation = {
@@ -18,6 +19,13 @@ export type GeneralInformation = {
   dateOfBirth?: string;
   relationShip?: RelationShip;
   gender?: Gender;
+};
+
+export type ContactInformation = {
+  email?: string;
+  cellphone?: string;
+  phone?: string;
+  instagram?: string;
 };
 
 export enum RelationShip {

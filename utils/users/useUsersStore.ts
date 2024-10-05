@@ -21,6 +21,12 @@ export const useUsersStore = defineStore("usersList", () => {
         relationShip: RelationShip.Single,
         gender: Gender.Male,
       },
+      contactInformations: {
+        cellphone: "",
+        phone: "",
+        email: "john_doe@email.com",
+        instagram: "@johndoe9183932",
+      },
     },
     {
       id: 2,
@@ -41,6 +47,11 @@ export const useUsersStore = defineStore("usersList", () => {
         relationShip: RelationShip.Single,
         gender: Gender.Female,
       },
+      contactInformations: {
+        cellphone: "",
+        phone: "00 1200 9009",
+        email: "amylee@email.com",
+      },
     },
     {
       id: 3,
@@ -55,6 +66,9 @@ export const useUsersStore = defineStore("usersList", () => {
       isFollowing: false,
       online: true,
       generalInformations: {},
+      contactInformations: {
+        cellphone: "00 98000 11111",
+      },
     },
     {
       id: 4,
@@ -68,6 +82,9 @@ export const useUsersStore = defineStore("usersList", () => {
       isFollowing: true,
       online: false,
       generalInformations: {},
+      contactInformations: {
+        email: "peterjack@email.com",
+      },
     },
     {
       id: 5,
@@ -82,6 +99,7 @@ export const useUsersStore = defineStore("usersList", () => {
       isFollowing: false,
       online: true,
       generalInformations: {},
+      contactInformations: {},
     },
     {
       id: 6,
@@ -99,6 +117,7 @@ export const useUsersStore = defineStore("usersList", () => {
         relationShip: RelationShip.InARelationShip,
         gender: Gender.Female,
       },
+      contactInformations: {},
     },
     {
       id: 7,
@@ -116,6 +135,7 @@ export const useUsersStore = defineStore("usersList", () => {
         relationShip: RelationShip.Married,
         gender: Gender.Male,
       },
+      contactInformations: {},
     },
     {
       id: 8,
@@ -129,6 +149,10 @@ export const useUsersStore = defineStore("usersList", () => {
       isFollowing: false,
       online: false,
       generalInformations: {},
+      contactInformations: {
+        cellphone: "00 98200 11011",
+        instagram: "@lindacollinns0023",
+      },
     },
   ]);
 

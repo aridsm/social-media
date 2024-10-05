@@ -45,7 +45,6 @@ const posts = computed<Post[]>(() => {
       <div class="flex gap-8 items-center -ml-4 text-lg">
         <button
           class="hovered px-4 py-1 rounded-full"
-          :disabled="disabled"
           @click="activePage = 'followers'"
         >
           <span class="font-bold">Followers</span>
@@ -75,7 +74,7 @@ const posts = computed<Post[]>(() => {
 
     <div
       v-if="user && user.followingIds.includes(currentUser.id)"
-      class="ml-auto bg-emerald-600 text-white py-1 px-4 rounded-full"
+      class="mx-auto bg-purple-600 dark:bg-purple-700 text-white px-4 rounded-full leading-none pb-1 pt-2"
     >
       Following you
     </div>

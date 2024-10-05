@@ -21,6 +21,12 @@ const hasGeneralInformations = computed(() => {
     : false;
 });
 
+const hasContactInformations = computed(() => {
+  return props.user
+    ? Object.values(props.user?.contactInformations).length
+    : false;
+});
+
 const relationShipList = {
   [RelationShip.Divorced]: "Divorced",
   [RelationShip.InARelationShip]: "In a relationship",
@@ -70,6 +76,28 @@ const gendersList = {
               ) || "N/A"
             }}
           </p>
+        </div>
+      </div>
+    </AppCard>
+
+    <AppCard v-if="hasContactInformations">
+      <p class="font-bold mb-10">Contact Information</p>
+      <div class="grid grid-cols-2 gap-6">
+        <div class="flex gap-4">
+          <p class="font-bold">E-mail</p>
+          <p>{{ user?.contactInformations?.email || "N/A" }}</p>
+        </div>
+        <div class="flex gap-4">
+          <p class="font-bold">Cellphone</p>
+          <p>{{ user?.contactInformations?.cellphone || "N/A" }}</p>
+        </div>
+        <div class="flex gap-4">
+          <p class="font-bold">Phone</p>
+          <p>{{ user?.contactInformations?.phone || "N/A" }}</p>
+        </div>
+        <div class="flex gap-4">
+          <p class="font-bold">Instagram</p>
+          <p>{{ user?.contactInformations?.instagram || "N/A" }}</p>
         </div>
       </div>
     </AppCard>

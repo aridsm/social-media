@@ -14,12 +14,18 @@ export const useCurrentUserStore = defineStore("currentUser", () => {
     followersIds: [1, 8],
     followingIds: [1, 6, 4],
     isFollowing: false,
+    online: true,
     generalInformations: {
       livingIn: "Brazil",
       placeOfBirth: "Brazil",
       dateOfBirth: "1996-05-07",
       relationShip: RelationShip.Single,
       gender: Gender.Female,
+    },
+    contactInformations: {
+      cellphone: "",
+      phone: "00 1200 9009",
+      email: "amylee@email.com",
     },
   });
 
