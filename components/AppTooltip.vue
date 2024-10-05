@@ -1,4 +1,15 @@
 <script lang="ts" setup>
+defineProps({
+  origin: {
+    type: String as PropType<"bottom" | "top">,
+    default: "bottom",
+  },
+  position: {
+    type: String as PropType<"right" | "left">,
+    default: "left",
+  },
+});
+
 const show = ref(false);
 const tooltip = ref<HTMLDivElement>();
 
@@ -32,8 +43,16 @@ onUnmounted(() => {
   <div ref="tooltip" class="relative">
     <slot name="activator" :open="onOpen" :close="onClose" />
     <Transition name="action">
-      <div v-if="show"
-        class="bg-white z-10 min-w-full dark:bg-neutral-600 flex flex-col items-start border border-border dark:border-dark-border rounded-sm absolute top-full right-0">
+      <div
+        v-if="show"
+        class="bg-white tooltip z-10 min-w-max dark:bg-neutral-600 flex flex-col items-start border border-border dark:border-dark-border rounded-sm absolute"
+        :class="{
+          'tooltip-top': origin === 'top',
+          'tooltip-bottom': origin === 'bottom',
+          'left-0': position === 'left',
+          'right-0': position === 'right',
+        }"
+      >
         <slot :open="onOpen" :close="onClose" />
       </div>
     </Transition>
@@ -41,9 +60,15 @@ onUnmounted(() => {
 </template>
 <style lang="scss">
 .tooltip {
-  box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 6px 12px 25px rgba(0, 0, 0, 0.08);
+}
+.tooltip-bottom {
+  top: calc(100% + 8px);
 }
 
+.tooltip-top {
+  bottom: calc(100% + 8px);
+}
 .dark .tooltip {
   box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.1);
 }

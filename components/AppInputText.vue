@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue';
+import type { PropType } from "vue";
 
 const props = defineProps({
   iconName: String,
@@ -8,8 +8,8 @@ const props = defineProps({
   textarea: Boolean,
   label: String,
   color: {
-    type: String as PropType<'base' | 'sec'>,
-    default: 'base'
+    type: String as PropType<"base" | "sec">,
+    default: "base",
   },
   action: {
     type: Function as PropType<() => void>,
@@ -17,36 +17,63 @@ const props = defineProps({
 });
 
 const emits = defineEmits<{
-  (name: 'blur', value: string | undefined): void;
-  (name: 'input', value: string | undefined): void;
+  (name: "blur", value: string | number | undefined): void;
+  (name: "input", value: string | number | undefined): void;
 }>();
 
-const modelValue = defineModel<string | undefined>({ required: true });
+const modelValue = defineModel<string | number | undefined>({ required: true });
 </script>
 <template>
   <div class="relative">
-    <span v-if="label" class="font-bold block mb-1 text-primary">{{ label }}</span>
-    <textarea v-if="textarea" v-model="modelValue" :rows="4" :placeholder="placeholder || 'Write...'"
-      class="input-styles" :class="[contentClass, {
-        'bg-base dark:bg-neutral-600': color === 'base',
-        'bg-white dark:bg-neutral-700': color === 'sec',
-      }]" @blur="emits('blur', modelValue)" @input="emits('input', modelValue)" />
+    <span v-if="label" class="font-bold block mb-1 text-primary">{{
+      label
+    }}</span>
+    <textarea
+      v-if="textarea"
+      v-model="modelValue"
+      :rows="4"
+      :placeholder="placeholder || 'Write...'"
+      class="input-styles"
+      :class="[
+        contentClass,
+        {
+          'bg-base dark:bg-neutral-600': color === 'base',
+          'bg-white dark:bg-neutral-700': color === 'sec',
+        },
+      ]"
+      @blur="emits('blur', modelValue)"
+      @input="emits('input', modelValue)"
+    />
 
-    <input v-else v-model="modelValue" :placeholder="placeholder || 'Write...'" class="input-styles" :class="[
-      {
-        'bg-base dark:bg-neutral-600': color === 'base',
-        'bg-white dark:bg-neutral-700': color === 'sec',
-        'padding-icon': iconName || action,
-      },
-      contentClass,
-    ]" @blur="emits('blur', modelValue)" @input="emits('input', modelValue)" />
-    <button v-if="action"
+    <input
+      v-else
+      v-model="modelValue"
+      :placeholder="placeholder || 'Write...'"
+      class="input-styles"
+      :class="[
+        {
+          'bg-base dark:bg-neutral-600': color === 'base',
+          'bg-white dark:bg-neutral-700': color === 'sec',
+          'padding-icon': iconName || action,
+        },
+        contentClass,
+      ]"
+      @blur="emits('blur', modelValue)"
+      @input="emits('input', modelValue)"
+    />
+    <button
+      v-if="action"
       class="absolute top-[7px] right-2 text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
-      @click="action">
+      @click="action"
+    >
       <icon icon="fa-regular fa-paper-plane" />
     </button>
 
-    <icon v-if="iconName" :icon="iconName" class="absolute top-3 right-4 text-lg" />
+    <icon
+      v-if="iconName"
+      :icon="iconName"
+      class="absolute top-3 right-4 text-lg"
+    />
   </div>
 </template>
 

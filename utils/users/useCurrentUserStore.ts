@@ -18,7 +18,7 @@ export const useCurrentUserStore = defineStore("currentUser", () => {
     generalInformations: {
       livingIn: "Brazil",
       placeOfBirth: "Brazil",
-      dateOfBirth: "1996-05-07",
+      dateOfBirth: "2024-10-05",
       relationShip: RelationShip.Single,
       gender: Gender.Female,
     },

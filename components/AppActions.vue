@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Action } from '~/utils/actions/types';
+import type { Action } from "~/utils/actions/types";
 
 const props = defineProps({
   actions: {
@@ -14,20 +14,24 @@ const visibleActions = computed(() => {
     action.visible === undefined ? true : action.visible?.()
   );
 });
-
 </script>
 
 <template>
-  <AppTooltip>
+  <AppTooltip position="right">
     <template #activator="{ open }">
       <slot :open="open" />
     </template>
 
     <template #default="{ close }">
       <ul>
-        <li v-for="action in visibleActions" :key="action.id"
+        <li
+          v-for="action in visibleActions"
+          :key="action.id"
           class="py-3 px-4 hovered w-full text-start flex items-center leading-none cursor-pointer whitespace-nowrap"
-          role="button" :class="action.class" @click="action.click(), close()">
+          role="button"
+          :class="action.class"
+          @click="action.click(), close()"
+        >
           <icon v-if="action.id" :icon="action.icon" class="mr-4" />
           {{ action.text }}
         </li>

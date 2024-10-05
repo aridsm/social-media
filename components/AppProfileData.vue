@@ -71,9 +71,11 @@ const gendersList = {
           <p class="font-bold">Date of Birth</p>
           <p>
             {{
-              dayjs(user?.generalInformations?.dateOfBirth).format(
-                "MM/DD/YYYY"
-              ) || "N/A"
+              user?.generalInformations?.dateOfBirth
+                ? dayjs(user?.generalInformations?.dateOfBirth).format(
+                    "MM/DD/YYYY"
+                  )
+                : "N/A"
             }}
           </p>
         </div>

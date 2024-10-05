@@ -36,7 +36,7 @@ function checkOnOpen(open: any, close: any) {
         </template>
 
         <template #default="{ close }">
-          <ul class="w-full">
+          <ul class="min-w-[25rem] max-h-[25rem] overflow-auto">
             <li v-for="user in usersSearch" :key="user.id" @click="close">
               <NuxtLink :to="`/profile/${user.id}`" class="p-4 hovered flex gap-4">
                 <img :src="getImgUrl(user.photo)" class="w-10 h-10 rounded-full" />

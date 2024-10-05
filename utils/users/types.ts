@@ -17,8 +17,8 @@ export type GeneralInformation = {
   livingIn?: string;
   placeOfBirth?: string;
   dateOfBirth?: string;
-  relationShip?: RelationShip;
-  gender?: Gender;
+  relationShip?: RelationShip | null;
+  gender?: Gender | null;
 };
 
 export type ContactInformation = {
