@@ -34,7 +34,10 @@ const posts = computed<Post[]>(() => {
     />
 
     <div class="text-center">
-      <div class="flex flex-col gap-1 mb-4" @click="activePage = 'data'">
+      <div
+        class="flex flex-col gap-1 mb-4 cursor-pointer"
+        @click="activePage = 'data'"
+      >
         <span class="font-bold 2xl:text-lg">@{{ user?.userName }}</span>
         <span class="text-xl 2xl:text-2xl">{{ user?.name }}</span>
       </div>
@@ -96,6 +99,7 @@ const posts = computed<Post[]>(() => {
           v-if="activePage === 'edit'"
           :user="user"
           :posts="posts"
+          @back="activePage = 'data'"
           @save="editUser($event), (activePage = 'data')"
         />
       </TransitionGroup>

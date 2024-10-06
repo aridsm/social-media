@@ -18,7 +18,7 @@ const usersSearch = computed(() => {
 });
 
 function checkOnOpen(open: any, close: any) {
-  if (search.value.trim().length) {
+  if (search.value.trim().length && usersSearch.value.length) {
     open()
   } else {
     close()

@@ -50,7 +50,7 @@ function getSelectedItem() {
     }}</span>
 
     <AppTooltip class="flex-1 relative">
-      <template #activator="{ open }">
+      <template #activator="{ open, isOpen }">
         <button
           class="input-styles pr-10 flex items-center gap-4"
           :class="[
@@ -73,9 +73,13 @@ function getSelectedItem() {
             @click.stop="modelValue = null"
             class="hovered w-5 h-5 rounded-full flex items-center justify-center"
           >
-            <icon icon="fa-solid fa-xmark" class="text-label text-md" />
+            <icon icon="fa-solid fa-xmark" class="text-label" />
           </button>
-          <icon icon="fa-solid fa-chevron-down" class="text-primary" />
+          <icon
+            icon="fa-solid fa-chevron-down"
+            class="text-primary transition"
+            :class="{ 'rotate-90': isOpen }"
+          />
         </button>
       </template>
 

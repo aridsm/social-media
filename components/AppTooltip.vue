@@ -41,7 +41,7 @@ onUnmounted(() => {
 
 <template>
   <div ref="tooltip" class="relative">
-    <slot name="activator" :open="onOpen" :close="onClose" />
+    <slot name="activator" :open="onOpen" :close="onClose" :is-open="show" />
     <Transition name="action">
       <div
         v-if="show"
@@ -53,7 +53,7 @@ onUnmounted(() => {
           'right-0': position === 'right',
         }"
       >
-        <slot :open="onOpen" :close="onClose" />
+        <slot :open="onOpen" :close="onClose" :is-open="show" />
       </div>
     </Transition>
   </div>

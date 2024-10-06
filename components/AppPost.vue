@@ -104,16 +104,17 @@ function onAddNewPost() {
       :class="{
         'bg-base dark:bg-neutral-600': post.level === 2,
         'bg-neutral-200/[.3] dark:bg-neutral-500/[.15]': post.level === 3,
-        ' p-6 w-full relative rounded-xl before-arrow': isComment,
+        '  p-4 2xl:p-6 w-full relative rounded-xl before-arrow': isComment,
       }"
     >
       <div class="flex items-center gap-4">
-        <img
-          v-if="post.level === 1"
-          class="w-10 h-10 bg-neutral-200 rounded-full"
-          :src="getImgUrl(user?.photo)"
-          :alt="currentUser.name"
-        />
+        <NuxtLink v-if="post.level === 1" :to="`/profile/${post.userId}`">
+          <img
+            class="w-10 h-10 bg-neutral-200 rounded-full"
+            :src="getImgUrl(user?.photo)"
+            :alt="currentUser.name"
+          />
+        </NuxtLink>
         <div>
           <div class="flex gap-4 items-center">
             <NuxtLink

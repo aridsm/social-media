@@ -24,6 +24,7 @@ const userForm = ref<User | undefined>(undefined);
 
 const emits = defineEmits<{
   (name: "save", newData: User): void;
+  (name: "back"): void;
 }>();
 
 onMounted(() => {
@@ -159,8 +160,30 @@ const relationShipList = [
         </div>
       </AppCard>
 
+      <AppCard>
+        <span class="font-bold mb-4 block">Contact Information</span>
+        <div class="grid grid-cols-2 gap-8">
+          <AppInputText
+            v-model="userForm.contactInformations.cellphone"
+            label="Cellphone"
+          />
+          <AppInputText
+            v-model="userForm.contactInformations.phone"
+            label="Phone"
+          />
+          <AppInputText
+            v-model="userForm.contactInformations.email"
+            label="E-mail"
+          />
+          <AppInputText
+            v-model="userForm.contactInformations.instagram"
+            label="Instagram"
+          />
+        </div>
+      </AppCard>
+
       <div class="flex gap-4 justify-end">
-        <AppBtn color="label">Cancel</AppBtn>
+        <AppBtn color="label" @click="emits('back')">Cancel</AppBtn>
         <AppBtn @click="emits('save', userForm)">Confirm</AppBtn>
       </div>
 
@@ -193,9 +216,9 @@ const relationShipList = [
           </div>
         </div>
         <div class="mt-4 2xl:mt-8 flex gap-4 justify-end">
-          <AppBtn @click="modalBackgroundOpen = false" color="label"
-            >Cancel</AppBtn
-          >
+          <AppBtn @click="modalBackgroundOpen = false" color="label">
+            Cancel
+          </AppBtn>
           <AppBtn
             @click="
               (userForm.backgroundPhoto = userBackground),

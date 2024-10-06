@@ -179,7 +179,7 @@ function onSelectMonthAfter() {
     }}</span>
 
     <AppTooltip class="relative" :origin="origin">
-      <template #activator="{ open }">
+      <template #activator="{ open, isOpen }">
         <button
           class="input-styles pr-10 flex items-center"
           :class="[
@@ -204,7 +204,11 @@ function onSelectMonthAfter() {
           >
             <icon icon="fa-solid fa-xmark" class="text-label text-md" />
           </button>
-          <icon icon="fa-solid fa-chevron-down" class="text-primary" />
+          <icon
+            icon="fa-solid fa-chevron-down"
+            class="text-primary transition"
+            :class="{ 'rotate-90': isOpen }"
+          />
         </button>
       </template>
 
