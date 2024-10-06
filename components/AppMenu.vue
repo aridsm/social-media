@@ -44,7 +44,7 @@ const currentPath = computed(() => {
 
 <template>
   <div
-    class="p-6 2xl:p-8 w-[18rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full"
+    class="p-6 2xl:p-8 w-[15rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full"
   >
     <div class="flex uppercase font-bold items-end gap-2 leading-none">
       <div class="flex items-end">
@@ -59,7 +59,7 @@ const currentPath = computed(() => {
         v-for="link in navLinks"
         :key="link.name"
         :to="link.path"
-        class="flex items-center gap-4 rounded-md px-4 w-full h-11"
+        class="flex items-center gap-4 rounded-md px-4 w-full h-9 2xl:h-11"
         :class="{
           active: currentPath === link.path,
           hovered: currentPath !== link.path,

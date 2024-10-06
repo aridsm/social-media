@@ -45,14 +45,14 @@ const actionsList = ref([
 
 <template>
   <div
-    class="rounded-lg mb-10 p-4 h-36 bg-neutral-700 flex items-start justify-between bg-cover"
+    class="rounded-lg mb-10 p-4 h-28 2xl:h-36 bg-neutral-700 flex items-start justify-between bg-cover"
     :style="{
       backgroundImage: `url(${getBackgroundgUrl(user?.backgroundPhoto)})`,
     }"
   >
     <img
       :src="getImgUrl(user?.photo)"
-      class="h-44 w-44 mx-auto rounded-full border-8 border-base dark:border-neutral-800"
+      class="h-36 w-36 2xl:h-44 2xl:w-44 mx-auto rounded-full border-8 border-base dark:border-neutral-800"
     />
     <AppActions
       v-if="!disabled"
@@ -61,10 +61,13 @@ const actionsList = ref([
       class="right-12 top-4 actions"
     >
       <button
-        class="hover:bg-neutral-200 w-10 bg-white h-10 rounded-full text-neutral-700 flex items-center justify-center"
+        class="hover:bg-neutral-200 w-8 h-8 2xl:w-10 2xl:h-10 bg-white rounded-full text-neutral-700 flex items-center justify-center"
         @click="open"
       >
-        <icon icon="fa-solid fa-ellipsis-vertical" class="text-xl" />
+        <icon
+          icon="fa-solid fa-ellipsis-vertical"
+          class="text-[16px] 2xl:text-xl"
+        />
       </button>
     </AppActions>
   </div>

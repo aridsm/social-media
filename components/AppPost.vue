@@ -124,13 +124,15 @@ function onAddNewPost() {
             </NuxtLink>
             <AppBtnFollow v-if="post.userId !== currentUser.id" :user="user" />
           </div>
-          <p class="text-label text-sm">{{ getDateDifference(post.date) }}</p>
+          <p class="text-label text-xs 2xl:text-sm">
+            {{ getDateDifference(post.date) }}
+          </p>
         </div>
 
         <div class="ml-auto flex items-center gap-3">
           <span
             v-if="post.edited"
-            class="text-label text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
+            class="text-label text-xs 2xl:text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
             >Edited</span
           >
           <AppActions v-slot="{ open }" :actions="actionsList">

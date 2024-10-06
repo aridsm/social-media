@@ -43,9 +43,9 @@ const gendersList = {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-0 gap-8">
+  <div class="flex flex-col min-h-0 gap-6 2xl:gap-8">
     <AppCard v-if="hasGeneralInformations">
-      <p class="font-bold mb-10">Additional Information</p>
+      <p class="font-bold mb-6 2xl:mb-10">Additional Information</p>
       <div class="grid grid-cols-2 gap-6">
         <div class="flex gap-4">
           <p class="font-bold">Living In</p>
@@ -83,7 +83,7 @@ const gendersList = {
     </AppCard>
 
     <AppCard v-if="hasContactInformations">
-      <p class="font-bold mb-10">Contact Information</p>
+      <p class="font-bold mb-6 2xl:mb-10">Contact Information</p>
       <div class="grid grid-cols-2 gap-6">
         <div class="flex gap-4">
           <p class="font-bold">E-mail</p>
@@ -106,7 +106,7 @@ const gendersList = {
 
     <div v-if="posts.length">
       <div
-        class="mb-10 mt-2 text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
+        class="mb-8 2xl:mb-10 mt-2 text-xs 2xl:text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
       >
         <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
       </div>

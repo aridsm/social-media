@@ -98,10 +98,12 @@ const relationShipList = [
 
           <div class="mt-8">
             <span class="mb-2 block text-primary font-bold">Background</span>
-            <div class="flex items-center gap-8">
-              <div class="w-40 h-20 overflow-hidden rounded-sm">
+            <div class="flex items-center gap-6 2xl:gap-8">
+              <div
+                class="w-32 h-16 2xl:w-40 2xl:h-20 overflow-hidden rounded-sm"
+              >
                 <img
-                  class="object-cover h-[180px] w-[180px] object"
+                  class="object-cover h-[150px] w-[150px] 2xl:h-[180px] 2xl:w-[180px] object"
                   :src="getBackgroundgUrl(userForm.backgroundPhoto)"
                   :alt="user.name"
                 />
@@ -169,12 +171,12 @@ const relationShipList = [
           disabled
         />
         <div class="pt-6">
-          <span class="font-bold mb-4 block">Background options</span>
-          <div class="gap-4 grid grid-cols-5">
+          <span class="font-bold mb-2 2xl:mb-4 block">Background options</span>
+          <div class="gap-3 2xl:gap-4 grid grid-cols-5">
             <button
               v-for="background in backgroundList"
               :key="background"
-              class="w-40 h-20 overflow-hidden border-4 rounded-md transition"
+              class="w-32 h-16 2xl:w-40 2xl:h-20 overflow-hidden border-4 rounded-md transition"
               :class="{
                 'border-text dark:border-white ': background === userBackground,
                 'border-transparent opacity-70 hover:opacity-100':
@@ -183,14 +185,14 @@ const relationShipList = [
               @click="userBackground = background"
             >
               <img
-                class="object-cover h-[180px] w-[180px] object"
+                class="object-cover h-[150px] w-[150px] 2xl:h-[180px] 2xl:w-[180px] object"
                 :src="getBackgroundgUrl(background)"
                 :alt="background"
               />
             </button>
           </div>
         </div>
-        <div class="mt-8 flex gap-4 justify-end">
+        <div class="mt-4 2xl:mt-8 flex gap-4 justify-end">
           <AppBtn @click="modalBackgroundOpen = false" color="label"
             >Cancel</AppBtn
           >

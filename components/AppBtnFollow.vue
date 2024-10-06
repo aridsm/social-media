@@ -15,14 +15,15 @@ defineProps({
 </script>
 <template>
   <button
-    class="gap-2 flex items-center justify-center text-base hover:opacity-75 active:opacity-65"
+    class="gap-2 flex items-center justify-center hover:opacity-75 active:opacity-65"
     :class="{
-      'bg-primary border-2 border-transparent dark:bg-indigo-500 text-white':
+      'bg-primary border 2xl:border-2 border-transparent dark:bg-indigo-500 text-white':
         !user.isFollowing,
-      'bg-transparent border-2 text-indigo-500 dark:text-white border-primary  dark:border-neutral-200':
+      'bg-transparent border 2xl:border-2 text-indigo-500 dark:text-white border-primary  dark:border-neutral-200':
         user.isFollowing,
-      'py-3 rounded-md w-28': squared,
-      'px-4 2xl:px-5 py-[5px] rounded-full text-xs 2xl:text-sm ': !squared,
+      'py-[10px] 2xl:py-3 rounded-md w-28': squared,
+      'px-3 2xl:px-5 py-1 2xl:py-[5px] rounded-full text-xs 2xl:text-sm ':
+        !squared,
     }"
     @click="() => toggleFollowUser(user.id)"
   >

@@ -63,7 +63,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     />
     <button
       v-if="action"
-      class="absolute top-[7px] right-2 text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
+      class="absolute top-1 2xl:top-[7px] right-2 text-sm 2xl:text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
       @click="action"
     >
       <icon icon="fa-regular fa-paper-plane" />
@@ -72,14 +72,15 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     <icon
       v-if="iconName"
       :icon="iconName"
-      class="absolute top-3 right-4 text-lg"
+      class="absolute top-3 right-4 text-sm 2xl:text-lg"
     />
   </div>
 </template>
 
-<style>
+<style scoped>
 .input-styles {
-  @apply placeholder:text-label dark:placeholder:text-neutral-400 border border-border dark:border-dark-border px-4 py-3 rounded-sm text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full text-sm;
+  @apply placeholder:text-label dark:placeholder:text-neutral-400 border border-border dark:border-dark-border px-4 py-2 2xl:py-3 rounded-md text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full;
+  font-size: inherit !important;
 }
 
 .padding-icon {

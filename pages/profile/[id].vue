@@ -24,7 +24,7 @@ const posts = computed<Post[]>(() => {
 
 <template>
   <div
-    class="flex flex-col min-h-0 2xl:px-8 px-6 gap-8 overflow-y-auto overflow-x-hidden pb-8 relative"
+    class="flex flex-col min-h-0 2xl:px-8 px-6 gap-6 2xl:gap-8 overflow-y-auto overflow-x-hidden pb-8 relative"
   >
     <AppProfileCard
       v-if="user"
@@ -35,14 +35,14 @@ const posts = computed<Post[]>(() => {
 
     <div class="text-center">
       <div class="flex flex-col gap-1 mb-4" @click="activePage = 'data'">
-        <span class="font-bold text-lg">@{{ user?.userName }}</span>
-        <span class="text-2xl">{{ user?.name }}</span>
+        <span class="font-bold 2xl:text-lg">@{{ user?.userName }}</span>
+        <span class="text-xl 2xl:text-2xl">{{ user?.name }}</span>
       </div>
 
       <p class="text-label">{{ user?.description }}</p>
     </div>
     <div class="flex flex-1 justify-center gap-4 h-full text-center px-6">
-      <div class="flex gap-8 items-center -ml-4 text-lg">
+      <div class="flex gap-8 items-center -ml-4 2xl:text-lg">
         <button
           class="hovered px-4 py-1 rounded-full"
           @click="activePage = 'followers'"
