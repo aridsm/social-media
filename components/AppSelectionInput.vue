@@ -45,9 +45,7 @@ function getSelectedItem() {
 </script>
 <template>
   <div class="relative">
-    <span v-if="label" class="font-bold block mb-1 text-primary">{{
-      label
-    }}</span>
+    <span v-if="label" class="block mb-1 text-label">{{ label }}</span>
 
     <AppTooltip class="flex-1 relative">
       <template #activator="{ open, isOpen }">

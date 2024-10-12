@@ -174,9 +174,7 @@ function onSelectMonthAfter() {
 </script>
 <template>
   <div class="relative">
-    <span v-if="label" class="font-bold block mb-1 text-primary">{{
-      label
-    }}</span>
+    <span v-if="label" class="block mb-1 text-label">{{ label }}</span>
 
     <AppTooltip class="relative" :origin="origin">
       <template #activator="{ open, isOpen }">
@@ -213,7 +211,7 @@ function onSelectMonthAfter() {
       </template>
 
       <template #default="{ close }">
-        <div class="px-2 py-4 w-[380px]">
+        <div class="px-2 py-4 w-[320px] md:w-[380px]">
           <div class="flex items-center justify-between mb-4 pl-3">
             <div class="flex gap-3 items-center">
               <span>{{ monthNames[dateData.month] }}</span>

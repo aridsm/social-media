@@ -50,7 +50,7 @@ const actionsList = ref([
     click: () => {},
   },
   {
-    id: 4,
+    id: 3,
     text: "Edit",
     icon: "fa-regular fa-pen-to-square",
     visible: () => currentUser.id === props.post.userId,
@@ -59,7 +59,22 @@ const actionsList = ref([
     },
   },
   {
-    id: 3,
+    id: 4,
+    text: "Share",
+    icon: "fa-solid fa-share-nodes",
+    click: () => {},
+  },
+  {
+    id: 5,
+    text: "Reply",
+    icon: "fa-solid fa-reply",
+    visible: () => !showComments.value && props.post.level <= 2,
+    click: () => {
+      showComments.value = true;
+    },
+  },
+  {
+    id: 6,
     text: "Delete",
     icon: "fa-regular fa-trash-can",
     class: "text-red-600 dark:text-red-400",
@@ -83,54 +98,63 @@ function onAddNewPost() {
     :flat="isComment"
     class="relative"
     :class="{
-      'flex gap-6 mt-6': isComment,
+      'flex gap-6 mt-4 2xl:mt-6': isComment,
+      'bg-base2 dark:bg-neutral-600 md:bg-transparent md:dark:bg-transparent':
+        post.level > 1,
     }"
   >
     <div
       v-if="isComment && !lastInList && showComments"
-      class="h-full w-4 text-border dark:text-neutral-500 hover:text-neutral-300 dark:hover:text-neutral-400 cursor-pointer flex justify-center absolute top-6 left-3"
+      class="h-full w-4 text-border hidden md:flex dark:text-neutral-500 hover:text-neutral-300 dark:hover:text-neutral-400 cursor-pointer justify-center absolute top-6 left-3"
       @click="showComments = false"
     >
       <div class="h-full w-[1px] bg-current" />
     </div>
-    <img
+    <AppAvatar
       v-if="isComment"
-      class="w-10 h-10 bg-neutral-200 rounded-full z-10"
-      :src="getImgUrl(user?.photo)"
+      class="hidden md:block"
+      :src="user?.photo"
       :alt="currentUser.name"
     />
 
     <div
       :class="{
-        'bg-base dark:bg-neutral-600': post.level === 2,
+        'md:bg-base md:dark:bg-neutral-600': post.level === 2,
         'bg-neutral-200/[.3] dark:bg-neutral-500/[.15]': post.level === 3,
-        '  p-4 2xl:p-6 w-full relative rounded-xl before-arrow': isComment,
+        ' p-3 md:p-4 2xl:p-6 w-full relative rounded-xl before-arrow ':
+          isComment,
       }"
     >
-      <div class="flex items-center gap-4">
-        <NuxtLink v-if="post.level === 1" :to="`/profile/${post.userId}`">
-          <img
-            class="w-10 h-10 bg-neutral-200 rounded-full"
-            :src="getImgUrl(user?.photo)"
-            :alt="currentUser.name"
-          />
+      <div class="flex items-center gap-3 md:gap-4">
+        <NuxtLink
+          :class="{
+            'block md:hidden': post.level !== 1,
+            'block ': post.level === 1,
+          }"
+          :to="`/profile/${post.userId}`"
+        >
+          <AppAvatar :src="user?.photo" :alt="currentUser.name" />
         </NuxtLink>
         <div>
-          <div class="flex gap-4 items-center">
+          <div class="flex gap-2 md:gap-4 items-center">
             <NuxtLink
               class="cursor-pointer hover:text-primary"
               :to="`/profile/${post.userId}`"
             >
               @{{ user?.userName }}
             </NuxtLink>
-            <AppBtnFollow v-if="post.userId !== currentUser.id" :user="user" />
+            <AppBtnFollow
+              v-if="post.userId !== currentUser.id"
+              :user="user"
+              class="mb-1"
+            />
           </div>
           <p class="text-label text-xs 2xl:text-sm">
             {{ getDateDifference(post.date) }}
           </p>
         </div>
 
-        <div class="ml-auto flex items-center gap-3">
+        <div class="ml-auto flex items-center gap-2 md:gap-3">
           <span
             v-if="post.edited"
             class="text-label text-xs 2xl:text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
@@ -138,7 +162,7 @@ function onAddNewPost() {
           >
           <AppActions v-slot="{ open }" :actions="actionsList">
             <button
-              class="hovered w-8 h-8 rounded-full flex items-center justify-center relative"
+              class="hovered w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center relative"
               @click="open"
             >
               <icon icon="fa-solid fa-ellipsis-vertical" />
@@ -146,14 +170,14 @@ function onAddNewPost() {
           </AppActions>
         </div>
       </div>
-      <div class="my-6">
+      <div class="my-4 md:my-6">
         <p v-if="!editing" class="leading-relaxed">
           {{ post.post }}
         </p>
         <AppEditingPost v-else :post="post" @close="editing = false" />
       </div>
 
-      <div class="flex gap-10 items-center">
+      <div class="flex gap-8 xl:gap-10 items-center">
         <div v-if="!isComment">
           <icon icon="fa-regular fa-eye" class="mr-1" /> {{ post.views }}
         </div>
@@ -198,12 +222,15 @@ function onAddNewPost() {
 
         <button
           v-if="!showComments && post.level <= 2"
-          class="hovered px-2 rounded-full py-1"
+          class="hidden xl:block hovered px-2 rounded-full py-1"
           @click="showComments = true"
         >
           <icon icon="fa-solid fa-reply" class="mr-1" /> Reply
         </button>
-        <button v-if="!isComment" class="hovered px-2 rounded-full py-1">
+        <button
+          v-if="!isComment"
+          class="hidden xl:block hovered px-2 rounded-full py-1"
+        >
           <icon icon="fa-solid fa-share-nodes" class="mr-1" /> Share
         </button>
       </div>
@@ -219,10 +246,9 @@ function onAddNewPost() {
               <icon icon="fa-solid fa-chevron-up" />
             </button>
 
-            <img
+            <AppAvatar
               v-if="post.level === 1"
-              class="w-10 h-10 bg-neutral-200 rounded-full"
-              :src="getImgUrl(currentUser?.photo)"
+              :src="currentUser?.photo"
               :alt="currentUser.name"
             />
 
@@ -235,7 +261,7 @@ function onAddNewPost() {
           <div v-if="post.level <= 2" class="flex flex-col rounded-xl">
             <p
               v-if="!posts.length && post.level === 1"
-              class="text-label text-center mt-6"
+              class="text-label text-center mt-4 md:mt-6"
             >
               Be the first to comment!
             </p>
@@ -255,7 +281,7 @@ function onAddNewPost() {
         class="mt-4 pt-2 border-t border-t-border dark:border-t-dark-border"
       >
         <button
-          class="mt-4 block mx-auto text-primary dark:text-neutral-100 hovered py-1 px-3 rounded-full"
+          class="mt-2 2xl:mt-4 block mx-auto text-primary dark:text-neutral-100 hovered py-1 px-3 rounded-full"
           @click="showComments = true"
         >
           View comments
@@ -271,7 +297,13 @@ function onAddNewPost() {
 }
 
 .before-arrow {
-  @apply before:top-4 before:block before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600 before:w-1 before:absolute before:right-full;
+  @apply before:top-4 before:hidden before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600 before:w-1 before:absolute before:right-full;
+}
+
+@media (min-width: 768px) {
+  .before-arrow {
+    @apply before:block;
+  }
 }
 
 .comment + .comment {

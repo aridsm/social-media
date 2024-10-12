@@ -37,15 +37,15 @@ watch(
 </script>
 <template>
   <div>
-    <span class="font-bold mb-6 block"
+    <span class="font-bold mb-4 2xl:mb-6 block"
       >{{ following ? "Following" : "Followers" }} ({{
         following ? user.followingIds.length : user.followersIds.length
       }})</span
     >
-    <div class="grid grid-cols-2 gap-6 2xl:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 2xl:gap-8">
       <AppInputText
         v-model="search"
-        class="col-span-2"
+        class="md:col-span-2"
         placeholder="Search user..."
         icon-name="fa-solid fa-magnifying-glass"
         color="sec"

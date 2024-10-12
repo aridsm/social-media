@@ -43,16 +43,16 @@ const gendersList = {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-0 gap-6 2xl:gap-8">
+  <div class="flex flex-col min-h-0 gap-4 md:gap-6 2xl:gap-8">
     <AppCard v-if="hasGeneralInformations">
-      <p class="font-bold mb-6 2xl:mb-10">Additional Information</p>
-      <div class="grid grid-cols-2 gap-6">
+      <p class="font-bold mb-6">Additional Information</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="flex gap-4">
-          <p class="font-bold">Living In</p>
+          <p class="label">Living In</p>
           <p>{{ user?.generalInformations?.livingIn || "N/A" }}</p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Relashionship</p>
+          <p class="label">Relashionship</p>
           <p>
             {{
               relationShipList[user?.generalInformations?.relationShip] || "N/A"
@@ -60,15 +60,15 @@ const gendersList = {
           </p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Place of Birth</p>
+          <p class="label">Place of Birth</p>
           <p>{{ user?.generalInformations?.placeOfBirth || "N/A" }}</p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Gender</p>
+          <p class="label">Gender</p>
           <p>{{ gendersList[user?.generalInformations?.gender] || "N/A" }}</p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Date of Birth</p>
+          <p class="label">Date of Birth</p>
           <p>
             {{
               user?.generalInformations?.dateOfBirth
@@ -83,22 +83,22 @@ const gendersList = {
     </AppCard>
 
     <AppCard v-if="hasContactInformations">
-      <p class="font-bold mb-6 2xl:mb-10">Contact Information</p>
-      <div class="grid grid-cols-2 gap-6">
+      <p class="font-bold mb-6">Contact Information</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="flex gap-4">
-          <p class="font-bold">E-mail</p>
+          <p class="label">E-mail</p>
           <p>{{ user?.contactInformations?.email || "N/A" }}</p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Cellphone</p>
+          <p class="label">Cellphone</p>
           <p>{{ user?.contactInformations?.cellphone || "N/A" }}</p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Phone</p>
+          <p class="label">Phone</p>
           <p>{{ user?.contactInformations?.phone || "N/A" }}</p>
         </div>
         <div class="flex gap-4">
-          <p class="font-bold">Instagram</p>
+          <p class="label">Instagram</p>
           <p>{{ user?.contactInformations?.instagram || "N/A" }}</p>
         </div>
       </div>
@@ -106,15 +106,21 @@ const gendersList = {
 
     <div v-if="posts.length">
       <div
-        class="mb-8 2xl:mb-10 mt-2 text-xs 2xl:text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
+        class="mb-6 md:mb-8 2xl:mb-10 mt-2 text-xs 2xl:text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
       >
         <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
       </div>
-      <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4 md:gap-8">
         <AppPost v-for="post in posts" :key="post.id" :post="post" />
       </div>
-      <p class="text-label text-center mt-8">End of list</p>
+      <p class="text-label text-center mt-4 md:mt-8">End of list</p>
     </div>
     <p v-else class="text-label text-center">No posts here</p>
   </div>
 </template>
+
+<style scoped>
+.label {
+  @apply w-24 md:w-auto text-label;
+}
+</style>

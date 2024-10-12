@@ -9,7 +9,7 @@ const { currentUser } = useCurrentUserStore();
 
 <template>
   <aside
-    class="p-6 2xl:p-8 w-[22rem] 2xl:w-[28rem] border-l border-l-border dark:border-l-dark-border h-full flex flex-col"
+    class="hidden xl:flex flex-col p-6 2xl:p-8 w-[22rem] 2xl:w-[28rem] border-l border-l-border dark:border-l-dark-border h-full"
   >
     <div>
       <div class="flex justify-between items-center mb-2 2xl:mb-4">

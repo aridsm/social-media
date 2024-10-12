@@ -24,7 +24,7 @@ const posts = computed<Post[]>(() => {
 
 <template>
   <div
-    class="flex flex-col min-h-0 2xl:px-8 px-6 gap-6 2xl:gap-8 overflow-y-auto overflow-x-hidden pb-8 relative"
+    class="flex flex-col min-h-0 px-4 md:px-6 2xl:px-8 gap-6 2xl:gap-8 overflow-y-auto overflow-x-hidden pb-4 2xl:pb-8 relative"
   >
     <AppProfileCard
       v-if="user"
@@ -44,26 +44,26 @@ const posts = computed<Post[]>(() => {
 
       <p class="text-label">{{ user?.description }}</p>
     </div>
-    <div class="flex flex-1 justify-center gap-4 h-full text-center px-6">
-      <div class="flex gap-8 items-center -ml-4 2xl:text-lg">
-        <button
-          class="hovered px-4 py-1 rounded-full"
-          @click="activePage = 'followers'"
-        >
-          <span class="font-bold">Followers</span>
-          <span class="ml-2">{{ user?.followersIds.length }}</span>
-        </button>
-        <button
-          class="hovered px-4 py-1 rounded-full"
-          @click="activePage = 'following'"
-        >
-          <span class="font-bold">Following</span>
-          <span class="ml-2">{{ user?.followingIds.length }}</span>
-        </button>
-        <div class="px-4">
-          <span class="font-bold">Posts</span>
-          <span class="ml-2">{{ posts.length }}</span>
-        </div>
+    <div
+      class="flex justify-center gap-1 md:gap-8 items-center -ml-4 2xl:text-lg"
+    >
+      <button
+        class="hovered px-4 py-1 rounded-full"
+        @click="activePage = 'followers'"
+      >
+        <span class="font-bold">Followers</span>
+        <span class="ml-2">{{ user?.followersIds.length }}</span>
+      </button>
+      <button
+        class="hovered px-4 py-1 rounded-full"
+        @click="activePage = 'following'"
+      >
+        <span class="font-bold">Following</span>
+        <span class="ml-2">{{ user?.followingIds.length }}</span>
+      </button>
+      <div class="px-4">
+        <span class="font-bold">Posts</span>
+        <span class="ml-2">{{ posts.length }}</span>
       </div>
     </div>
 
@@ -82,7 +82,7 @@ const posts = computed<Post[]>(() => {
       Following you
     </div>
 
-    <div v-if="user">
+    <div v-if="user" class="flex-1">
       <TransitionGroup name="tabs">
         <AppProfileData
           v-if="activePage === 'data'"

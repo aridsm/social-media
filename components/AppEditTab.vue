@@ -86,7 +86,7 @@ const relationShipList = [
   <div v-if="userForm">
     <span class="font-bold block mb-4">Editing profile</span>
 
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4 md:gap-6 2xl:gap-8">
       <AppCard>
         <span class="font-bold mb-4 block">Profile data</span>
         <div>
@@ -94,22 +94,26 @@ const relationShipList = [
           <AppInputText
             v-model="userForm.name"
             label="Full name"
-            class="mt-8"
+            class="mt-4 md:mt-6 3xl:mt-8"
           />
 
-          <div class="mt-8">
-            <span class="mb-2 block text-primary font-bold">Background</span>
-            <div class="flex items-center gap-6 2xl:gap-8">
+          <div class="mt-4 md:mt-6 3xl:mt-8">
+            <span class="mb-2 block font-bold">Background</span>
+            <div class="flex md:items-center gap-4 md:gap-6 3xl:gap-8">
               <div
-                class="w-32 h-16 2xl:w-40 2xl:h-20 overflow-hidden rounded-sm"
+                class="flex gap-2 md:gap-4 md:items-center flex-col md:flex-row"
               >
-                <img
-                  class="object-cover h-[150px] w-[150px] 2xl:h-[180px] 2xl:w-[180px] object"
-                  :src="getBackgroundgUrl(userForm.backgroundPhoto)"
-                  :alt="user.name"
-                />
+                <div
+                  class="w-24 h-12 md:w-32 md:h-16 2xl:w-40 2xl:h-20 overflow-hidden rounded-sm"
+                >
+                  <img
+                    class="object-cover h-[100px] w-[100px] md:h-[150px] md:w-[150px] 2xl:h-[180px] 2xl:w-[180px] object"
+                    :src="getBackgroundgUrl(userForm.backgroundPhoto)"
+                    :alt="user.name"
+                  />
+                </div>
+                <p>{{ user?.backgroundPhoto }}</p>
               </div>
-              <p>{{ user?.backgroundPhoto }}</p>
               <AppBtn
                 class="ml-auto"
                 @click="
@@ -130,7 +134,7 @@ const relationShipList = [
 
       <AppCard>
         <span class="font-bold mb-4 block">Additional Information</span>
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 3xl:gap-8">
           <AppInputText
             v-model="userForm.generalInformations.livingIn"
             label="Living in"
@@ -162,7 +166,7 @@ const relationShipList = [
 
       <AppCard>
         <span class="font-bold mb-4 block">Contact Information</span>
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 3xl:gap-8">
           <AppInputText
             v-model="userForm.contactInformations.cellphone"
             label="Cellphone"

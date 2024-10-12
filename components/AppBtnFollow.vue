@@ -22,7 +22,7 @@ defineProps({
       'bg-transparent border 2xl:border-2 text-indigo-500 dark:text-white border-primary  dark:border-neutral-200':
         user.isFollowing,
       'py-[10px] 2xl:py-3 rounded-md w-28': squared,
-      'px-3 2xl:px-5 py-1 2xl:py-[5px] rounded-full text-xs 2xl:text-sm ':
+      'px-3 2xl:px-5 py-[2px] md:py-1 2xl:py-[5px] rounded-full text-xs 2xl:text-sm ':
         !squared,
     }"
     @click="() => toggleFollowUser(user.id)"

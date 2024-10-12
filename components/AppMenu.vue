@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 
+const emits = defineEmits<{
+  (name: "hide"): void;
+}>();
+
 const { currentUser } = useCurrentUserStore();
 const navLinks = [
   {
@@ -44,7 +48,7 @@ const currentPath = computed(() => {
 
 <template>
   <div
-    class="p-6 2xl:p-8 w-[15rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border flex flex-col h-full"
+    class="p-6 2xl:p-8 z-10 transition-all bg-base dark:bg-neutral-800 flex-col w-[20rem] xl:w-[15rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border h-full"
   >
     <div class="flex uppercase font-bold items-end gap-2 leading-none">
       <div class="flex items-end">
@@ -52,6 +56,13 @@ const currentPath = computed(() => {
         <div class="w-5 h-5 bg-primary"></div>
       </div>
       Lorem
+
+      <button
+        class="ml-auto hovered w-7 h-7 rounded-full xl:hidden"
+        @click="emits('hide')"
+      >
+        <icon icon="fa-solid fa-chevron-left"></icon>
+      </button>
     </div>
 
     <nav class="flex flex-col gap-2 2xl:gap-4 w-full mt-8">
@@ -64,6 +75,7 @@ const currentPath = computed(() => {
           active: currentPath === link.path,
           hovered: currentPath !== link.path,
         }"
+        @click="emits('hide')"
       >
         <icon :icon="link.icon" class="w-7" />
         <span class="leading-none -mb-1">{{ link.name }}</span>

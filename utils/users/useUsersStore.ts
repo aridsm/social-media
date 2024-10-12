@@ -9,7 +9,7 @@ export const useUsersStore = defineStore("usersList", () => {
       name: "John Doe",
       description: "Vivamus et vehicula nunc!!",
       photo: "johndoe.svg",
-      backgroundPhoto: "pattern_lines.png",
+      backgroundPhoto: "pattern_plus.png",
       followersIds: [2, 3, 4, 5, 6],
       followingIds: [2, 5, 6],
       isFollowing: true,
