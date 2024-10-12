@@ -44,9 +44,7 @@ const posts = computed<Post[]>(() => {
 
       <p class="text-label">{{ user?.description }}</p>
     </div>
-    <div
-      class="flex justify-center gap-1 md:gap-8 items-center -ml-4 2xl:text-lg"
-    >
+    <div class="flex justify-center gap-1 md:gap-8 items-center -ml-4">
       <button
         class="hovered px-4 py-1 rounded-full"
         @click="activePage = 'followers'"
@@ -61,10 +59,13 @@ const posts = computed<Post[]>(() => {
         <span class="font-bold">Following</span>
         <span class="ml-2">{{ user?.followingIds.length }}</span>
       </button>
-      <div class="px-4">
+      <button
+        class="hovered px-4 py-1 rounded-full"
+        @click="activePage = 'data'"
+      >
         <span class="font-bold">Posts</span>
         <span class="ml-2">{{ posts.length }}</span>
-      </div>
+      </button>
     </div>
 
     <div

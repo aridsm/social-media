@@ -86,7 +86,7 @@ const relationShipList = [
   <div v-if="userForm">
     <span class="font-bold block mb-4">Editing profile</span>
 
-    <div class="flex flex-col gap-4 md:gap-6 2xl:gap-8">
+    <div class="flex flex-col gap-4 md:gap-6">
       <AppCard>
         <span class="font-bold mb-4 block">Profile data</span>
         <div>
@@ -99,7 +99,7 @@ const relationShipList = [
 
           <div class="mt-4 md:mt-6 3xl:mt-8">
             <span class="mb-2 block font-bold">Background</span>
-            <div class="flex md:items-center gap-4 md:gap-6 3xl:gap-8">
+            <div class="flex md:items-center gap-4 md:gap-6">
               <div
                 class="flex gap-2 md:gap-4 md:items-center flex-col md:flex-row"
               >
@@ -134,7 +134,7 @@ const relationShipList = [
 
       <AppCard>
         <span class="font-bold mb-4 block">Additional Information</span>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 3xl:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <AppInputText
             v-model="userForm.generalInformations.livingIn"
             label="Living in"
@@ -166,7 +166,7 @@ const relationShipList = [
 
       <AppCard>
         <span class="font-bold mb-4 block">Contact Information</span>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 3xl:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <AppInputText
             v-model="userForm.contactInformations.cellphone"
             label="Cellphone"

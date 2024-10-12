@@ -41,7 +41,7 @@ watch(
         following ? user.followingIds.length : user.followersIds.length
       }})</span
     >
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 2xl:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
       <AppInputText
         v-model="search"
         class="md:col-span-2"

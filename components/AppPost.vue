@@ -109,7 +109,9 @@ function onAddNewPost() {
     >
       <div class="h-full w-[1px] bg-current" />
     </div>
-    <AppAvatar v-if="isComment" class="hidden md:block" :user="user" />
+    <NuxtLink :to="`/profile/${user.id}`">
+      <AppAvatar v-if="isComment" class="hidden md:block" :user="user" />
+    </NuxtLink>
 
     <div
       :class="{
@@ -240,8 +242,9 @@ function onAddNewPost() {
               <icon icon="fa-solid fa-chevron-up" />
             </button>
 
-            <AppAvatar v-if="post.level === 1" :user="user" />
-
+            <NuxtLink :to="`/profile/${currentUser.id}`">
+              <AppAvatar v-if="post.level === 1" :user="currentUser" />
+            </NuxtLink>
             <AppInputText
               v-model="comment"
               class="w-full"

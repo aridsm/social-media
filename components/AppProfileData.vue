@@ -43,7 +43,7 @@ const gendersList = {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-0 gap-4 md:gap-6 2xl:gap-8">
+  <div class="flex flex-col min-h-0 gap-4 md:gap-6">
     <AppCard v-if="hasGeneralInformations">
       <p class="font-bold mb-6">Additional Information</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -110,7 +110,7 @@ const gendersList = {
       >
         <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
       </div>
-      <div class="flex flex-col gap-4 md:gap-8">
+      <div class="flex flex-col gap-4 md:gap-6">
         <AppPost v-for="post in posts" :key="post.id" :post="post" />
       </div>
       <p class="text-label text-center mt-4 md:mt-8">End of list</p>
