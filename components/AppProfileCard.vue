@@ -50,9 +50,10 @@ const actionsList = ref([
       backgroundImage: `url(${getBackgroundgUrl(user?.backgroundPhoto)})`,
     }"
   >
-    <img
-      :src="getImgUrl(user?.photo)"
-      class="h-32 w-32 md:h-36 md:w-36 2xl:h-44 2xl:w-44 cursor-pointer mx-auto rounded-full border-8 border-base dark:border-neutral-800"
+    <AppAvatar
+      :user="user"
+      large
+      class="cursor-pointer mx-auto border-8 rounded-full border-base dark:border-neutral-800"
       @click="activePage = 'data'"
     />
     <AppActions

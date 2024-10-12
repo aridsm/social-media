@@ -19,11 +19,7 @@ const { currentUser } = useCurrentUserStore();
       <ul class="flex flex-col gap-4 2xl:gap-6">
         <li v-for="user in recommendedUsers" :key="user.id">
           <AppCard class="flex gap-4 w-full">
-            <img
-              class="w-8 h-8 2xl:w-10 2xl:h-10 bg-neutral-200 rounded-full"
-              :src="getImgUrl(user?.photo)"
-              :alt="user.name"
-            />
+            <AppAvatar :user="user" />
             <div class="flex flex-row items-start justify-between w-full gap-2">
               <div class="flex flex-col">
                 <NuxtLink
@@ -55,11 +51,7 @@ const { currentUser } = useCurrentUserStore();
       <ul class="flex flex-col gap-4 2xl:gap-6">
         <li v-for="user in friendsOnline" :key="user.id">
           <AppCard class="flex items-center gap-4 w-full">
-            <img
-              class="w-10 h-10 bg-neutral-200 rounded-full"
-              :src="getImgUrl(user?.photo)"
-              :alt="user.name"
-            />
+            <AppAvatar :user="user" />
             <div class="flex flex-col gap-1">
               <NuxtLink
                 class="cursor-pointer hover:text-primary"

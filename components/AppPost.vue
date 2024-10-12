@@ -4,7 +4,6 @@ import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import type { Post } from "~/utils/posts/types";
 import { usePostsStore } from "~/utils/posts/usePostsStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
-import { getImgUrl } from "~/utils/images/getUrlImage";
 
 const showComments = ref(false);
 const comment = ref("");
@@ -110,12 +109,7 @@ function onAddNewPost() {
     >
       <div class="h-full w-[1px] bg-current" />
     </div>
-    <AppAvatar
-      v-if="isComment"
-      class="hidden md:block"
-      :src="user?.photo"
-      :alt="currentUser.name"
-    />
+    <AppAvatar v-if="isComment" class="hidden md:block" :user="user" />
 
     <div
       :class="{
@@ -133,7 +127,7 @@ function onAddNewPost() {
           }"
           :to="`/profile/${post.userId}`"
         >
-          <AppAvatar :src="user?.photo" :alt="currentUser.name" />
+          <AppAvatar :user="user" />
         </NuxtLink>
         <div>
           <div class="flex gap-2 md:gap-4 items-center">
@@ -246,11 +240,7 @@ function onAddNewPost() {
               <icon icon="fa-solid fa-chevron-up" />
             </button>
 
-            <AppAvatar
-              v-if="post.level === 1"
-              :src="currentUser?.photo"
-              :alt="currentUser.name"
-            />
+            <AppAvatar v-if="post.level === 1" :user="user" />
 
             <AppInputText
               v-model="comment"

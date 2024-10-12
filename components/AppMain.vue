@@ -52,7 +52,7 @@ function checkOnOpen(open: any, close: any) {
           <ul class="min-w-[25rem] max-h-[25rem] overflow-auto">
             <li v-for="user in usersSearch" :key="user.id" @click="close">
               <NuxtLink :to="`/profile/${user.id}`" class="p-4 hovered flex gap-4">
-                <img :src="getImgUrl(user.photo)" class="w-10 h-10 rounded-full" />
+                <AppAvatar :user="user" />
                 <div class="flex flex-col gap-2">
                   <span class="text-primary ">@{{ user.userName }}</span>
                   <span>{{ user.name }}</span>
@@ -97,6 +97,6 @@ function checkOnOpen(open: any, close: any) {
 }
 
 .notification {
-  @apply absolute -top-1 md:-top-2 -right-1 md:-right-2 bg-red-600 rounded-full leading-none px-2 py-1 md:py-[5px] text-[10px] md:text-xs flex items-center text-white;
+  @apply absolute -top-1 md:-top-2 -right-1 md:-right-2 bg-red-600 rounded-full leading-none px-2 py-1 text-[10px] md:text-xs flex items-center text-white;
 }
 </style>

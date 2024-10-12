@@ -191,7 +191,7 @@ const relationShipList = [
         <AppBtn @click="emits('save', userForm)">Confirm</AppBtn>
       </div>
 
-      <AppModal v-model:open="modalBackgroundOpen" content-class="w-[45vw]">
+      <AppModal v-model:open="modalBackgroundOpen">
         <AppProfileCard
           :user="{ ...user, backgroundPhoto: userBackground }"
           :posts="posts"
@@ -199,11 +199,13 @@ const relationShipList = [
         />
         <div class="pt-6">
           <span class="font-bold mb-2 2xl:mb-4 block">Background options</span>
-          <div class="gap-3 2xl:gap-4 grid grid-cols-5">
+          <div
+            class="gap-3 2xl:gap-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-h-[23rem] sm:max-h-full overflow-auto"
+          >
             <button
               v-for="background in backgroundList"
               :key="background"
-              class="w-32 h-16 2xl:w-40 2xl:h-20 overflow-hidden border-4 rounded-md transition"
+              class="h-20 sm:w-32 sm:h-16 2xl:w-40 2xl:h-20 overflow-hidden border-4 rounded-md transition"
               :class="{
                 'border-text dark:border-white ': background === userBackground,
                 'border-transparent opacity-70 hover:opacity-100':

@@ -24,7 +24,7 @@ const posts = computed<Post[]>(() => {
 
 <template>
   <div
-    class="flex flex-col min-h-0 px-4 md:px-6 2xl:px-8 gap-6 2xl:gap-8 overflow-y-auto overflow-x-hidden pb-4 2xl:pb-8 relative"
+    class="flex flex-col min-h-0 px-4 md:px-6 2xl:px-8 gap-6 2xl:gap-8 overflow-y-auto overflow-x-hidden relative"
   >
     <AppProfileCard
       v-if="user"

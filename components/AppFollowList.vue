@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { getImgUrl } from "~/utils/images/getUrlImage";
 import type { User } from "~/utils/users/types";
 import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
@@ -52,11 +51,7 @@ watch(
       />
       <NuxtLink v-for="user in usersList" :key="user.id">
         <AppCard class="flex items-center gap-4 w-full">
-          <img
-            class="w-10 h-10 bg-neutral-200 rounded-full"
-            :src="getImgUrl(user?.photo)"
-            :alt="user.name"
-          />
+          <AppAvatar :user="user" />
           <div class="flex flex-col gap-1">
             <NuxtLink
               class="cursor-pointer hover:text-primary"

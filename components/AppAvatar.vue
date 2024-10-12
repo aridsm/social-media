@@ -1,16 +1,39 @@
 <script lang="ts" setup>
+import type { PropType } from "vue";
 import { getImgUrl } from "~/utils/images/getUrlImage";
+import type { User } from "~/utils/users/types";
+import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 
+const { currentUser } = useCurrentUserStore();
 defineProps({
-  src: String,
-  alt: String,
+  user: {
+    type: Object as PropType<User>,
+    required: true,
+  },
+  large: Boolean,
 });
 </script>
 
 <template>
-  <img
-    class="w-8 min-w-8 h-8 md:w-10 md:min-w-10 md:h-10 bg-neutral-200 rounded-full z-10"
-    :src="getImgUrl(src)"
-    :alt="alt"
-  />
+  <div
+    class="relative rounded-full z-10"
+    :class="{
+      'h-32 w-32 md:h-36 md:w-36 2xl:h-44 2xl:w-44': large,
+      'w-8 min-w-8 h-8 md:w-10 md:min-w-10 md:h-10': !large,
+    }"
+  >
+    <img
+      class="w-full h-full object-cover bg-neutral-200 rounded-full"
+      :src="getImgUrl(user.photo)"
+      :alt="user.name"
+    />
+    <div
+      v-if="user.online && user.id !== currentUser.id"
+      class="absolute rounded-full bg-emerald-400"
+      :class="{
+        'w-4 h-4 min-h-4 min-w-4 -right-1 -bottom-1': large,
+        'w-3 h-3 min-h-3 min-w-3 -right-1 -bottom-1': !large,
+      }"
+    ></div>
+  </div>
 </template>
