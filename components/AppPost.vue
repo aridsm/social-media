@@ -97,7 +97,7 @@ function onAddNewPost() {
     :flat="isComment"
     class="relative"
     :class="{
-      'flex gap-6 mt-4 2xl:mt-6': isComment,
+      'flex md:gap-6 mt-4 2xl:mt-6': isComment,
       'bg-base2 dark:bg-neutral-600 md:bg-transparent md:dark:bg-transparent':
         post.level > 1,
     }"
@@ -233,7 +233,10 @@ function onAddNewPost() {
       <Transition name="posts">
         <div v-if="showComments" class="w-full">
           <div
-            class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex gap-6 items-center"
+            class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex items-center"
+            :class="{
+              'gap-3 md:gap-6': post.level === 1,
+            }"
           >
             <button
               @click="showComments = false"

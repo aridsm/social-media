@@ -48,7 +48,7 @@ const currentPath = computed(() => {
 
 <template>
   <div
-    class="p-6 2xl:p-8 z-10 transition-all bg-base dark:bg-neutral-800 flex-col w-[20rem] xl:w-[15rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border h-full"
+    class="p-6 2xl:p-8 z-[9999] transition-all bg-base dark:bg-neutral-800 flex-col w-[20rem] xl:w-[15rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border h-full"
   >
     <div class="flex uppercase font-bold items-end gap-2 leading-none">
       <div class="flex items-end">

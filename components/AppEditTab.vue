@@ -200,7 +200,7 @@ const relationShipList = [
         <div class="pt-6">
           <span class="font-bold mb-2 2xl:mb-4 block">Background options</span>
           <div
-            class="gap-3 2xl:gap-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-h-[23rem] sm:max-h-full overflow-auto"
+            class="gap-3 2xl:gap-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-h-[18rem] sm:max-h-full overflow-auto"
           >
             <button
               v-for="background in backgroundList"

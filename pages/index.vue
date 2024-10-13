@@ -26,7 +26,7 @@ const posts = computed(() => {
           placeholder="What are you thinking?"
         />
       </div>
-      <div class="flex justify-between items-center mt-3">
+      <div class="flex justify-between items-center mt-3 2xl:mt-4">
         <div class="flex gap-2 xl:gap-4 items-center">
           <button
             class="flex items-center gap-2 hovered rounded-full py-1 px-3"

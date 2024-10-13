@@ -35,7 +35,7 @@ function checkOnOpen(open: any, close: any) {
         <icon icon="fa-solid fa-bars"></icon>
       </button>
     <AppMenu 
-      class="absolute top-0 xl:hidden h-screen overflow-auto" 
+      class="absolute top-0 xl:hidden h-[100vhmin] overflow-auto" 
       :class="{
       'left-0': showMenu,
       '-left-[20rem]': !showMenu,

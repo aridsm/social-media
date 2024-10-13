@@ -211,7 +211,7 @@ function onSelectMonthAfter() {
       </template>
 
       <template #default="{ close }">
-        <div class="px-2 py-4 w-[320px] md:w-[380px]">
+        <div class="px-2 py-4 w-[280px] md:w-[380px]">
           <div class="flex items-center justify-between mb-4 pl-3">
             <div class="flex gap-3 items-center">
               <span>{{ monthNames[dateData.month] }}</span>
@@ -246,7 +246,7 @@ function onSelectMonthAfter() {
             <button
               v-for="monthDay in daysInMonthList"
               :key="monthDay.id"
-              class="p-2 rounded-md"
+              class="p-1 md:p-2 rounded-md"
               :disabled="monthDay.disabled"
               :class="{
                 'bg-primary dark:bg-indigo-500 text-white':

@@ -9,7 +9,7 @@ const open = defineModel<boolean>("open");
     <Transition name="modal">
       <div
         v-if="open"
-        class="z-[99999] bg-black/[.5] w-screen h-screen flex justify-center items-center absolute top-0 left-0 px-4"
+        class="z-[99999] bg-black/[.5] w-screen h-full flex justify-center items-center fixed top-0 left-0 px-4"
         @click.self="open = false"
       >
         <AppCard :class="contentClass">

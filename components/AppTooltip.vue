@@ -40,12 +40,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="tooltip" class="relative z-[999]">
+  <div ref="tooltip" class="relative">
     <slot name="activator" :open="onOpen" :close="onClose" :is-open="show" />
     <Transition name="action">
       <div
         v-if="show"
-        class="bg-white tooltip min-w-max dark:bg-neutral-600 flex flex-col items-start border border-border dark:border-dark-border rounded-sm absolute"
+        class="bg-white tooltip z-[9999] min-w-max dark:bg-neutral-600 flex flex-col items-start border border-border dark:border-dark-border rounded-sm absolute"
         :class="{
           'tooltip-top': origin === 'top',
           'tooltip-bottom': origin === 'bottom',
