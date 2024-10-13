@@ -13,6 +13,11 @@ const navLinks = [
     path: "/",
   },
   {
+    name: "Search user",
+    icon: "fa-solid fa-magnifying-glass",
+    path: "/users",
+  },
+  {
     name: "Messages",
     icon: "fa-regular fa-envelope",
     path: "/messages",

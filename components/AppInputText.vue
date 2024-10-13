@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PropType } from "vue";
 
-const props = defineProps({
+defineProps({
   iconName: String,
   placeholder: String,
   contentClass: String,
@@ -17,8 +17,8 @@ const props = defineProps({
 });
 
 const emits = defineEmits<{
-  (name: "blur", value: string | number | undefined): void;
-  (name: "input", value: string | number | undefined): void;
+  (name: "blur", value: any): void;
+  (name: "input", value: any): void;
 }>();
 
 const modelValue = defineModel<string | number | undefined>({ required: true });
