@@ -156,7 +156,7 @@ export const useUsersStore = defineStore("usersList", () => {
     },
   ]);
 
-  const recommendedUsersIds = ref([4, 5, 6]);
+  const recommendedUsersIds = ref([3, 5, 8]);
 
   const recommendedUsers = computed<User[]>(() => {
     return getUsersByIds(recommendedUsersIds.value);

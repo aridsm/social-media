@@ -23,7 +23,7 @@ const posts = computed<Post[]>(() => {
 </script>
 
 <template>
-  <AppPage class="gap-6 2xl:gap-8">
+  <AppPage content-class="flex flex-col gap-6 2xl:gap-8">
     <AppProfileCard
       v-if="user"
       :user="user"

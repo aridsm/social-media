@@ -1,5 +1,4 @@
 <script lang="tsx" setup>
-import { getImgUrl } from "~/utils/images/getUrlImage";
 import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
 
