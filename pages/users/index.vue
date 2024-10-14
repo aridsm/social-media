@@ -16,9 +16,7 @@ function onSearch($event: string) {
 </script>
 
 <template>
-  <div
-    class="flex flex-col min-h-0 px-4 pt-2 md:px-6 2xl:px-8 overflow-y-auto overflow-x-hidden relative"
-  >
+  <AppPage class="pt-2">
     <AppInputText
       v-model="search"
       color="sec"
@@ -48,5 +46,5 @@ function onSearch($event: string) {
       </NuxtLink>
     </div>
     <p v-else class="text-label text-center">No results</p>
-  </div>
+  </AppPage>
 </template>

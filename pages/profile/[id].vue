@@ -23,9 +23,7 @@ const posts = computed<Post[]>(() => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col min-h-0 px-4 md:px-6 2xl:px-8 gap-6 2xl:gap-8 overflow-y-auto overflow-x-hidden relative"
-  >
+  <AppPage class="gap-6 2xl:gap-8">
     <AppProfileCard
       v-if="user"
       :user="user"
@@ -105,7 +103,7 @@ const posts = computed<Post[]>(() => {
         />
       </TransitionGroup>
     </div>
-  </div>
+  </AppPage>
 </template>
 <style scoped>
 .tabs-enter-active,

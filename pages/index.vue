@@ -13,9 +13,7 @@ const posts = computed(() => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col min-h-0 overflow-auto overflow-x-hidden px-4 md:px-6 2xl:px-8"
-  >
+  <AppPage>
     <AppCard>
       <div class="flex items-start gap-4">
         <AppAvatar :user="currentUser" />
@@ -76,7 +74,7 @@ const posts = computed(() => {
         :last-in-list="index === posts.length - 1"
       />
     </div>
-  </div>
+  </AppPage>
 </template>
 
 <style></style>

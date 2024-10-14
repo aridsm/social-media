@@ -34,14 +34,10 @@ function checkOnOpen(open: any, close: any) {
       <button class="hovered w-10 h-10 text-lg rounded-full mr-4 xl:hidden" @click="showMenu = true">
         <icon icon="fa-solid fa-bars"></icon>
       </button>
-    <AppMenu 
-      class="absolute top-0 xl:hidden h-[100vhmin] overflow-auto" 
-      :class="{
-      'left-0': showMenu,
-      '-left-[20rem]': !showMenu,
-      }" 
-      @hide="showMenu = false"
-    />
+      <AppMenu class="absolute top-0 xl:hidden h-[100vhmin] overflow-auto" :class="{
+        'left-0': showMenu,
+        '-left-[20rem]': !showMenu,
+      }" @hide="showMenu = false" />
       <AppTooltip class="hidden xl:block flex-1 relative">
         <template #activator="{ open, close }">
           <AppInputText v-model="search" placeholder="Search user..." icon-name="fa-solid fa-magnifying-glass"
@@ -88,7 +84,6 @@ function checkOnOpen(open: any, close: any) {
     </header>
 
     <NuxtPage class="mt-2 md:mt-6 2xl:mt-8 flex-1" />
-
   </div>
 </template>
 <style scoped>

@@ -70,8 +70,6 @@ const { currentUser } = useCurrentUserStore();
         </li>
       </ul>
     </div>
-
-    <footer class="text-text mt-auto">Made by Ariane Morelato</footer>
   </aside>
 </template>
 
