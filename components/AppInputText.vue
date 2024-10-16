@@ -31,7 +31,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
       v-model="modelValue"
       :rows="4"
       :placeholder="placeholder || 'Write...'"
-      class="input-styles"
+      class="input-styles rounded-md"
       :class="[
         contentClass,
         {
@@ -47,7 +47,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
       v-else
       v-model="modelValue"
       :placeholder="placeholder || 'Write...'"
-      class="input-styles"
+      class="input-styles rounded-full"
       :class="[
         {
           'bg-base dark:bg-neutral-600': color === 'base',
@@ -61,7 +61,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     />
     <button
       v-if="action"
-      class="absolute top-[2px] 2xl:top-[7px] right-2 text-sm 2xl:text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
+      class="absolute top-[2px] 2xl:top-[8px] right-3 text-sm 2xl:text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
       @click="action"
     >
       <icon icon="fa-regular fa-paper-plane" />
@@ -70,14 +70,14 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     <icon
       v-if="iconName"
       :icon="iconName"
-      class="absolute top-3 right-4 text-sm 2xl:text-lg"
+      class="absolute top-[10px] 2xl:top-[14px] right-5 text-sm 2xl:text-lg"
     />
   </div>
 </template>
 
 <style scoped>
 .input-styles {
-  @apply placeholder:text-label dark:placeholder:text-neutral-400 border border-border dark:border-dark-border px-4 py-2 2xl:py-3 rounded-md text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full;
+  @apply placeholder:text-label dark:placeholder:text-neutral-400  px-5 py-2 2xl:py-3 text-text dark:text-white focus:outline-none focus:outline-4 focus:outline-primary dark:focus:outline-indigo-500 w-full;
   font-size: inherit !important;
 }
 

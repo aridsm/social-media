@@ -45,7 +45,7 @@ onUnmounted(() => {
     <Transition name="action">
       <div
         v-if="show"
-        class="bg-white tooltip z-[9999] min-w-max dark:bg-neutral-600 flex flex-col items-start border border-border dark:border-dark-border rounded-sm absolute"
+        class="bg-white tooltip z-[9999] min-w-max dark:bg-neutral-600 flex flex-col items-start rounded-md absolute"
         :class="{
           'tooltip-top': origin === 'top',
           'tooltip-bottom': origin === 'bottom',
@@ -60,7 +60,7 @@ onUnmounted(() => {
 </template>
 <style lang="scss">
 .tooltip {
-  box-shadow: 6px 12px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.07);
 }
 .tooltip-bottom {
   top: calc(100% + 8px);

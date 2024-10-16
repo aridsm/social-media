@@ -29,3 +29,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-neutral-400 dark:bg-neutral-500;
 }
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+}

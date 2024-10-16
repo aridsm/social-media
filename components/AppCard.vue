@@ -9,8 +9,7 @@ defineProps({
   <div
     class="rounded-md"
     :class="{
-      'border border-border dark:border-dark-border': !noBorder,
-      'p-4 2xl:p-6 bg-white dark:bg-neutral-700': !flat,
+      'p-4 xl:p-6 bg-white dark:bg-neutral-700': !flat,
     }"
   >
     <slot />
