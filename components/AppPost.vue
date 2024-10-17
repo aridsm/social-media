@@ -251,6 +251,7 @@ function onAddNewPost() {
             <AppInputText
               v-model="comment"
               class="w-full"
+              :border="post.level === 2"
               :action="onAddNewPost"
             />
           </div>

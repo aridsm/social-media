@@ -14,6 +14,7 @@ defineProps({
   action: {
     type: Function as PropType<() => void>,
   },
+  border: Boolean,
 });
 
 const emits = defineEmits<{
@@ -37,6 +38,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
         {
           'bg-base dark:bg-neutral-600': color === 'base',
           'bg-white dark:bg-neutral-700': color === 'sec',
+          'border border-border dark:border-neutral-500': border,
         },
       ]"
       @blur="emits('blur', modelValue)"
@@ -53,6 +55,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
           'bg-base dark:bg-neutral-600': color === 'base',
           'bg-white dark:bg-neutral-700': color === 'sec',
           'padding-icon': iconName || action,
+          'border border-border dark:border-dark-border': border,
         },
         contentClass,
       ]"

@@ -28,7 +28,7 @@ defineProps({
       :alt="user.name"
     />
     <div
-      v-if="user.online && user.id !== currentUser.id"
+      v-if="user.online && user.isFollowing && user.id !== currentUser.id"
       class="absolute rounded-full bg-emerald-400"
       :class="{
         'w-4 h-4 min-h-4 min-w-4 -right-1 -bottom-1': large,
