@@ -1,11 +1,9 @@
 import { defineStore } from "pinia";
 import type { FindParams, Level, Post } from "./types";
 import { useCurrentUserStore } from "../users/useCurrentUserStore";
-import { useUsersStore } from "../users/useUsersStore";
 
 export const usePostsStore = defineStore("posts", () => {
   const { currentUser } = useCurrentUserStore();
-  const { usersLists, getUserById } = useUsersStore();
 
   const posts = ref<Post[]>([
     {

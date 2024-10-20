@@ -8,6 +8,7 @@ import { useUsersStore } from "~/utils/users/useUsersStore";
 
 const user = ref<User>();
 const route = useRoute();
+const router = useRouter();
 const { getUserById } = useUsersStore();
 const { findPosts } = usePostsStore();
 const { editUser, currentUser } = useCurrentUserStore();
@@ -71,7 +72,18 @@ const posts = computed<Post[]>(() => {
       class="flex items-center justify-center gap-4 px-6"
     >
       <AppBtnFollow :user="user" squared />
-      <AppBtn color="label">Send message</AppBtn>
+      <AppBtn
+        color="label"
+        @click="
+          router.push({
+            path: '/messages',
+            query: {
+              userId: user.id,
+            },
+          })
+        "
+        >Send message</AppBtn
+      >
     </div>
 
     <div

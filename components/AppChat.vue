@@ -1,0 +1,154 @@
+<script setup lang="ts">
+import dayjs from "dayjs";
+import type { Chat } from "~/utils/messages/types";
+import { useMessagesStore } from "~/utils/messages/useMessagesStore";
+import type { User } from "~/utils/users/types";
+import { useUsersStore } from "~/utils/users/useUsersStore";
+
+const { sendMessage, markChatAsRead } = useMessagesStore();
+const { getUserById } = useUsersStore();
+
+const user = ref<User>();
+const chat = ref<HTMLDivElement>();
+
+const selectedChat = defineModel<Chat>({ required: true });
+
+const newMessage = ref<string>("");
+
+watch(
+  () => selectedChat.value,
+  () => {
+    user.value = getUserById(selectedChat.value.userId!);
+    markChatAsRead(selectedChat.value.id);
+  },
+  {
+    deep: true,
+    immediate: true,
+  }
+);
+
+function scrollToBottom() {
+  if (chat.value) {
+    chat.value.scrollTop = chat.value?.scrollHeight + 400;
+  }
+}
+
+onMounted(() => {
+  scrollToBottom();
+});
+
+function addNewMessage() {
+  sendMessage(selectedChat.value?.id!, newMessage.value);
+  newMessage.value = "";
+  scrollToBottom();
+}
+
+const actionsList = ref([
+  {
+    id: 1,
+    text: "Report",
+    icon: "fa-regular fa-flag",
+    click: () => {},
+  },
+]);
+</script>
+
+<template>
+  <AppCard v-if="user" class="!p-0 py-4 lg:!py-6 flex flex-col">
+    <div class="flex items-center px-0 pb-4 lg:px-6 lg:pb-6">
+      <NuxtLink
+        class="flex items-center gap-6 hover:text-primary mr-auto"
+        :to="`/profile/${selectedChat.userId}`"
+      >
+        <AppAvatar :user="user!" />
+        <div class="flex flex-col">
+          <p class="font-bold">@{{ user?.userName }}</p>
+          <p class="text-label">
+            {{ user?.name }}
+          </p>
+        </div>
+      </NuxtLink>
+      <button class="hovered rounded-full px-3 py-1 mr-2">
+        <icon icon="fa-solid fa-video" />
+      </button>
+      <AppActions v-slot="{ open }" :actions="actionsList">
+        <button
+          class="hovered w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center relative"
+          @click="open"
+        >
+          <icon icon="fa-solid fa-ellipsis-vertical" />
+        </button>
+      </AppActions>
+    </div>
+
+    <div
+      ref="chat"
+      class="flex-1 flex flex-col gap-4 px-3 lg:px-6 min-h-0 overflow-auto"
+    >
+      <p v-if="!selectedChat.messages.length" class="text-center text-label">
+        There is no messages with {{ user.name }}
+      </p>
+      <div
+        v-for="(message, index) in selectedChat.messages"
+        :key="message.id"
+        :class="{
+          'ml-10': message.own,
+          'mr-10': !message.own,
+        }"
+      >
+        <div
+          class="rounded-md relative p-4 break-all before-arrow"
+          :class="{
+            'bg-indigo-500 text-white before-arrow-right': message.own,
+            'bg-base dark:bg-neutral-600 before-arrow-left': !message.own,
+          }"
+        >
+          <p>{{ message.message }}</p>
+        </div>
+        <div
+          v-if="selectedChat.messages[index + 1]?.own !== message.own"
+          class="text-xs text-label text-end mt-2"
+        >
+          <span>{{ dayjs(message.date).format("h:mm[ ]a") }}</span>
+
+          <icon
+            v-if="message?.read && message?.own"
+            icon="fa-solid fa-check-double"
+            class="text-blue-400 ml-3"
+          />
+          <icon
+            v-if="!message?.read && message?.own"
+            icon="fa-solid fa-check"
+            class="text-label ml-3"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:px-6 pt-4">
+      <AppInputText
+        v-model="newMessage"
+        :action="addNewMessage"
+        placeholder="Write message..."
+      />
+    </div>
+  </AppCard>
+</template>
+
+<style scoped>
+.card-selected {
+  @apply bg-border/[.5] dark:bg-neutral-600;
+}
+
+.before-arrow {
+  @apply before:top-5 before:block before:border-[6px] before:border-y-transparent before:w-1 before:absolute;
+}
+
+.before-arrow.before-arrow-left {
+  @apply before:right-full before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600;
+}
+
+.before-arrow.before-arrow-right {
+  @apply before:left-full before:border-r-transparent before:border-l-indigo-500;
+}
+</style>

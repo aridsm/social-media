@@ -8,7 +8,7 @@ const { currentUser } = useCurrentUserStore();
 
 <template>
   <aside
-    class="hidden xl:flex flex-col p-6 2xl:p-8 w-[22rem] 2xl:w-[28rem] border-l border-l-border dark:border-l-dark-border h-full"
+    class="hidden xl:flex flex-col p-6 2xl:p-8 w-[20rem] 2xl:w-[24rem] border-l border-l-border dark:border-l-dark-border h-full"
   >
     <div>
       <div class="flex justify-between items-center mb-2 2xl:mb-4">
@@ -17,7 +17,7 @@ const { currentUser } = useCurrentUserStore();
       </div>
       <ul class="flex flex-col gap-4 2xl:gap-6">
         <li v-for="user in recommendedUsers" :key="user.id">
-          <AppCard class="flex gap-4 w-full">
+          <AppCard class="flex gap-4 w-full" thin>
             <AppAvatar :user="user" />
             <div class="flex flex-row items-start justify-between w-full gap-2">
               <div class="flex flex-col">
@@ -49,9 +49,9 @@ const { currentUser } = useCurrentUserStore();
 
       <ul class="flex flex-col gap-4 2xl:gap-6">
         <li v-for="user in friendsOnline" :key="user.id">
-          <AppCard class="flex items-center gap-4 w-full">
+          <AppCard thin class="flex items-center gap-4 w-full">
             <AppAvatar :user="user" />
-            <div class="flex flex-col gap-1">
+            <div class="flex flex-col">
               <NuxtLink
                 class="cursor-pointer hover:text-primary"
                 :to="`/profile/${user.id}`"

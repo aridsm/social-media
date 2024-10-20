@@ -11,8 +11,8 @@ export const useCurrentUserStore = defineStore("currentUser", () => {
       "Aenean nec est gravida, placerat lorem id, semper nibh. Vivamus et vehicula nunc",
     photo: "amy.svg",
     backgroundPhoto: "pattern_japanese.png",
-    followersIds: [1, 8],
-    followingIds: [1, 6, 4],
+    followersIds: [1, 8, 9],
+    followingIds: [1, 6, 4, 9],
     isFollowing: false,
     online: true,
     generalInformations: {

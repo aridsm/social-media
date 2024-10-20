@@ -3,9 +3,11 @@ import { useCurrentUserStore } from '~/utils/users/useCurrentUserStore';
 import { useDarkModeStore } from '~/utils/darkmode/darkModeStore';
 import { useUsersStore } from '~/utils/users/useUsersStore';
 import { getImgUrl } from '~/utils/images/getUrlImage';
+import { useMessagesStore } from '~/utils/messages/useMessagesStore';
 
 const { searchUsers } = useUsersStore();
 const { currentUser } = useCurrentUserStore();
+const {getNotReadMessages} = useMessagesStore()
 
 const { toggleColorMode } = useDarkModeStore();
 
@@ -59,17 +61,17 @@ function checkOnOpen(open: any, close: any) {
         </template>
       </AppTooltip>
 
-      <div class="flex items-center justify-end gap-2 md:gap-4 ml-auto flex-1">
+      <div class="flex items-center justify-end gap-2 md:gap-3 ml-auto flex-1">
         <button class="rounded-full bg-border dark:bg-neutral-600 w-8 md:w-10 p-[2px]" @click="toggleColorMode">
           <div class="w-3 h-3 md:w-4 md:h-4 bg-text dark:bg-white rounded-full transition relative" :class="{
             'translate-x-[14px] md:translate-x-5': isDarkMode,
           }"></div>
         </button>
-        <button class="btns-header hovered">
+        <button class="btns-header hovered" title="Messages">
           <icon icon="fa-regular fa-comment-dots" class="text-sm md:text-[16px]" />
-          <div class="notification">2</div>
+          <div v-if="getNotReadMessages().length" class="notification">{{getNotReadMessages().length}}</div>
         </button>
-        <button class="btns-header hovered">
+        <button class="btns-header hovered" title="Notifications">
           <icon icon="fa-regular fa-bell" class="text-sm md:text-[16px]" />
           <div class="notification">14</div>
         </button>
@@ -88,7 +90,7 @@ function checkOnOpen(open: any, close: any) {
 </template>
 <style scoped>
 .btns-header {
-  @apply w-12 h-8 rounded-full flex items-center justify-center relative;
+  @apply w-10 h-8 rounded-full flex items-center justify-center relative;
 }
 
 .notification {

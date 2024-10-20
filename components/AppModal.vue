@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps({
   contentClass: String,
+  modalClasses: String,
 });
 const open = defineModel<boolean>("open");
 </script>
@@ -10,6 +11,7 @@ const open = defineModel<boolean>("open");
       <div
         v-if="open"
         class="z-[99999] bg-black/[.5] w-screen h-full flex justify-center items-center fixed top-0 left-0 px-4"
+        :class="modalClasses"
         @click.self="open = false"
       >
         <AppCard :class="contentClass">

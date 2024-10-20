@@ -21,6 +21,7 @@ defineProps({
       'h-32 w-32 md:h-36 md:w-36 2xl:h-44 2xl:w-44': large,
       'w-8 min-w-8 h-8 md:w-10 md:min-w-10 md:h-10': !large,
     }"
+    :title="user?.name"
   >
     <img
       class="w-full h-full object-cover bg-neutral-200 rounded-full"

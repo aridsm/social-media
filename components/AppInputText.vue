@@ -6,6 +6,10 @@ defineProps({
   placeholder: String,
   contentClass: String,
   textarea: Boolean,
+  rows: {
+    type: Number,
+    default: 4,
+  },
   label: String,
   color: {
     type: String as PropType<"base" | "sec">,
@@ -30,9 +34,9 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     <textarea
       v-if="textarea"
       v-model="modelValue"
-      :rows="4"
+      :rows="rows"
       :placeholder="placeholder || 'Write...'"
-      class="input-styles rounded-md"
+      class="input-styles rounded-lg"
       :class="[
         contentClass,
         {
@@ -43,6 +47,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
       ]"
       @blur="emits('blur', modelValue)"
       @input="emits('input', modelValue)"
+      @keypress.enter="action"
     />
 
     <input
@@ -61,6 +66,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
       ]"
       @blur="emits('blur', modelValue)"
       @input="emits('input', modelValue)"
+      @keypress.enter="action"
     />
     <button
       v-if="action"

@@ -6,7 +6,7 @@ defineProps({
 
 <template>
   <div
-    class="flex flex-col min-h-0 px-4 md:px-6 2xl:px-8 overflow-y-auto overflow-x-hidden relative"
+    class="flex flex-col min-h-0 min-w-0 flex-1 px-4 md:px-6 2xl:px-8 overflow-y-auto overflow-x-hidden relative"
   >
     <div class="flex-1" :class="contentClass">
       <slot />
