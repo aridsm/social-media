@@ -67,10 +67,10 @@ function checkOnOpen(open: any, close: any) {
             'translate-x-[14px] md:translate-x-5': isDarkMode,
           }"></div>
         </button>
-        <button class="btns-header hovered" title="Messages">
+        <NuxtLink to="/messages" class="btns-header hovered" title="Messages">
           <icon icon="fa-regular fa-comment-dots" class="text-sm md:text-[16px]" />
           <div v-if="getNotReadMessages().length" class="notification">{{getNotReadMessages().length}}</div>
-        </button>
+        </NuxtLink>
         <button class="btns-header hovered" title="Notifications">
           <icon icon="fa-regular fa-bell" class="text-sm md:text-[16px]" />
           <div class="notification">14</div>
