@@ -81,7 +81,7 @@ function onAddNewChat(userId: number) {
         />
         <div class="flex flex-col gap-4 min-h-0 overflow-auto">
           <p v-if="!chatsFiltered.length" class="text-label text-center mt-2">
-            No results
+            No result
           </p>
           <AppUserChat
             v-for="chat in chatsFiltered"

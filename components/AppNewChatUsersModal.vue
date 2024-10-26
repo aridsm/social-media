@@ -68,7 +68,7 @@ function startConversationHandler() {
         </AppCard>
       </li>
       <li v-if="!users.length" class="text-label text-center my-4">
-        No results
+        No result
       </li>
     </ul>
 

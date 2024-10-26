@@ -85,8 +85,12 @@ const actionsList = ref([
       ref="chat"
       class="flex-1 flex flex-col gap-4 px-3 lg:px-6 min-h-0 overflow-auto"
     >
-      <p v-if="!selectedChat.messages.length" class="text-center text-label">
-        There is no messages with {{ user.name }}
+      <p
+        v-if="!selectedChat.messages.length"
+        class="text-center text-label flex flex-col items-center"
+      >
+        <icon icon="fa-regular fa-comments" class="text-2xl mb-3" />
+        No message with {{ user.name }}
       </p>
       <div
         v-for="(message, index) in selectedChat.messages"

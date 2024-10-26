@@ -70,7 +70,7 @@ watch(
       </NuxtLink>
     </div>
     <p v-if="!usersList.length" class="text-label text-center my-8">
-      No results
+      No result
     </p>
   </div>
 </template>

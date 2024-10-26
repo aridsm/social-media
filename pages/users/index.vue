@@ -45,6 +45,6 @@ function onSearch($event: string) {
         </AppCard>
       </NuxtLink>
     </div>
-    <p v-else class="text-label text-center">No results</p>
+    <p v-else class="text-label text-center">No result</p>
   </AppPage>
 </template>
