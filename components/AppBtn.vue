@@ -5,12 +5,14 @@ defineProps({
   color: {
     type: String as PropType<"label" | "text" | "transparent">,
   },
+  disabled: Boolean,
 });
 </script>
 
 <template>
   <button
-    class="gap-2 flex items-center rounded-md h-9 2xl:h-11 px-6 hover:opacity-80 active:opacity-90"
+    :disabled="disabled"
+    class="gap-2 flex items-center rounded-md h-9 2xl:h-11 px-6 disabled:opacity-40 hover:opacity-80 active:opacity-90"
     :class="{
       'bg-neutral-200 text-text dark:bg-neutral-600 dark:text-white':
         color === 'label',

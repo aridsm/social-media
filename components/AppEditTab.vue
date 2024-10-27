@@ -2,12 +2,8 @@
 import { backgroundList } from "~/utils/images/background-list";
 import { getBackgroundgUrl } from "~/utils/images/getUrlImage";
 import type { Post } from "~/utils/posts/types";
-import {
-  Gender,
-  RelationShip,
-  type GeneralInformation,
-  type User,
-} from "~/utils/users/types";
+import { Gender, RelationShip, type User } from "~/utils/users/types";
+import { useUsersStore } from "~/utils/users/useUsersStore";
 
 const props = defineProps({
   user: {
@@ -42,6 +38,7 @@ onMounted(() => {
 
 const modalBackgroundOpen = ref(false);
 const userBackground = ref(props.user.backgroundPhoto);
+const { checkIfUserNameExists } = useUsersStore();
 
 const genderList = [
   {
@@ -80,6 +77,23 @@ const relationShipList = [
     name: "Widowed",
   },
 ];
+
+const nameError = computed(() => {
+  if (!userForm.value?.name.trim()) {
+    return "This field is required";
+  } else {
+    return "";
+  }
+});
+
+const usernameError = computed(() => {
+  if (!userForm.value?.userName.trim()) {
+    return "This field is required";
+  } else if (checkIfUserNameExists(userForm.value.userName)) {
+    return "Username already registered";
+  }
+  return;
+});
 </script>
 
 <template>
@@ -90,11 +104,16 @@ const relationShipList = [
       <AppCard>
         <span class="font-bold mb-4 block">Profile data</span>
         <div>
-          <AppInputText v-model="userForm.userName" label="User name" />
+          <AppInputText
+            v-model="userForm.userName"
+            :error="usernameError"
+            label="User name"
+          />
           <AppInputText
             v-model="userForm.name"
             label="Full name"
             class="mt-4 md:mt-6 3xl:mt-8"
+            :error="nameError"
           />
 
           <div class="mt-4 md:mt-6 3xl:mt-8">
@@ -188,7 +207,12 @@ const relationShipList = [
 
       <div class="flex gap-4 justify-end">
         <AppBtn color="label" @click="emits('back')">Cancel</AppBtn>
-        <AppBtn @click="emits('save', userForm)">Confirm</AppBtn>
+        <AppBtn
+          :disabled="!!usernameError || !!nameError"
+          @click="emits('save', userForm)"
+        >
+          Confirm
+        </AppBtn>
       </div>
 
       <AppModal v-model:open="modalBackgroundOpen">
@@ -230,7 +254,8 @@ const relationShipList = [
               (userForm.backgroundPhoto = userBackground),
                 (modalBackgroundOpen = false)
             "
-            >Confirm
+          >
+            Confirm
           </AppBtn>
         </div>
       </AppModal>

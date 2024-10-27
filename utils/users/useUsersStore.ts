@@ -232,6 +232,19 @@ export const useUsersStore = defineStore("usersList", () => {
     }
   }
 
+  function checkIfUserNameExists(userName: string) {
+    const { currentUser } = useCurrentUserStore();
+
+    const userExist = usersLists.value.find(
+      (u) =>
+        u.userName.trim().toLowerCase() === userName.trim().toLowerCase() &&
+        currentUser.userName.trim().toLowerCase() !==
+          userName.trim().toLowerCase()
+    );
+
+    return !!userExist;
+  }
+
   return {
     usersLists,
     getUserById,
@@ -240,5 +253,6 @@ export const useUsersStore = defineStore("usersList", () => {
     searchUsers,
     toggleFollowUser,
     friendsOnline,
+    checkIfUserNameExists,
   };
 });

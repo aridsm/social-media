@@ -6,6 +6,7 @@ defineProps({
   placeholder: String,
   contentClass: String,
   textarea: Boolean,
+  error: String,
   rows: {
     type: Number,
     default: 4,
@@ -81,6 +82,10 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
       :icon="iconName"
       class="absolute top-[10px] 2xl:top-[14px] right-5 text-sm 2xl:text-lg"
     />
+
+    <span v-if="error" class="text-red-400 mt-2 block text-sm">{{
+      error
+    }}</span>
   </div>
 </template>
 

@@ -30,7 +30,8 @@ export const useCurrentUserStore = defineStore("currentUser", () => {
   });
 
   function editUser(newData: User) {
-    Object.assign(currentUser.value, newData);
+    const userName = newData.userName.trim().toLowerCase();
+    Object.assign(currentUser.value, { ...newData, userName });
 
     const user = usersLists.find((u) => u.id === currentUser.value.id);
 
