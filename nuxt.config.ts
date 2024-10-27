@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    baseURL: "http://localhost:3000",
+    baseURL: "/",
     prerender: {
       crawlLinks: true,
       failOnError: false,
