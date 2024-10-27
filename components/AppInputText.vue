@@ -70,7 +70,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     />
     <button
       v-if="action"
-      class="absolute top-[2px] 2xl:top-[8px] right-3 text-sm 2xl:text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
+      class="absolute top-[2px] 2xl:top-[8px] right-2 2xl:right-3 text-sm 2xl:text-lg rounded-full hovered w-8 h-8 flex justify-center items-center"
       @click="action"
     >
       <icon icon="fa-regular fa-paper-plane" />
@@ -86,7 +86,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
 
 <style scoped>
 .input-styles {
-  @apply placeholder:text-label dark:placeholder:text-neutral-400  px-5 py-2 2xl:py-3 text-text dark:text-white focus:outline-none focus:outline-4 focus:outline-primary dark:focus:outline-indigo-500 w-full;
+  @apply placeholder:text-label dark:placeholder:text-neutral-400 px-3 2xl:px-5 py-2 2xl:py-3 text-text dark:text-white focus:outline-none focus:outline-4 focus:outline-primary dark:focus:outline-indigo-500 w-full;
   font-size: inherit !important;
 }
 

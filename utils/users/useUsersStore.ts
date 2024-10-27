@@ -214,13 +214,10 @@ export const useUsersStore = defineStore("usersList", () => {
       user.isFollowing = !user.isFollowing;
 
       if (user.isFollowing) {
-        console.log(currentUserUser.followingIds);
-
         currentUserUser.followingIds.push(userId);
         user.followersIds.push(currentUser.id);
 
         editUser(currentUserUser);
-        console.log(currentUserUser.followingIds);
       } else {
         currentUserUser.followingIds = currentUser.followingIds.filter(
           (followingId) => followingId !== userId

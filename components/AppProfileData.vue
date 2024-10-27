@@ -3,6 +3,9 @@ import dayjs from "dayjs";
 import type { PropType } from "vue";
 import type { Post } from "~/utils/posts/types";
 import { Gender, RelationShip, type User } from "~/utils/users/types";
+import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
+
+const { currentUser } = useCurrentUserStore();
 
 const props = defineProps({
   user: {
@@ -104,18 +107,23 @@ const gendersList = {
       </div>
     </AppCard>
 
-    <div v-if="posts.length">
+    <div>
       <div
         class="mb-6 md:mb-8 2xl:mb-10 mt-2 text-xs 2xl:text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
       >
         <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
       </div>
-      <div class="flex flex-col gap-4 md:gap-6">
-        <AppPost v-for="post in posts" :key="post.id" :post="post" />
+
+      <AppNewPost v-if="currentUser.id === user?.id" class="mb-4 md:mb-6" />
+
+      <div v-if="posts.length">
+        <div class="flex flex-col gap-4 md:gap-6">
+          <AppPost v-for="post in posts" :key="post.id" :post="post" />
+        </div>
+        <p class="text-label text-center mt-4 md:mt-8">End of list</p>
       </div>
-      <p class="text-label text-center mt-4 md:mt-8">End of list</p>
+      <p v-else class="text-label text-center">No posts here</p>
     </div>
-    <p v-else class="text-label text-center">No posts here</p>
   </div>
 </template>
 

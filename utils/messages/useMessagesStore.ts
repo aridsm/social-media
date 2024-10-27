@@ -99,8 +99,6 @@ export const useMessagesStore = defineStore("messages", () => {
   function getOrAddNewChat(userId: number) {
     const chatExists = chats.value.find((chat) => chat.userId === userId);
 
-    console.log(chatExists, "gegrd");
-
     if (!chatExists) {
       const newChat = {
         userId,
