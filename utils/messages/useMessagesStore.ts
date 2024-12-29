@@ -98,9 +98,9 @@ export const useMessagesStore = defineStore("messages", () => {
   }
 
   function getOrAddNewChat(userId: number) {
-    const chatExists = chats.value.find((chat) => chat.userId === userId);
+    const existentChat = chats.value.find((chat) => chat.userId === userId);
 
-    if (!chatExists) {
+    if (!existentChat) {
       const newChat = {
         userId,
         id: Math.random(),
@@ -110,7 +110,7 @@ export const useMessagesStore = defineStore("messages", () => {
       chats.value.unshift(newChat);
       return newChat;
     } else {
-      return chatExists;
+      return existentChat;
     }
   }
 

@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import type { Chat } from "~/utils/messages/types";
 import { useMessagesStore } from "~/utils/messages/useMessagesStore";
-import type { User } from "~/utils/users/types";
-import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
 
 const route = useRoute();
 
 const { chats, getOrAddNewChat, removeChatWithNoMessages, filterChats } =
   useMessagesStore();
-const { friendsOnline } = useUsersStore();
+const { friendsOnline } = storeToRefs(useUsersStore());
 
 const selectedChat = ref<Chat>();
 const search = ref("");

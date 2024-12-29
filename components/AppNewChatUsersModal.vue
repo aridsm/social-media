@@ -56,7 +56,7 @@ function startConversationHandler() {
           class="flex items-center gap-4 w-full hovered border-l-4"
           role="button"
           :class="{
-            '!bg-zinc-200/[.5] !border-zinc-300 dark:!bg-zinc-600 !border-l-indigo-500':
+            '!bg-zinc-200/[.5]  dark:!bg-zinc-600 !border-l-indigo-500':
               selectedUser?.id === user?.id,
           }"
           @click="selectedUser = user"

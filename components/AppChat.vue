@@ -113,7 +113,7 @@ const actionsList = ref([
           v-if="selectedChat.messages[index + 1]?.own !== message.own"
           class="text-xs text-zinc-400 text-end mt-2"
         >
-          <span>{{ dayjs(message.date).format("h:mm[ ]a") }}</span>
+          <span>{{ dayjs(message.date).format("MM/DD/YY h:mm[ ]a") }}</span>
 
           <icon
             v-if="message?.read && message?.own"
