@@ -41,7 +41,7 @@ const posts = computed<Post[]>(() => {
         <span class="text-xl 2xl:text-2xl">{{ user?.name }}</span>
       </div>
 
-      <p class="text-label">{{ user?.description }}</p>
+      <p class="text-zinc-400">{{ user?.description }}</p>
     </div>
     <div class="flex justify-center gap-1 md:gap-8 items-center -ml-4">
       <button
@@ -88,7 +88,7 @@ const posts = computed<Post[]>(() => {
 
     <div
       v-if="user && user.followingIds.includes(currentUser.id)"
-      class="mx-auto bg-purple-600 dark:bg-purple-700 text-white px-4 rounded-full leading-none pb-1 pt-2"
+      class="mx-auto bg-purple-600 dark:bg-purple-700 text-white px-4 rounded-full leading-none py-2"
     >
       Following you
     </div>

@@ -54,12 +54,12 @@ watch(
           <AppAvatar :user="user" />
           <div class="flex flex-col gap-1">
             <NuxtLink
-              class="cursor-pointer hover:text-primary"
+              class="cursor-pointer hover:text-indigo-500"
               :to="`/profile/${user.id}`"
             >
               @{{ user.userName }}
             </NuxtLink>
-            <span class="text-label">{{ user.name }}</span>
+            <span class="text-zinc-400">{{ user.name }}</span>
           </div>
           <AppBtnFollow
             v-if="user.id !== currentUser.id"
@@ -69,7 +69,7 @@ watch(
         </AppCard>
       </NuxtLink>
     </div>
-    <p v-if="!usersList.length" class="text-label text-center my-8">
+    <p v-if="!usersList.length" class="text-zinc-400 text-center my-8">
       No result
     </p>
   </div>

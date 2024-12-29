@@ -48,26 +48,27 @@ function startConversationHandler() {
       icon-name="fa-solid fa-magnifying-glass"
     />
     <ul
-      class="flex flex-col gap-4 2xl:gap-6 h-[50vh] md:h-[20rem] 2xl:h-[28rem] overflow-auto"
+      class="flex flex-col gap-4 h-[50vh] md:h-[20rem] 2xl:h-[28rem] overflow-auto"
     >
       <li v-for="user in users" :key="user.id">
         <AppCard
           thin
-          class="flex items-center gap-4 w-full hovered"
+          class="flex items-center gap-4 w-full hovered border-l-4"
           role="button"
           :class="{
-            'bg-base dark:!bg-neutral-600': selectedUser?.id === user?.id,
+            '!bg-zinc-200/[.5] !border-zinc-300 dark:!bg-zinc-600 !border-l-indigo-500':
+              selectedUser?.id === user?.id,
           }"
           @click="selectedUser = user"
         >
           <AppAvatar :user="user" />
           <div class="flex flex-col">
             <p>@{{ user.userName }}</p>
-            <span class="text-label">{{ user.name }}</span>
+            <span class="text-zinc-400">{{ user.name }}</span>
           </div>
         </AppCard>
       </li>
-      <li v-if="!users.length" class="text-label text-center my-4">
+      <li v-if="!users.length" class="text-zinc-400 text-center my-4">
         No result
       </li>
     </ul>

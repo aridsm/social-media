@@ -45,7 +45,7 @@ function getSelectedItem() {
 </script>
 <template>
   <div class="relative">
-    <span v-if="label" class="block mb-1 text-label">{{ label }}</span>
+    <span v-if="label" class="block mb-1 text-zinc-400">{{ label }}</span>
 
     <AppTooltip class="flex-1 relative">
       <template #activator="{ open, isOpen }">
@@ -53,8 +53,8 @@ function getSelectedItem() {
           class="input-styles pr-10 flex items-center gap-4"
           :class="[
             {
-              'bg-base dark:bg-neutral-600': color === 'base',
-              'bg-white dark:bg-neutral-700': color === 'sec',
+              'bg-base dark:bg-zinc-800': color === 'base',
+              'bg-white dark:bg-transparent': color === 'sec',
             },
             contentClass,
           ]"
@@ -63,19 +63,19 @@ function getSelectedItem() {
           <span v-if="modelValue" class="mr-auto">{{
             selectedItem?.name
           }}</span>
-          <span v-else class="mr-auto text-label">{{
+          <span v-else class="mr-auto text-zinc-400">{{
             placeholder || "Select..."
           }}</span>
           <button
             v-if="clearable && modelValue"
             @click.stop="modelValue = null"
-            class="hovered w-5 h-5 rounded-full flex items-center justify-center"
+            class="hovered w-5 h-5 rounded-md flex items-center justify-center"
           >
-            <icon icon="fa-solid fa-xmark" class="text-label" />
+            <icon icon="fa-solid fa-xmark" class="text-zinc-400" />
           </button>
           <icon
             icon="fa-solid fa-chevron-down"
-            class="text-primary transition"
+            class="text-indigo-500 transition"
             :class="{ 'rotate-90': isOpen }"
           />
         </button>
@@ -99,6 +99,6 @@ function getSelectedItem() {
 
 <style scoped>
 .input-styles {
-  @apply placeholder:text-label dark:placeholder:text-neutral-400 px-4 py-2 2xl:py-3 rounded-full text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full text-sm;
+  @apply placeholder:text-zinc-400 dark:placeholder:text-zinc-400 border border-zinc-200 dark:border-zinc-500/[.4] px-5 py-3 rounded-md text-zinc-600 dark:text-white focus:outline-indigo-500 dark:focus:outline-indigo-500 focus:outline-none w-full;
 }
 </style>

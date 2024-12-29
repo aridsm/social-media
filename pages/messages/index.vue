@@ -65,7 +65,7 @@ function onAddNewChat(userId: number) {
             class="flex items-center gap-2 hovered rounded-full pr-1 pl-3 py-1"
             @click="newChatModalOpen = true"
           >
-            <span class="text-sm text-label">New chat</span>
+            <span class="text-sm text-zinc-400">New chat</span>
             <div
               class="rounded-full bg-indigo-500 text-white w-6 h-6 flex items-center justify-center"
             >
@@ -80,12 +80,16 @@ function onAddNewChat(userId: number) {
           color="sec"
         />
         <div class="flex flex-col gap-4 min-h-0 overflow-auto">
-          <p v-if="!chatsFiltered.length" class="text-label text-center mt-2">
+          <p
+            v-if="!chatsFiltered.length"
+            class="text-zinc-400 text-center mt-2"
+          >
             No result
           </p>
           <AppUserChat
             v-for="chat in chatsFiltered"
             :key="chat.id"
+            class="border-l-4"
             :class="{
               'card-selected': selectedChat?.id === chat.id,
             }"
@@ -102,7 +106,7 @@ function onAddNewChat(userId: number) {
       />
       <div
         v-else
-        class="hidden lg:flex flex-col items-center justify-center flex-1 min-w-0 text-label"
+        class="hidden lg:flex flex-col items-center justify-center flex-1 min-w-0 text-zinc-400"
       >
         <icon icon="fa-regular fa-comments" class="text-2xl mb-3" />
         <p>Send a Message</p>
@@ -127,7 +131,7 @@ function onAddNewChat(userId: number) {
         >
           <icon icon="fa-solid fa-chevron-left" />
         </div>
-        <span class="text-sm text-label">Back</span>
+        <span class="text-sm text-zinc-400">Back</span>
       </button>
       <AppChat
         v-if="selectedChat"
@@ -147,6 +151,6 @@ function onAddNewChat(userId: number) {
 
 <style scoped>
 .card-selected {
-  @apply bg-border/[.5] dark:bg-neutral-600;
+  @apply !bg-zinc-200/[.5]  dark:!bg-zinc-600  !border-l-indigo-500;
 }
 </style>

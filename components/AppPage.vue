@@ -12,11 +12,11 @@ defineProps({
       <slot />
     </div>
     <footer
-      class="text-label flex items-center gap-1 justify-center mt-4 md:mt-6 2xl:mt-8"
+      class="text-zinc-400 flex items-center gap-1 justify-center mt-4 md:mt-6 2xl:mt-8"
     >
       Made by
       <NuxtLink
-        class="hover:text-primary flex items-center gap-2"
+        class="hover:text-indigo-500 flex items-center gap-2"
         to="https://github.com/aridsm"
         target="_blank"
       >

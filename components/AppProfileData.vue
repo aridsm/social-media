@@ -109,9 +109,9 @@ const gendersList = {
 
     <div>
       <div
-        class="mb-6 md:mb-8 2xl:mb-10 mt-2 text-xs 2xl:text-sm text-label dark:text-neutral-500 w-full h-[1px] bg-border dark:bg-neutral-600 flex items-center justify-center"
+        class="mb-6 md:mb-8 2xl:mb-10 mt-2 text-xs 2xl:text-sm text-zinc-400 dark:text-zinc-500 w-full h-[1px] bg-zinc-300 dark:bg-zinc-600 flex items-center justify-center"
       >
-        <span class="bg-base dark:bg-neutral-800 px-6">Last posts</span>
+        <span class="bg-base dark:bg-zinc-800 px-6">Last posts</span>
       </div>
 
       <AppNewPost v-if="currentUser.id === user?.id" class="mb-4 md:mb-6" />
@@ -120,15 +120,15 @@ const gendersList = {
         <div class="flex flex-col gap-4 md:gap-6">
           <AppPost v-for="post in posts" :key="post.id" :post="post" />
         </div>
-        <p class="text-label text-center mt-4 md:mt-8">End of list</p>
+        <p class="text-zinc-400 text-center mt-4 md:mt-8">End of list</p>
       </div>
-      <p v-else class="text-label text-center">No posts here</p>
+      <p v-else class="text-zinc-400 text-center">No posts here</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .label {
-  @apply w-24 md:w-auto text-label;
+  @apply w-24 md:w-auto text-zinc-400;
 }
 </style>

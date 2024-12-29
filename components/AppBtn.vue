@@ -14,9 +14,9 @@ defineProps({
     :disabled="disabled"
     class="gap-2 flex items-center rounded-md h-9 2xl:h-11 px-6 disabled:opacity-40 hover:opacity-80 active:opacity-90"
     :class="{
-      'bg-neutral-200 text-text dark:bg-neutral-600 dark:text-white':
+      'bg-zinc-200 text-zinc-600 dark:bg-zinc-600 dark:text-white':
         color === 'label',
-      'bg-text text-white dark:bg-indigo-500': color === 'text' || !color,
+      'bg-zinc-600 text-white dark:bg-indigo-500 ': color === 'text' || !color,
       'bg-transparent': color === 'transparent',
     }"
   >

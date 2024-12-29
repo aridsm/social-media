@@ -14,14 +14,10 @@ module.exports = {
       colors: {
         base: "#F4F4F4",
         base2: "#F5F5F5",
-        border: "#E1E1E1",
-        primary: "#9793F0",
-        text: "#3C3C49",
-        label: "#A5A5A5",
         "dark-border": "#575454",
-        neutral: {
-          600: "#403F3F",
-          700: "#333333",
+        zinc: {
+          600: "#3D3D42",
+          700: "#333337",
         },
       },
     },

@@ -57,13 +57,13 @@ const actionsList = ref([
   <AppCard v-if="user" class="!p-0 py-4 lg:!py-6 flex flex-col">
     <div class="flex items-center px-0 pb-4 lg:px-6 lg:pb-6">
       <NuxtLink
-        class="flex items-center gap-6 hover:text-primary mr-auto"
+        class="flex items-center gap-6 hover:text-indigo-500 mr-auto"
         :to="`/profile/${selectedChat.userId}`"
       >
         <AppAvatar :user="user!" />
         <div class="flex flex-col">
           <p class="font-bold">@{{ user?.userName }}</p>
-          <p class="text-label">
+          <p class="text-zinc-400">
             {{ user?.name }}
           </p>
         </div>
@@ -87,7 +87,7 @@ const actionsList = ref([
     >
       <p
         v-if="!selectedChat.messages.length"
-        class="text-center text-label flex flex-col items-center"
+        class="text-center text-zinc-400 flex flex-col items-center"
       >
         <icon icon="fa-regular fa-comments" class="text-2xl mb-3" />
         No message with {{ user.name }}
@@ -104,14 +104,14 @@ const actionsList = ref([
           class="rounded-md relative p-4 break-all before-arrow"
           :class="{
             'bg-indigo-500 text-white before-arrow-right': message.own,
-            'bg-base dark:bg-neutral-600 before-arrow-left': !message.own,
+            'bg-base dark:bg-zinc-600 before-arrow-left': !message.own,
           }"
         >
           <p>{{ message.message }}</p>
         </div>
         <div
           v-if="selectedChat.messages[index + 1]?.own !== message.own"
-          class="text-xs text-label text-end mt-2"
+          class="text-xs text-zinc-400 text-end mt-2"
         >
           <span>{{ dayjs(message.date).format("h:mm[ ]a") }}</span>
 
@@ -123,7 +123,7 @@ const actionsList = ref([
           <icon
             v-if="!message?.read && message?.own"
             icon="fa-solid fa-check"
-            class="text-label ml-3"
+            class="text-zinc-400 ml-3"
           />
         </div>
       </div>
@@ -141,7 +141,7 @@ const actionsList = ref([
 
 <style scoped>
 .card-selected {
-  @apply bg-border/[.5] dark:bg-neutral-600;
+  @apply bg-zinc-300 dark:bg-zinc-600;
 }
 
 .before-arrow {
@@ -149,7 +149,7 @@ const actionsList = ref([
 }
 
 .before-arrow.before-arrow-left {
-  @apply before:right-full before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600;
+  @apply before:right-full before:border-l-transparent before:border-r-base dark:before:border-r-zinc-600;
 }
 
 .before-arrow.before-arrow-right {

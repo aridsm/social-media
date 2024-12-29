@@ -53,12 +53,12 @@ const currentPath = computed(() => {
 
 <template>
   <div
-    class="p-6 2xl:p-8 z-[9999] transition-all bg-base dark:bg-neutral-800 flex-col w-[20rem] xl:w-[15rem] 2xl:w-[20rem] border-r border-r-neutral-200 dark:border-r-dark-border h-full"
+    class="px-6 py-8 z-[9999] transition-all dark:bg-zinc-800 flex-col w-[20rem] xl:w-[15rem] 2xl:w-[20rem] h-full border-r border-r-zinc-200 dark:border-r-zinc-600"
   >
-    <div class="flex uppercase font-bold items-end gap-2 leading-none">
+    <div class="flex uppercase font-bold items-end gap-2 leading-none my-2">
       <div class="flex items-end">
-        <div class="w-5 h-7 bg-text"></div>
-        <div class="w-5 h-5 bg-primary"></div>
+        <div class="w-5 h-7 bg-zinc-600"></div>
+        <div class="w-5 h-5 bg-indigo-500"></div>
       </div>
       Lorem
 
@@ -83,27 +83,27 @@ const currentPath = computed(() => {
         @click="emits('hide')"
       >
         <icon :icon="link.icon" class="w-7" />
-        <span class="leading-none -mb-1">{{ link.name }}</span>
+        <span class="leading-none">{{ link.name }}</span>
       </NuxtLink>
 
       <NuxtLink
         to="/settings"
-        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-border dark:border-t-dark-border"
+        class="px-4 flex items-center gap-4 py-8 mt-2 border-t border-t-zinc-200 dark:border-t-zinc-600"
       >
         <icon icon="fa-solid fa-gear" class="w-7" />
-        <span class="leading-none -mb-1">Settings</span>
+        <span class="leading-none">Settings</span>
       </NuxtLink>
     </nav>
 
     <button class="px-4 flex items-center gap-4 py-5 mt-auto font-bold">
       <icon icon="fa-solid fa-arrow-right-from-bracket" class="w-7" />
-      <span class="leading-none -mb-1">Log out</span>
+      <span class="leading-none">Log out</span>
     </button>
   </div>
 </template>
 
 <style>
 .active {
-  @apply bg-text text-white dark:bg-indigo-500 hover:bg-text dark:hover:bg-indigo-500;
+  @apply bg-indigo-500 text-white hover:bg-indigo-500;
 }
 </style>

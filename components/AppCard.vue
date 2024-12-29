@@ -10,8 +10,10 @@ defineProps({
   <div
     class="rounded-md"
     :class="{
-      'p-4 xl:p-6 bg-white dark:bg-neutral-700': !flat && !thin,
-      'p-2 xl:p-4 bg-white dark:bg-neutral-700': !flat && thin,
+      'p-4 xl:p-6 bg-white dark:bg-zinc-700 border dark:border-zinc-500/[.4]':
+        !flat && !thin,
+      'p-2 xl:p-4 bg-white dark:bg-zinc-700 border dark:border-zinc-500/[.4]':
+        !flat && thin,
     }"
   >
     <slot />

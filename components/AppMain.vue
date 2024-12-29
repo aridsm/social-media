@@ -52,7 +52,7 @@ function checkOnOpen(open: any, close: any) {
               <NuxtLink :to="`/profile/${user.id}`" class="p-4 hovered flex gap-4">
                 <AppAvatar :user="user" />
                 <div class="flex flex-col gap-2">
-                  <span class="text-primary ">@{{ user.userName }}</span>
+                  <span class="text-indigo-500 ">@{{ user.userName }}</span>
                   <span>{{ user.name }}</span>
                 </div>
               </NuxtLink>
@@ -62,8 +62,8 @@ function checkOnOpen(open: any, close: any) {
       </AppTooltip>
 
       <div class="flex items-center justify-end gap-2 md:gap-3 ml-auto flex-1">
-        <button class="rounded-full bg-border dark:bg-neutral-600 w-8 md:w-10 p-[2px]" @click="toggleColorMode">
-          <div class="w-3 h-3 md:w-4 md:h-4 bg-text dark:bg-white rounded-full transition relative" :class="{
+        <button class="rounded-full bg-zinc-300 dark:bg-zinc-600 w-8 md:w-10 p-[2px]" @click="toggleColorMode">
+          <div class="w-3 h-3 md:w-4 md:h-4 bg-zinc-600 dark:bg-white rounded-full transition relative" :class="{
             'translate-x-[14px] md:translate-x-5': isDarkMode,
           }"></div>
         </button>
@@ -76,9 +76,9 @@ function checkOnOpen(open: any, close: any) {
           <div class="notification">14</div>
         </button>
 
-        <NuxtLink :to="`/profile/${currentUser.id}`" class="flex items-center gap-4 px-2 hover:text-primary">
+        <NuxtLink :to="`/profile/${currentUser.id}`" class="flex items-center gap-4 px-2 hover:text-indigo-500">
           <span class="hidden xl:block">@{{ currentUser.userName }}</span>
-          <img class="w-8 h-8 md:w-10 md:h-10 bg-neutral-200 rounded-full" :src="getImgUrl(currentUser.photo)"
+          <img class="w-8 h-8 md:w-10 md:h-10 bg-zinc-200 rounded-full" :src="getImgUrl(currentUser.photo)"
             :alt="currentUser.name"></img>
         </NuxtLink>
 

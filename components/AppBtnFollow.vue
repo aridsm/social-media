@@ -17,19 +17,18 @@ defineProps({
   <button
     class="gap-2 flex items-center justify-center hover:opacity-75 active:opacity-65"
     :class="{
-      'bg-primary border 2xl:border-2 border-transparent dark:bg-indigo-500 text-white':
+      'bg-indigo-500 border border-transparent dark:bg-indigo-500 text-white':
         !user.isFollowing,
-      'bg-transparent border 2xl:border-2 text-indigo-500 dark:text-white border-primary  dark:border-neutral-200':
+      'bg-transparent border text-indigo-500 dark:text-white border-indigo-500  dark:border-zinc-200':
         user.isFollowing,
-      'py-[10px] 2xl:py-3 rounded-md w-28': squared,
-      'px-3 2xl:px-5 py-[2px] md:py-1 2xl:py-[5px] rounded-full text-xs 2xl:text-sm ':
-        !squared,
+      'py-[10px] rounded-md w-28': squared,
+      'px-3 py-1 rounded-full text-xs 2xl:text-sm ': !squared,
     }"
     @click="() => toggleFollowUser(user.id)"
   >
     <icon v-if="!user.isFollowing" icon="fa-solid fa-plus" class="text-xs" />
-    <span v-if="!user.isFollowing" class="leading-none mt-[2px]">Follow</span>
-    <span v-else class="leading-none mt-[2px]">Unfollow</span>
+    <span v-if="!user.isFollowing" class="leading-none">Follow</span>
+    <span v-else class="leading-none">Unfollow</span>
   </button>
 </template>
 <style></style>

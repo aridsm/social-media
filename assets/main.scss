@@ -1,16 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Nokora:wght@100;400;700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Nokora:wght@100;400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: "Nokora", sans-serif;
-  @apply bg-base dark:bg-neutral-800 text-text dark:text-neutral-100 text-[13px] 2xl:text-[16px];
+  font-family: "Noto Sans", serif;
+  @apply dark:bg-zinc-800 bg-base text-zinc-600 dark:text-zinc-100 text-[13px] 2xl:text-[16px];
 }
 
 .hovered {
-  @apply hover:bg-text/[.08] dark:hover:bg-neutral-200/[.08] active:bg-text/[.08] dark:active:bg-neutral-200/[.15];
+  @apply hover:bg-zinc-500/[.1] dark:hover:bg-zinc-300/[.08] active:bg-zinc-700/[.08] dark:active:bg-zinc-200/[.15];
 }
 
 ::-webkit-scrollbar {
@@ -23,12 +25,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-neutral-200 dark:bg-neutral-600;
+  @apply bg-zinc-200 dark:bg-zinc-600;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-neutral-400 dark:bg-neutral-500;
+  @apply bg-zinc-400 dark:bg-zinc-500;
 }
 
 @media (max-width: 768px) {

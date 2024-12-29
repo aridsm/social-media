@@ -11,21 +11,22 @@ export const useMessagesStore = defineStore("messages", () => {
       messages: [
         {
           id: 2,
-          message: "Oi",
+          message:
+            "Etiam quis orci ac mauris maximus commodo. Cras rhoncus tempor consequat",
           read: true,
           date: "2024-07-10T04:00:00Z",
           own: false,
         },
         {
           id: 3,
-          message: "oi!",
+          message: "Quisque vel dignissim risus",
           read: true,
           date: "2024-07-10T04:04:00Z",
           own: true,
         },
         {
           id: 4,
-          message: "pois é",
+          message: "Maecenas eu urna orci",
           read: true,
           date: "2024-07-10T04:10:00Z",
           own: false,
@@ -38,7 +39,7 @@ export const useMessagesStore = defineStore("messages", () => {
       messages: [
         {
           id: 6,
-          message: "Hello...",
+          message: "Quisque eget orci in tellus mattis lobortis sed eu mi",
           read: false,
           date: "2024-07-12T12:40:00Z",
           own: false,

@@ -10,7 +10,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="flex h-screen md:h-screen md:min-h-screen max-w-[2000px] w-full mx-auto"
+    class="flex h-screen md:h-screen md:min-h-screen max-w-[2000px] w-full mx-auto bg-base dark:bg-zinc-800"
     id="app"
   >
     <AppMenu class="hidden xl:flex" />

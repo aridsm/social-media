@@ -53,7 +53,7 @@ onMounted(() => {
     <div class="w-full min-w-0">
       <p>@{{ user?.userName }}</p>
       <div class="flex gap-2 items-center justify-between ">
-        <p class="text-label leading-none mt-2 flex gap-1 h-5 min-w-0 flex-1 ">
+        <p class="text-zinc-400 leading-none mt-2 flex gap-1 h-5 min-w-0 flex-1 ">
           <span v-if="lastMessage?.message" >{{ !lastMessage?.own ? `${user?.userName}: ` : "You: " }}</span>
           <p v-if="lastMessage?.message" class="truncate text-ellipsis" >{{ lastMessage?.message }}</p>
         </p>
@@ -65,7 +65,7 @@ onMounted(() => {
         <icon
           v-if="!lastMessage?.read && lastMessage?.own"
           icon="fa-solid fa-check"
-          class="text-label"
+          class="text-zinc-400"
         />
         <p
           v-else-if="notReadMessages?.length"

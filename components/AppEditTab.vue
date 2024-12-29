@@ -231,7 +231,8 @@ const usernameError = computed(() => {
               :key="background"
               class="h-20 sm:w-32 sm:h-16 2xl:w-40 2xl:h-20 overflow-hidden border-4 rounded-md transition"
               :class="{
-                'border-text dark:border-white ': background === userBackground,
+                'border-zinc-600 dark:border-white ':
+                  background === userBackground,
                 'border-transparent opacity-70 hover:opacity-100':
                   background !== userBackground,
               }"

@@ -45,7 +45,7 @@ onUnmounted(() => {
     <Transition name="action">
       <div
         v-if="show"
-        class="bg-white tooltip z-[9999] min-w-max dark:bg-neutral-600 flex flex-col items-start rounded-md absolute"
+        class="bg-white tooltip z-[9999] min-w-max dark:bg-zinc-700 flex flex-col items-start rounded-md absolute"
         :class="{
           'tooltip-top': origin === 'top',
           'tooltip-bottom': origin === 'bottom',
@@ -70,7 +70,7 @@ onUnmounted(() => {
   bottom: calc(100% + 8px);
 }
 .dark .tooltip {
-  box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 6px 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .action-enter-active,

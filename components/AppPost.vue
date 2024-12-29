@@ -98,13 +98,13 @@ function onAddNewPost() {
     class="relative"
     :class="{
       'flex md:gap-6 mt-4 2xl:mt-6': isComment,
-      'bg-base2 dark:bg-neutral-600 md:bg-transparent md:dark:bg-transparent':
+      'bg-base2 dark:bg-zinc-600 md:bg-transparent md:dark:bg-transparent':
         post.level > 1,
     }"
   >
     <div
       v-if="isComment && !lastInList && showComments"
-      class="h-full w-4 text-border hidden md:flex dark:text-neutral-500 hover:text-neutral-300 dark:hover:text-neutral-400 cursor-pointer justify-center absolute top-6 left-3"
+      class="h-full w-4 text-zinc-300 hidden md:flex dark:text-zinc-500 hover:text-zinc-300 dark:hover:text-zinc-400 cursor-pointer justify-center absolute top-6 left-3"
       @click="showComments = false"
     >
       <div class="h-full w-[1px] bg-current" />
@@ -115,8 +115,8 @@ function onAddNewPost() {
 
     <div
       :class="{
-        'md:bg-base md:dark:bg-neutral-600': post.level === 2,
-        'bg-neutral-200/[.3] dark:bg-neutral-500/[.15]': post.level === 3,
+        'md:bg-base md:dark:bg-zinc-600': post.level === 2,
+        'bg-zinc-200/[.3] dark:bg-zinc-500/[.15]': post.level === 3,
         ' p-3 md:p-4 2xl:p-6 w-full relative rounded-xl before-arrow ':
           isComment,
       }"
@@ -134,7 +134,7 @@ function onAddNewPost() {
         <div>
           <div class="flex gap-2 md:gap-4 items-center">
             <NuxtLink
-              class="cursor-pointer hover:text-primary"
+              class="cursor-pointer hover:text-indigo-500"
               :to="`/profile/${post.userId}`"
             >
               @{{ user?.userName }}
@@ -145,7 +145,7 @@ function onAddNewPost() {
               class="mb-1"
             />
           </div>
-          <p class="text-label text-xs 2xl:text-sm">
+          <p class="text-zinc-400 text-xs 2xl:text-sm">
             {{ getDateDifference(post.date) }}
           </p>
         </div>
@@ -153,7 +153,7 @@ function onAddNewPost() {
         <div class="ml-auto flex items-center gap-2 md:gap-3">
           <span
             v-if="post.edited"
-            class="text-label text-xs 2xl:text-sm border border-border dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
+            class="text-zinc-400 text-xs 2xl:text-sm border border-zinc-300 dark:border-dark-border rounded-full px-3 pt-1 pb-[2px] leading-none"
             >Edited</span
           >
           <AppActions v-slot="{ open }" :actions="actionsList">
@@ -233,14 +233,14 @@ function onAddNewPost() {
       <Transition name="posts">
         <div v-if="showComments" class="w-full">
           <div
-            class="border-t relative border-t-neutral-200 dark:border-t-dark-border pt-6 mt-4 flex items-center"
+            class="border-t relative border-t-zinc-200 dark:border-t-dark-border pt-6 mt-4 flex items-center"
             :class="{
               'gap-3 md:gap-6': post.level === 1,
             }"
           >
             <button
               @click="showComments = false"
-              class="absolute -top-2 btn-hide-comments hover:bg-neutral-100 bg-base dark:bg-neutral-600 dark:hover:bg-dark-border w-10 flex items-center justify-center border rounded-full border-neutral-200 dark:border-dark-border"
+              class="absolute -top-2 btn-hide-comments hover:bg-zinc-100 bg-base dark:bg-zinc-600 dark:hover:bg-dark-border w-10 flex items-center justify-center border rounded-full border-zinc-200 dark:border-dark-border"
             >
               <icon icon="fa-solid fa-chevron-up" />
             </button>
@@ -258,7 +258,7 @@ function onAddNewPost() {
           <div v-if="post.level <= 2" class="flex flex-col rounded-xl">
             <p
               v-if="!posts.length && post.level === 1"
-              class="text-label text-center mt-4 md:mt-6"
+              class="text-zinc-400 text-center mt-4 md:mt-6"
             >
               Be the first to comment!
             </p>
@@ -275,10 +275,10 @@ function onAddNewPost() {
       </Transition>
       <div
         v-if="!showComments && post.level === 1"
-        class="mt-4 pt-2 border-t border-t-border dark:border-t-dark-border"
+        class="mt-4 pt-2 border-t border-t-zinc-200 dark:border-t-dark-border"
       >
         <button
-          class="mt-2 2xl:mt-4 block mx-auto text-primary dark:text-neutral-100 hovered py-1 px-3 rounded-full"
+          class="mt-2 2xl:mt-4 block mx-auto text-indigo-500 dark:text-zinc-100 hovered py-1 px-3 rounded-full"
           @click="showComments = true"
         >
           View comments
@@ -294,7 +294,7 @@ function onAddNewPost() {
 }
 
 .before-arrow {
-  @apply before:top-4 before:hidden before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base dark:before:border-r-neutral-600 before:w-1 before:absolute before:right-full;
+  @apply before:top-4 before:hidden before:border-[8px] before:border-y-transparent before:border-l-transparent before:border-r-base dark:before:border-r-zinc-600 before:w-1 before:absolute before:right-full;
 }
 
 @media (min-width: 768px) {
@@ -304,7 +304,7 @@ function onAddNewPost() {
 }
 
 .comment + .comment {
-  @apply border-t border-t-border pt-2;
+  @apply border-t border-t-zinc-300 pt-2;
 }
 
 .posts-enter-active,

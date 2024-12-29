@@ -32,7 +32,7 @@ function onSearch($event: string) {
       <NuxtLink
         v-for="user in users"
         :key="user.id"
-        class="cursor-pointer hover:text-primary"
+        class="cursor-pointer hover:text-indigo-500"
         :to="`/profile/${user.id}`"
       >
         <AppCard class="flex gap-4 w-full items-center">
@@ -40,11 +40,11 @@ function onSearch($event: string) {
           <div class="flex flex-col items-start justify-between w-full">
             @{{ user.userName }}
 
-            <span class="text-label">{{ user.name }}</span>
+            <span class="text-zinc-400">{{ user.name }}</span>
           </div>
         </AppCard>
       </NuxtLink>
     </div>
-    <p v-else class="text-label text-center">No result</p>
+    <p v-else class="text-zinc-400 text-center">No result</p>
   </AppPage>
 </template>

@@ -8,7 +8,7 @@ const { currentUser } = useCurrentUserStore();
 
 <template>
   <aside
-    class="hidden xl:flex flex-col p-6 2xl:p-8 w-[20rem] 2xl:w-[24rem] border-l border-l-border dark:border-l-dark-border h-full"
+    class="hidden xl:flex flex-col p-6 2xl:p-8 w-[20rem] 2xl:w-[24rem] border-l border-l-zinc-200 dark:border-l-zinc-600 bg-base dark:bg-zinc-800 h-full"
   >
     <div>
       <div class="flex justify-between items-center mb-2 2xl:mb-4">
@@ -22,12 +22,12 @@ const { currentUser } = useCurrentUserStore();
             <div class="flex flex-row items-start justify-between w-full gap-2">
               <div class="flex flex-col">
                 <NuxtLink
-                  class="cursor-pointer hover:text-primary"
+                  class="cursor-pointer hover:text-indigo-500"
                   :to="`/profile/${user.id}`"
                 >
                   @{{ user.userName }}
                 </NuxtLink>
-                <span class="text-label">{{ user.name }}</span>
+                <span class="text-zinc-400">{{ user.name }}</span>
               </div>
 
               <AppBtnFollow
@@ -53,12 +53,12 @@ const { currentUser } = useCurrentUserStore();
             <AppAvatar :user="user" />
             <div class="flex flex-col">
               <NuxtLink
-                class="cursor-pointer hover:text-primary"
+                class="cursor-pointer hover:text-indigo-500"
                 :to="`/profile/${user.id}`"
               >
                 @{{ user.userName }}
               </NuxtLink>
-              <span class="text-label">{{ user.name }}</span>
+              <span class="text-zinc-400">{{ user.name }}</span>
             </div>
             <AppBtnFollow
               v-if="user.id !== currentUser.id"

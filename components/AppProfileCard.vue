@@ -53,7 +53,7 @@ const actionsList = ref([
     <AppAvatar
       :user="user"
       large
-      class="cursor-pointer mx-auto border-8 rounded-full border-base dark:border-neutral-800"
+      class="cursor-pointer mx-auto border-8 rounded-full border-base dark:border-zinc-800"
       @click="activePage = 'data'"
     />
     <AppActions
@@ -63,7 +63,7 @@ const actionsList = ref([
       class="right-7 md:right-12 top-2 md:top-4 actions"
     >
       <button
-        class="hover:bg-neutral-200 w-8 h-8 2xl:w-10 2xl:h-10 bg-white rounded-full text-neutral-700 flex items-center justify-center"
+        class="hover:bg-zinc-200 w-8 h-8 2xl:w-10 2xl:h-10 bg-white rounded-full text-zinc-700 flex items-center justify-center"
         @click="open"
       >
         <icon
@@ -81,7 +81,7 @@ const actionsList = ref([
 }
 
 .background-profile {
-  @apply rounded-lg mb-10 p-4 h-24 md:h-28 2xl:h-36 bg-neutral-700 flex items-start justify-between;
+  @apply rounded-lg mb-10 p-4 h-24 md:h-28 2xl:h-36 bg-zinc-700 flex items-start justify-between;
   background-size: 150% auto;
 }
 

@@ -174,7 +174,7 @@ function onSelectMonthAfter() {
 </script>
 <template>
   <div class="relative">
-    <span v-if="label" class="block mb-1 text-label">{{ label }}</span>
+    <span v-if="label" class="block mb-1 text-zinc-400">{{ label }}</span>
 
     <AppTooltip class="relative" :origin="origin">
       <template #activator="{ open, isOpen }">
@@ -182,8 +182,8 @@ function onSelectMonthAfter() {
           class="input-styles pr-10 flex items-center"
           :class="[
             {
-              'bg-base dark:bg-neutral-600': color === 'base',
-              'bg-white dark:bg-neutral-700': color === 'sec',
+              'bg-base dark:bg-zinc-800': color === 'base',
+              'bg-white dark:bg-transparent': color === 'sec',
             },
             contentClass,
           ]"
@@ -192,31 +192,35 @@ function onSelectMonthAfter() {
           <span v-if="modelValue" class="mr-auto">{{
             dayjs(modelValue).format("MM/DD/YYYY")
           }}</span>
-          <span v-else class="mr-auto text-label">{{
+          <span v-else class="mr-auto text-zinc-400">{{
             placeholder || "Select..."
           }}</span>
           <button
             v-if="clearable && modelValue"
             @click.stop="modelValue = null"
-            class="hovered w-5 h-5 rounded-full flex items-center justify-center mr-4"
+            class="hovered w-5 h-5 rounded-md flex items-center justify-center mr-4"
           >
-            <icon icon="fa-solid fa-xmark" class="text-label text-md" />
+            <icon icon="fa-solid fa-xmark" class="text-zinc-400 text-md" />
           </button>
           <icon
             icon="fa-solid fa-chevron-down"
-            class="text-primary transition"
+            class="text-indigo-500 transition"
             :class="{ 'rotate-90': isOpen }"
           />
         </button>
       </template>
 
       <template #default="{ close }">
-        <div class="px-2 py-4 w-[280px] md:w-[380px]">
+        <div class="px-2 py-4 w-[320px] md:w-[380px]">
           <div class="flex items-center justify-between mb-4 pl-3">
             <div class="flex gap-3 items-center">
               <span>{{ monthNames[dateData.month] }}</span>
 
-              <AppSelectionInput v-model="selectedYear" :list="years" />
+              <AppSelectionInput
+                v-model="selectedYear"
+                :list="years"
+                color="sec"
+              />
             </div>
             <div class="flex">
               <AppBtn
@@ -239,7 +243,7 @@ function onSelectMonthAfter() {
             <div
               v-for="weekDayName in weekDayNames"
               :key="weekDayName.index"
-              class="flex items-center justify-center p-2 text-label"
+              class="flex items-center justify-center p-2 text-zinc-400"
             >
               {{ weekDayName.abbr }}
             </div>
@@ -249,9 +253,9 @@ function onSelectMonthAfter() {
               class="p-1 md:p-2 rounded-md"
               :disabled="monthDay.disabled"
               :class="{
-                'bg-primary dark:bg-indigo-500 text-white':
+                'bg-indigo-500 dark:bg-indigo-500 text-white':
                   dateData.day === monthDay.value && !monthDay.disabled,
-                'text-label': monthDay.disabled,
+                'text-zinc-400': monthDay.disabled,
               }"
               @click="setMonthDay(monthDay.value)"
             >
@@ -272,6 +276,6 @@ function onSelectMonthAfter() {
 
 <style scoped>
 .input-styles {
-  @apply placeholder:text-label dark:placeholder:text-neutral-400 px-4 py-2 2xl:py-3 rounded-full text-text dark:text-white focus:outline-primary dark:focus:outline-indigo-500 focus:outline-none w-full text-sm;
+  @apply placeholder:text-zinc-400 dark:placeholder:text-zinc-400 border border-zinc-200 dark:border-zinc-500/[.4] px-5 py-3 rounded-md text-zinc-600 dark:text-white focus:outline-indigo-500 dark:focus:outline-indigo-500 focus:outline-none w-full;
 }
 </style>
