@@ -4,6 +4,7 @@ import { getBackgroundgUrl } from "~/utils/images/getUrlImage";
 import type { Post } from "~/utils/posts/types";
 import { Gender, RelationShip, type User } from "~/utils/users/types";
 import { useUsersStore } from "~/utils/users/useUsersStore";
+import AppConfirm from "./AppConfirm.vue";
 
 const props = defineProps({
   user: {
@@ -17,6 +18,7 @@ const props = defineProps({
 });
 
 const userForm = ref<User | undefined>(undefined);
+const dialog = ref<InstanceType<typeof AppConfirm>>();
 
 const emits = defineEmits<{
   (name: "save", newData: User): void;
@@ -94,10 +96,20 @@ const usernameError = computed(() => {
   }
   return;
 });
+
+function onConfirmSave() {
+  dialog.value?.confirm({
+    message: "Do you really want to save the changes?",
+    onConfirm: () => {
+      emits("save", userForm.value!);
+    },
+  });
+}
 </script>
 
 <template>
   <div v-if="userForm">
+    <AppConfirm ref="dialog" />
     <span class="font-bold block mb-4">Editing profile</span>
 
     <div class="flex flex-col gap-4 md:gap-6">
@@ -209,7 +221,7 @@ const usernameError = computed(() => {
         <AppBtn color="label" @click="emits('back')">Cancel</AppBtn>
         <AppBtn
           :disabled="!!usernameError || !!nameError"
-          @click="emits('save', userForm)"
+          @click="onConfirmSave"
         >
           Confirm
         </AppBtn>

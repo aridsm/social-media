@@ -4,10 +4,12 @@ import { useCurrentUserStore } from "~/utils/users/useCurrentUserStore";
 import type { Post } from "~/utils/posts/types";
 import { usePostsStore } from "~/utils/posts/usePostsStore";
 import { useUsersStore } from "~/utils/users/useUsersStore";
+import AppConfirm from "./AppConfirm.vue";
 
 const showComments = ref(false);
 const comment = ref("");
 const editing = ref(false);
+const dialog = ref<InstanceType<typeof AppConfirm>>();
 
 const { addNewPost, removePost, likePost, dislikePost, findPosts } =
   usePostsStore();
@@ -78,8 +80,16 @@ const actionsList = ref([
     icon: "fa-regular fa-trash-can",
     class: "text-red-600 dark:text-red-400",
     visible: () => currentUser.id === props.post.userId,
-    click: () => {
-      removePost(props.post);
+    click: async () => {
+      dialog.value?.confirm({
+        message:
+          props.post.level === 1
+            ? "Do you really want to delete the post?"
+            : "Do you really want to delete the comment?",
+        onConfirm: () => {
+          removePost(props.post);
+        },
+      });
     },
   },
 ]);
@@ -104,7 +114,7 @@ function onAddNewPost() {
   >
     <div
       v-if="isComment && !lastInList && showComments"
-      class="h-full w-4 text-zinc-300 hidden md:flex dark:text-zinc-500 hover:text-zinc-300 dark:hover:text-zinc-400 cursor-pointer justify-center absolute top-6 left-3"
+      class="h-full w-4 text-zinc-300 hidden md:flex dark:text-zinc-500 hover:text-zinc-300 dark:hover:text-zinc-400 cursor-pointer justify-center absolute top-6 left-4"
       @click="showComments = false"
     >
       <div class="h-full w-[1px] bg-current" />
@@ -278,6 +288,7 @@ function onAddNewPost() {
         </button>
       </div>
     </div>
+    <AppConfirm ref="dialog" />
   </AppCard>
 </template>
 
