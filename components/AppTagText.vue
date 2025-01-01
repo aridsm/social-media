@@ -222,7 +222,7 @@ function onBlur() {
       ref="autotext"
       :contenteditable="!disabled"
       :placeholder="showPlaceholder ? placeholder : ''"
-      class="input-styles autotext rounded-lg w-full max-h-28 overflow-auto leading-7 relative"
+      class="input-styles autotext rounded-lg w-full overflow-auto leading-7 relative"
       :class="[
         contentClass,
         {
