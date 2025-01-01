@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Social Media App</string>
+    <string name="title_activity_main">Social Media App</string>
+    <string name="package_name">com.aridsm.socialmediapp</string>
+    <string name="custom_url_scheme">com.aridsm.socialmediapp</string>
+</resources>

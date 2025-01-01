@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Sync the android project
+pnpm cap sync android
+
+# Change to the android directory
+cd ../android && chmod +x gradlew
+
+# Keystore config
+KEYSTORE_PATH="../keystore.jks"
+KEYSTORE_PASSWORD="1234567"
+KEYSTORE_ALIAS="socialmediaappalias"
+KEYSTORE_ALIAS_PASSWORD="1234567"
+
+# APK config
+APK_RELEASE_PATH="app/release"
+APK_SIGNED_PATH="$APK_RELEASE_PATH/app-release-signed.apk"
+APK_ALIGNED_PATH="$(mktemp).aligned.apk"
+
+# Reset the release folder
+rm -rf $APK_RELEASE_PATH
+mkdir -p $APK_RELEASE_PATH
+
+# Build the APK
+./gradlew assembleRelease
+
+# Align the APK
+$ANDROID_HOME/build-tools/34.0.0/zipalign -v -p 4 "app/build/outputs/apk/release/app-release-unsigned.apk" $APK_ALIGNED_PATH
+
+# Sign the APK
+$ANDROID_HOME/build-tools/34.0.0/apksigner sign \
+  --ks $KEYSTORE_PATH \
+  --ks-pass pass:$KEYSTORE_PASSWORD \
+  --ks-key-alias $KEYSTORE_ALIAS \
+  --key-pass pass:$KEYSTORE_ALIAS_PASSWORD \
+  --in $APK_ALIGNED_PATH \
+  --out $APK_SIGNED_PATH
+
+# Copy the Signed APK to the release folder
+cp app/build/outputs/apk/release/output-metadata.json $APK_RELEASE_PATH/output-metadata.json
+
+# Remove the Aligned APK
+rm -rf $APK_ALIGNED_PATH
+
+# AAB Build 
+pnpm exec cap build android --androidreleasetype=AAB --keystorealias="$KEYSTORE_ALIAS" --keystorealiaspass="$KEYSTORE_ALIAS_PASSWORD" --keystorepass="$KEYSTORE_PASSWORD" --keystorepath="$KEYSTORE_PATH"
+
+# Copy the AAB to the release folder
+cp  app/build/outputs/bundle/release/app-release-signed.aab $APK_RELEASE_PATH/app-release-signed.aab

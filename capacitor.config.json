@@ -1,0 +1,5 @@
+{
+  "appId": "com.aridsm.socialmediapp",
+  "appName": "Social Media App",
+  "webDir": ".output/public"
+}
