@@ -10,7 +10,7 @@ defineProps({
   },
 });
 
-const show = ref(false);
+const show = defineModel("show", { default: false });
 const tooltip = ref<HTMLDivElement>();
 
 function onOpen() {

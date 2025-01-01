@@ -167,9 +167,7 @@ function onAddNewPost() {
         </div>
       </div>
       <div class="my-4 md:my-6">
-        <p v-if="!editing" class="leading-relaxed">
-          {{ post.post }}
-        </p>
+        <AppTagText v-if="!editing" v-model="post.post" disabled />
         <AppEditingPost v-else :post="post" @close="editing = false" />
       </div>
 
@@ -248,12 +246,7 @@ function onAddNewPost() {
             <NuxtLink :to="`/profile/${currentUser.id}`">
               <AppAvatar v-if="post.level === 1" :user="currentUser" />
             </NuxtLink>
-            <AppInputText
-              v-model="comment"
-              class="w-full"
-              :border="post.level === 2"
-              :action="onAddNewPost"
-            />
+            <AppTagText v-model="comment" :action="onAddNewPost" />
           </div>
           <div v-if="post.level <= 2" class="flex flex-col rounded-xl">
             <p
@@ -278,7 +271,7 @@ function onAddNewPost() {
         class="mt-4 pt-2 border-t border-t-zinc-200 dark:border-t-dark-border"
       >
         <button
-          class="mt-2 2xl:mt-4 block mx-auto text-indigo-500 dark:text-zinc-100 hovered py-1 px-3 rounded-full"
+          class="mt-2 xl:mt-4 block mx-auto text-indigo-500 dark:text-zinc-100 hovered py-1 px-3 rounded-full"
           @click="showComments = true"
         >
           View comments

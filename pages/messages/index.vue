@@ -119,22 +119,16 @@ function onAddNewChat(userId: number) {
       </div>
     </div>
 
-    <AppModal modal-classes="block lg:hidden" v-model:open="chatsOpen">
-      <button
-        class="flex items-center gap-2 hovered rounded-full mb-3 pr-3 py-1 pl-1"
-        @click="(chatsOpen = false), (selectedChat = undefined)"
-      >
-        <div
-          class="rounded-full !text-[10px] bg-indigo-500 text-white w-5 h-5 flex items-center justify-center"
-        >
-          <icon icon="fa-solid fa-chevron-left" />
-        </div>
-        <span class="text-sm text-zinc-400">Back</span>
-      </button>
+    <AppModal
+      modal-classes="block lg:hidden"
+      v-model:open="chatsOpen"
+      content-class="!p-0 !border-none"
+    >
       <AppChat
         v-if="selectedChat"
         v-model="selectedChat"
         class="min-w-0 min-h-0 max-w-[35rem] w-[85vw] !h-[78vh]"
+        @back="(chatsOpen = false), (selectedChat = undefined)"
       />
     </AppModal>
 

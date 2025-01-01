@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-2">
-    <AppInputText v-model="modelValue" :textarea="true" class="w-full" />
+    <AppTagText v-model="modelValue" />
     <div class="flex gap-3 justify-end">
       <AppBtn color="label" @click="emits('close')">Cancel</AppBtn>
       <AppBtn @click="editPost(post.id, modelValue), emits('close')"

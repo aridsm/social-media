@@ -12,14 +12,13 @@ const { currentUser } = useCurrentUserStore();
   <AppCard>
     <div class="flex items-start gap-4">
       <AppAvatar :user="currentUser" />
-      <AppInputText
-        class="flex-1"
+      <AppTagText
         v-model="newPost"
-        textarea
         placeholder="What are you thinking?"
+        content-class="h-28"
       />
     </div>
-    <div class="flex justify-between items-center mt-3 2xl:mt-4">
+    <div class="flex justify-between items-center mt-3 md:mt-4">
       <div class="flex gap-2 xl:gap-4 items-center">
         <button class="flex items-center gap-2 hovered rounded-full py-1 px-3">
           <icon icon="fa-solid fa-image" />

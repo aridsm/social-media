@@ -2,6 +2,11 @@
 import type { PropType } from "vue";
 
 const modelValue = defineModel<number | undefined | null>({ required: true });
+const show = defineModel("show", { default: false });
+
+const emits = defineEmits<{
+  (name: "select", value: number, item: Item): void;
+}>();
 
 type Item = { id: number; name: string; [key: string]: any };
 const itemsMap = ref<Map<number, Item>>();
@@ -47,38 +52,41 @@ function getSelectedItem() {
   <div class="relative">
     <span v-if="label" class="block mb-1 text-zinc-400">{{ label }}</span>
 
-    <AppTooltip class="flex-1 relative">
+    <AppTooltip v-model:show="show" class="flex-1 relative">
       <template #activator="{ open, isOpen }">
-        <button
-          class="input-styles pr-10 flex items-center gap-4"
-          :class="[
-            {
-              'bg-base dark:bg-zinc-800': color === 'base',
-              'bg-white dark:bg-transparent': color === 'sec',
-            },
-            contentClass,
-          ]"
-          @click="open"
-        >
-          <span v-if="modelValue" class="mr-auto">{{
-            selectedItem?.name
-          }}</span>
-          <span v-else class="mr-auto text-zinc-400">{{
-            placeholder || "Select..."
-          }}</span>
+        <slot name="activator" :attrs="{ open, isOpen }">
           <button
-            v-if="clearable && modelValue"
-            @click.stop="modelValue = null"
-            class="hovered w-5 h-5 rounded-md flex items-center justify-center"
+            v-if="!$slots.activator"
+            class="input-styles pr-10 flex items-center gap-4"
+            :class="[
+              {
+                'bg-base dark:bg-zinc-800': color === 'base',
+                'bg-white dark:bg-transparent': color === 'sec',
+              },
+              contentClass,
+            ]"
+            @click="open"
           >
-            <icon icon="fa-solid fa-xmark" class="text-zinc-400" />
+            <span v-if="modelValue" class="mr-auto">{{
+              selectedItem?.name
+            }}</span>
+            <span v-else class="mr-auto text-zinc-400">{{
+              placeholder || "Select..."
+            }}</span>
+            <button
+              v-if="clearable && modelValue"
+              @click.stop="modelValue = null"
+              class="hovered w-5 h-5 rounded-md flex items-center justify-center"
+            >
+              <icon icon="fa-solid fa-xmark" class="text-zinc-400" />
+            </button>
+            <icon
+              icon="fa-solid fa-chevron-down"
+              class="text-indigo-500 transition"
+              :class="{ 'rotate-90': isOpen }"
+            />
           </button>
-          <icon
-            icon="fa-solid fa-chevron-down"
-            class="text-indigo-500 transition"
-            :class="{ 'rotate-90': isOpen }"
-          />
-        </button>
+        </slot>
       </template>
 
       <template #default="{ close }">
@@ -87,7 +95,9 @@ function getSelectedItem() {
             v-for="item in list"
             :key="item.id"
             class="cursor-pointer p-4 hovered w-full"
-            @click="(modelValue = item.id), close()"
+            @click="
+              (modelValue = item.id), close(), emits('select', item.id, item)
+            "
           >
             {{ item.name }}
           </li>

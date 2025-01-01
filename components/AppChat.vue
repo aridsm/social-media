@@ -5,6 +5,10 @@ import { useMessagesStore } from "~/utils/messages/useMessagesStore";
 import type { User } from "~/utils/users/types";
 import { useUsersStore } from "~/utils/users/useUsersStore";
 
+const emits = defineEmits<{
+  (name: "back"): void;
+}>();
+
 const { sendMessage, markChatAsRead } = useMessagesStore();
 const { getUserById } = useUsersStore();
 
@@ -54,7 +58,18 @@ const actionsList = ref([
 </script>
 
 <template>
-  <AppCard v-if="user" class="!p-0 py-4 lg:!py-6 flex flex-col">
+  <AppCard v-if="user" class="lg:!px-0 lg:py-6 flex flex-col">
+    <button
+      class="flex md:hidden items-center gap-2 hovered rounded-full mb-3 pr-3 py-1 pl-1 self-start"
+      @click="emits('back')"
+    >
+      <div
+        class="rounded-full !text-[10px] bg-indigo-500 text-white w-5 h-5 flex items-center justify-center"
+      >
+        <icon icon="fa-solid fa-chevron-left" />
+      </div>
+      <span class="text-sm text-zinc-400">Back</span>
+    </button>
     <div class="flex items-center px-0 pb-4 lg:px-6 lg:pb-6">
       <NuxtLink
         class="flex items-center gap-6 hover:text-indigo-500 mr-auto"

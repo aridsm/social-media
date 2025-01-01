@@ -1,0 +1,20 @@
+{
+    "Vue 3 component (Composition API + Style)": {
+      "prefix": "vue3",
+      "body": [
+        "<script setup lang=\"tsx\">",
+        "$1",
+        "</script>",
+        "",
+        "<template>",
+        "$2",
+        "</template>",
+        "",
+        "<style lang=\"scss\">",
+        "$3",
+        "</style>",
+              ""
+      ]
+    },
+  }
+  

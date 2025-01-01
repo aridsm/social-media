@@ -79,7 +79,7 @@ const modelValue = defineModel<string | number | undefined>({ required: true });
     />
     <button
       v-if="action"
-      class="absolute top-[7px] right-2 2xl:right-3 text-sm rounded-full hovered w-8 h-8 flex justify-center items-center"
+      class="absolute top-[7px] right-2 2xl:right-3 text-sm rounded-full hovered w-8 h-8 2xl:w-9 2xl:h-9 flex justify-center items-center"
       @click="action"
     >
       <icon icon="fa-regular fa-paper-plane" />
