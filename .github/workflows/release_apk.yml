@@ -72,7 +72,7 @@ jobs:
         run: cd android && chmod +x gradlew
 
       - name: Giving access to android-build
-        run: cd scripts && chmod +x android-build && ./android-build
+        run: cd scripts && chmod +x apk-build && ./apk-build
 
       - name: Upload APK to GitHub Releases
         uses: actions/upload-artifact@v4
